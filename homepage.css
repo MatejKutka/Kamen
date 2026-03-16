@@ -69,7 +69,9 @@ body{
     background-color: white;
     font-size: 16px;
     cursor: pointer;
-
+    display: inline-block;
+    text-decoration: none;
+    color: black;
     white-space: nowrap;
 }
 
