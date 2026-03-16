@@ -33,7 +33,6 @@ body{
     color: black !important;
 }
 
-/* Search bar */
 .search-container{
     position: relative;
     width: 100%;
@@ -57,7 +56,6 @@ body{
     opacity: 0.6;
 }
 
-/* Right side */
 .navbar-actions{
     display: flex;
     align-items: center;
@@ -84,3 +82,130 @@ body{
     cursor: pointer;
 }
 
+.intro-image{
+    width: 100%;
+}
+
+.sale-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 6px;
+  color: black;
+  margin: 40px 0;
+}
+
+.sale-section {
+  text-align: center;
+  padding: 40px;
+}
+
+.sale-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.sale-card {
+  text-align: center;
+}
+
+.sale-name {
+  margin-top: 10px;
+  font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+}
+
+.sale-price {
+  font-weight: bold;
+  font-size: clamp(1rem, 1.5vw, 1.4rem);
+}
+
+.sale-image{
+    width: 100%;
+    height: auto;
+}
+
+.sports-section{
+    text-align:center;
+    padding:60px 40px;
+}
+
+.sports-title{
+    font-size:clamp(1.8rem,4vw,3rem);
+    margin-bottom:40px;
+}
+
+.sports-grid{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.sport-card{
+    display:block;
+    transition:transform 0.2s ease;
+}
+
+.sport-image{
+    width:100%;
+    border-radius:6px;
+}
+
+.sport-card:hover{
+    transform:scale(1.05);
+}
+
+.description-section {
+  padding: 60px 40px;
+}
+
+.description-title {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.description-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.description-content p {
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+  line-height: 1.8;
+  color: #666;
+  margin: 0;
+}
+
+.footer-section{
+    padding:60px 40px;
+    border-top:1px solid #dcdcdc;
+}
+
+.footer-container{
+    display:flex;
+    justify-content:space-between;
+    max-width:1200px;
+    margin:auto;
+}
+
+.footer-left h4{
+    font-weight:600;
+    margin-bottom:8px;
+}
+
+.footer-left p{
+    color:#777;
+}
+
+.footer-right{
+    text-align:left;
+}
+
+.footer-right p{
+    margin:2px 0;
+}
