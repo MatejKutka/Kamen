@@ -373,10 +373,10 @@ body {
     color: #111111;
 }
 
-.profile-form-actions {
+/* .profile-form-actions {
     margin-top: clamp(20px, 3vw, 32px);
 }
-
+ */
 .btn-save {
     display: inline-flex;
     align-items: center;
