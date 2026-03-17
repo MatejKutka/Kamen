@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>navbar</title>
+    <link rel="stylesheet" href="navbar.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <nav class="navbar" aria-label="Hlavná navigácia">
+
+            <!-- Logo -->
+            <a class="navbar-logo" href="homepage.html" aria-label="Go to the home page">
+                <img src="src/Logo.png" alt="Logo obchodu">
+            </a>
+
+            <!-- Hamburger toggle (CSS-only checkbox hack) -->
+            <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
+            <label for="nav-toggle" class="nav-toggle-label" aria-label="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <!-- Collapsible wrapper -->
+            <div class="navbar-collapse">
+
+                <!-- Primary nav links -->
+                <ul class="navbar-links" role="list">
+                    <li><a href="homepage.html" class="navbar-link navbar-link--active" aria-current="page">Home</a>
+                    </li>
+                    <li><a href="#" class="navbar-link">Sports</a></li>
+                    <li><a href="#" class="navbar-link">Men</a></li>
+                    <li><a href="#" class="navbar-link">Women</a></li>
+                    <li><a href="#" class="navbar-link">Children</a></li>
+                </ul>
+
+                <!-- Search -->
+                <search class="navbar-search" role="search">
+                    <img src="src/magnifying-glass.png" alt="" class="navbar-search-icon" aria-hidden="true">
+                    <input type="search" id="site-search" class="navbar-search-input" placeholder="Search"
+                        autocomplete="off">
+                </search>
+
+                <!-- Actions -->
+                <div class="navbar-actions">
+                    <a href="register.html" class="btn-signup">Sign Up</a>
+
+                    <a href="profile.html" class="navbar-icon-btn" aria-label="My profile">
+                        <img src="src/profile.jpg" alt="" aria-hidden="true">
+                    </a>
+
+                    <a href="cart.html" class="navbar-icon-btn" aria-label="Shopping cart">
+                        <img src="src/shoping-cart.png" alt="" aria-hidden="true">
+                    </a>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+</body>
+
+</html>
