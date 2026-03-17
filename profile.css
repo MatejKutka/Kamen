@@ -1,0 +1,498 @@
+/* ============================================================
+   Reset / Base
+   ============================================================ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'DM Sans', Arial, sans-serif;
+    color: #111111;
+    min-height: 100vh;
+}
+
+/* ============================================================
+   Header & Navbar shell
+   ============================================================ */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: clamp(12px, 2vw, 32px);
+    height: clamp(56px, 8vw, 85px);
+    padding-inline: clamp(16px, 4vw, 48px);
+}
+
+/* ============================================================
+   Logo
+   ============================================================ */
+.navbar-logo {
+    flex-shrink: 0;
+    line-height: 0;
+}
+
+.navbar-logo img {
+    height: clamp(28px, 4vw, 38px);
+    width: auto;
+    display: block;
+}
+
+/* ============================================================
+   Hamburger toggle (CSS-only)
+   ============================================================ */
+.nav-toggle {
+    display: none;
+}
+
+.nav-toggle-label {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.nav-toggle-label span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: #111111;
+    border-radius: 999px;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+    transform-origin: center;
+}
+
+/* Animate to X when checked */
+.nav-toggle:checked+.nav-toggle-label span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle:checked+.nav-toggle-label span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.nav-toggle:checked+.nav-toggle-label span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ============================================================
+   Collapsible wrapper — desktop: flex row
+   ============================================================ */
+.navbar-collapse {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: clamp(12px, 2vw, 32px);
+}
+
+/* ============================================================
+   Nav links
+   ============================================================ */
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: clamp(8px, 2vw, 60px);
+    list-style: none;
+    flex-shrink: 0;
+}
+
+.navbar-link {
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
+    font-weight: 500;
+    color: #111111;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.15s ease;
+}
+
+.navbar-link:hover {
+    color: #555555;
+}
+
+.navbar-link--active {
+    font-weight: 600;
+}
+
+/* ============================================================
+   Search
+   ============================================================ */
+.navbar-search {
+    position: relative;
+    flex: 1;
+    max-width: clamp(180px, 28vw, 480px);
+    margin-inline: auto;
+}
+
+.navbar-search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: clamp(14px, 1.5vw, 18px);
+    height: clamp(14px, 1.5vw, 18px);
+    pointer-events: none;
+    object-fit: contain;
+    opacity: 0.6;
+}
+
+.navbar-search-input {
+    width: 100%;
+    padding-block: clamp(6px, 1vw, 9px);
+    padding-left: clamp(32px, 3.5vw, 38px);
+    padding-right: 12px;
+    border: none;
+    border-radius: 999px;
+    background-color: #efefef;
+    font-family: inherit;
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
+    color: #111111;
+    outline-offset: 2px;
+    transition: background-color 0.15s ease;
+}
+
+.navbar-search-input::placeholder {
+    color: #555555;
+}
+
+.navbar-search-input:focus {
+    background-color: #e0e0e0;
+    outline: 2px solid #111111;
+}
+
+.navbar-search-input::-webkit-search-cancel-button {
+    display: none;
+}
+
+/* ============================================================
+   Actions
+   ============================================================ */
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 1.5vw, 18px);
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+.btn-signup {
+    display: inline-flex;
+    align-items: center;
+    padding-block: clamp(7px, 1vw, 10px);
+    padding-inline: clamp(14px, 2vw, 22px);
+    border: 1px solid #111111;
+    border-radius: 8px;
+    background-color: #ffffff;
+    font-family: inherit;
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
+    font-weight: 500;
+    color: #111111;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.btn-signup:hover {
+    background-color: #f5f5f5;
+}
+
+.navbar-icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+}
+
+.navbar-icon-btn:hover {
+    opacity: 0.6;
+}
+
+.navbar-icon-btn img {
+    width: clamp(22px, 3vw, 28px);
+    height: clamp(22px, 3vw, 28px);
+    object-fit: contain;
+    display: block;
+}
+
+/* ============================================================
+   Page background & layout
+   ============================================================ */
+.page-background {
+    min-height: calc(100vh - clamp(56px, 8vw, 85px));
+    background-image: url('src/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(24px, 4vw, 48px);
+}
+
+/* ============================================================
+   Profile card
+   ============================================================ */
+.profile-card {
+    width: 100%;
+    max-width: clamp(340px, 55vw, 750px);
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+    padding: clamp(24px, 4vw, 48px);
+}
+
+/* Header — avatar + meno */
+.profile-card-header {
+    display: flex;
+    align-items: center;
+    gap: clamp(14px, 2vw, 24px);
+    margin-bottom: clamp(16px, 2.5vw, 28px);
+}
+
+.profile-card-avatar-wrap {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.profile-card-avatar {
+    width: clamp(56px, 8vw, 80px);
+    height: clamp(56px, 8vw, 80px);
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+
+/* .profile-card-avatar-edit {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    background-color: #111111;
+    color: #ffffff;
+    font-size: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    transition: background-color 0.15s ease;
+}
+
+.profile-card-avatar-edit:hover {
+    background-color: #333333;
+}
+ */
+.profile-card-name {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 600;
+    color: #111111;
+    margin-bottom: 2px;
+}
+
+.profile-card-email {
+    font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+    color: #555555;
+}
+
+.profile-card-divider {
+    border: none;
+    border-top: 1px solid #e2e2e2;
+    margin-bottom: clamp(16px, 2.5vw, 28px);
+}
+
+/* ============================================================
+   Profile form
+   ============================================================ */
+.profile-form-fieldset {
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.profile-form-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(12px, 2vw, 24px);
+    padding-block: clamp(12px, 1.8vw, 18px);
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.profile-form-row:last-child {
+    border-bottom: none;
+}
+
+.profile-form-label {
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
+    font-weight: 500;
+    color: #111111;
+    white-space: nowrap;
+    flex-shrink: 0;
+    min-width: clamp(120px, 18vw, 180px);
+}
+
+.profile-form-input {
+    flex: 1;
+    text-align: right;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
+    color: #555555;
+    min-width: 0;
+    transition: color 0.15s ease;
+}
+
+.profile-form-input::placeholder {
+    color: #aaaaaa;
+}
+
+.profile-form-input:focus {
+    color: #111111;
+}
+
+.profile-form-actions {
+    margin-top: clamp(20px, 3vw, 32px);
+}
+
+.btn-save {
+    display: inline-flex;
+    align-items: center;
+    padding-block: clamp(10px, 1.2vw, 13px);
+    padding-inline: clamp(20px, 3vw, 36px);
+    border: none;
+    border-radius: 8px;
+    background-color: #1a73e8;
+    font-family: inherit;
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
+    font-weight: 600;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.btn-save:hover {
+    background-color: #1558b0;
+}
+
+/* ============================================================
+   Profile card — mobile
+   ============================================================ */
+@media (max-width: 560px) {
+
+    .page-background {
+        align-items: flex-start;
+        padding: clamp(16px, 4vw, 24px);
+    }
+
+    .profile-card {
+        max-width: 100%;
+        border-radius: 14px;
+    }
+
+    /* Na mobile label ide nad input */
+    .profile-form-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .profile-form-input {
+        text-align: left;
+        width: 100%;
+        background-color: #f5f5f5;
+        border-radius: 8px;
+        padding: 8px 12px;
+    }
+
+    .profile-form-label {
+        min-width: unset;
+    }
+}
+
+/* ============================================================
+   Responsivnost pre vsetko <= 992px
+   ============================================================ */
+@media (max-width: 992px) {
+
+    .navbar {
+        position: relative;
+        flex-wrap: wrap;
+        height: auto;
+        min-height: clamp(56px, 8vw, 72px);
+        align-items: center;
+    }
+
+    .nav-toggle-label {
+        display: flex;
+    }
+
+    .navbar-collapse {
+        position: absolute;
+        top: clamp(56px, 8vw, 72px);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: center;
+        background-color: #ffffff;
+        border-bottom: 1px solid #e2e2e2;
+        gap: clamp(16px, 3vw, 24px);
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transition: max-height 0.3s ease, opacity 0.25s ease, padding 0.3s ease;
+        padding-block: 0;
+    }
+
+    .nav-toggle:checked~.navbar-collapse {
+        max-height: 500px;
+        opacity: 1;
+        pointer-events: auto;
+        padding-block: clamp(16px, 3vw, 24px);
+    }
+
+    .navbar-search {
+        order: -1;
+        width: 100%;
+        max-width: clamp(260px, 80vw, 400px);
+        margin-inline: 0;
+    }
+
+    .navbar-links {
+        order: 0;
+        flex-direction: column;
+        align-items: center;
+        gap: clamp(10px, 3vw, 16px);
+    }
+
+    .navbar-actions {
+        order: 1;
+        margin-left: 0;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: clamp(10px, 1.5vw, 18px);
+    }
+}
