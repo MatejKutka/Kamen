@@ -82,52 +82,6 @@ article h1 {
     margin-bottom: 18px;
 }
 
-.field-group label {
-    display: block;
-    font-size: 14px;
-    font-weight: bold;
-    color: #222222;
-    margin-bottom: 7px;
-}
-
-.field-group input {
-    width: 100%;
-    padding: 10px 16px;
-    font-size: 13px;
-    border: 1px solid #aaaaaa;
-    border-radius: 999px;
-    background-color: #ebebeb;
-    color: #333333;
-    outline: none;
-}
-
-.field-group input::placeholder {
-    color: #888888;
-}
-
-.field-group input:focus {
-    border-color: #555555;
-    background-color: #ffffff;
-}
-
-.btn-login {
-    display: block;
-    width: 100%;
-    margin-top: 28px;
-    padding: 10px;
-    background-color: #ebebeb;
-    color: #111111;
-    font-size: 14px;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    border: 1px solid #aaaaaa;
-    border-radius: 999px;
-}
-
-.btn-login:hover {
-    background-color: #cccccc;
-}
 
 @media (max-width: 900px) {
     main {
