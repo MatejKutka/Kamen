@@ -236,7 +236,7 @@ body {
    ============================================================ */
 .page-background {
     min-height: calc(100vh - clamp(56px, 8vw, 85px));
-    background-image: url('src/background.jpg');
+    background-image: url('src/background.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -251,7 +251,7 @@ body {
    ============================================================ */
 .profile-card {
     width: 100%;
-    max-width: clamp(340px, 55vw, 750px);
+    max-width: clamp(480px, 55vw, 960px);
     background-color: #ffffff;
     border-radius: 20px;
     box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
@@ -300,8 +300,8 @@ body {
 
 .profile-card-avatar-edit:hover {
     background-color: #333333;
-}
- */
+} */
+
 .profile-card-name {
     font-size: clamp(1rem, 2vw, 1.25rem);
     font-weight: 600;
@@ -384,7 +384,7 @@ body {
     padding-inline: clamp(20px, 3vw, 36px);
     border: none;
     border-radius: 8px;
-    background-color: #1a73e8;
+    background-color: #696d72;
     font-family: inherit;
     font-size: clamp(0.875rem, 1.2vw, 1rem);
     font-weight: 600;
@@ -394,7 +394,7 @@ body {
 }
 
 .btn-save:hover {
-    background-color: #1558b0;
+    background-color: #b0b7c0;
 }
 
 /* ============================================================
@@ -403,7 +403,6 @@ body {
 @media (max-width: 560px) {
 
     .page-background {
-        align-items: flex-start;
         padding: clamp(16px, 4vw, 24px);
     }
 
@@ -429,6 +428,11 @@ body {
 
     .profile-form-label {
         min-width: unset;
+    }
+
+    .profile-form-actions {
+        display: flex;
+        justify-content: center;
     }
 }
 
