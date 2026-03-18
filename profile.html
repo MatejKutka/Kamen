@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="footer.css">
 </head>
 
 <body>
@@ -129,6 +130,35 @@
         </section>
     </main>
 
+
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-inner">
+
+            <!-- Brand -->
+            <div class="footer-brand">
+                <a href="homepage.html" aria-label="Kamen – domov">
+                    <img src="src/Logo.png" alt="Kamen">
+                </a>
+                <p class="footer-tagline">Your gear for every sport.</p>
+            </div>
+
+            <!-- Contact -->
+            <address class="footer-contact">
+                <p><strong>Contact us</strong></p>
+                <p><a href="mailto:info@kamen.com">info@kamen.com</a></p>
+                <p><a href="tel:+421xxxxxxxxx">+421 xxx xxx xxx</a></p>
+            </address>
+
+        </div>
+
+        <p class="footer-copy">
+            &copy; <span id="footer-year"></span> Kamen. All rights reserved.
+        </p>
+    </footer>
+
+    <script>
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+    </script>
 </body>
 
 </html>
