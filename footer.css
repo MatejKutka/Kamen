@@ -1,100 +1,31 @@
-/* ============================================================
-   Reset / Base
-   ============================================================ */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+.footer-section {
+    padding: 60px 40px;
+    border-top: 1px solid #dcdcdc;
+    background-color: white;
 }
 
-body {
-    font-family: 'DM Sans', Arial, sans-serif;
-}
-
-/* ============================================================
-   Footer
-   ============================================================ */
-.site-footer {
-    background-color: #111111;
-    color: #cccccc;
-    font-family: inherit;
-    padding: clamp(32px, 5vw, 60px) clamp(20px, 5vw, 64px) clamp(20px, 3vw, 32px);
-}
-
-.footer-inner {
+.footer-container {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    gap: clamp(24px, 4vw, 48px);
-    flex-wrap: wrap;
-    max-width: 1280px;
-    margin-inline: auto;
-    padding-bottom: clamp(24px, 3vw, 40px);
-    border-bottom: 1px solid #222222;
-    margin-bottom: clamp(16px, 2vw, 24px);
+    max-width: 1200px;
+    margin: auto;
+    gap: 30px;
 }
 
-/* Brand */
-.footer-brand {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+.footer-left h4 {
+    font-weight: 600;
+    margin-bottom: 8px;
 }
 
-.footer-brand img {
-    height: clamp(28px, 3.5vw, 38px);
-    width: auto;
-    filter: invert(1) brightness(2);
+.footer-left p {
+    color: #777;
+    margin: 0;
 }
 
-.footer-tagline {
-    font-size: clamp(0.85rem, 1vw, 0.95rem);
-    color: #666666;
+.footer-right {
+    text-align: left;
 }
 
-/* Contact */
-.footer-contact {
-    font-style: normal;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.footer-contact strong {
-    color: #ffffff;
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
-.footer-contact a {
-    color: #cccccc;
-    text-decoration: none;
-    font-size: clamp(0.875rem, 1.1vw, 0.95rem);
-    transition: color 0.15s ease;
-}
-
-.footer-contact a:hover {
-    color: #ffffff;
-}
-
-/* Copyright */
-.footer-copy {
-    font-size: 0.8rem;
-    color: #444444;
-    max-width: 1280px;
-    margin-inline: auto;
-}
-
-/* ============================================================
-   Responsive – mobile (≤ 480px)
-   ============================================================ */
-@media (max-width: 480px) {
-
-    .footer-inner {
-        flex-direction: column;
-        gap: 40px;
-    }
+.footer-right p {
+    margin: 2px 0;
 }

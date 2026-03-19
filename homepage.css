@@ -408,32 +408,3 @@ body {
     color: #666;
     margin: 0;
 }
-
-.footer-section {
-    padding: 60px 40px;
-    border-top: 1px solid #dcdcdc;
-}
-
-.footer-container {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: auto;
-}
-
-.footer-left h4 {
-    font-weight: 600;
-    margin-bottom: 8px;
-}
-
-.footer-left p {
-    color: #777;
-}
-
-.footer-right {
-    text-align: left;
-}
-
-.footer-right p {
-    margin: 2px 0;
-}
