@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="profile.css">
     <link rel="stylesheet" href="footer.css">
 </head>
@@ -17,47 +18,36 @@
     <header class="site-header">
         <nav class="navbar" aria-label="Hlavná navigácia">
 
-            <!-- Logo -->
             <a class="navbar-logo" href="homepage.html" aria-label="Go to the home page">
                 <img src="src/Logo.png" alt="Logo obchodu">
             </a>
 
-            <!-- Hamburger toggle (CSS-only checkbox hack) -->
             <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
             <label for="nav-toggle" class="nav-toggle-label" aria-label="Open menu">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </label>
 
-            <!-- Collapsible wrapper -->
             <div class="navbar-collapse">
 
-                <!-- Primary nav links -->
                 <ul class="navbar-links" role="list">
-                    <li><a href="homepage.html" class="navbar-link navbar-link--active" aria-current="page">Home</a>
-                    </li>
-                    <li><a href="#" class="navbar-link">Sports</a></li>
+                    <li><a href="homepage.html" class="navbar-link">Home</a></li>
+                    <li><a href="homepage.html#sports" class="navbar-link">Sports</a></li>
                     <li><a href="#" class="navbar-link">Men</a></li>
                     <li><a href="#" class="navbar-link">Women</a></li>
                     <li><a href="#" class="navbar-link">Children</a></li>
                 </ul>
 
-                <!-- Search -->
                 <search class="navbar-search" role="search">
                     <img src="src/magnifying-glass.png" alt="" class="navbar-search-icon" aria-hidden="true">
                     <input type="search" id="site-search" class="navbar-search-input" placeholder="Search"
                         autocomplete="off">
                 </search>
 
-                <!-- Actions -->
                 <div class="navbar-actions">
                     <a href="register.html" class="btn-signup">Sign Up</a>
-
                     <a href="profile.html" class="navbar-icon-btn" aria-label="My profile">
                         <img src="src/profile.jpg" alt="" aria-hidden="true">
                     </a>
-
                     <a href="cart.html" class="navbar-icon-btn" aria-label="Shopping cart">
                         <img src="src/shoping-cart.png" alt="" aria-hidden="true">
                     </a>
@@ -67,86 +57,72 @@
         </nav>
     </header>
 
-    <main class="page-background">
+    <main>
         <section class="profile-card" aria-labelledby="profile-heading">
 
-            <!-- Avatar + meno -->
             <header class="profile-card-header">
-                <div class="profile-card-avatar-wrap">
-                    <img src="src/profile.jpg" alt="Profilová fotka" class="profile-card-avatar">
-                    <!--     <button type="button" class="profile-card-avatar-edit" aria-label="Zmeniť profilovú fotku">
-                        &#9998;
-                    </button> -->
+                <img src="src/profile.jpg" alt="Profilová fotka" class="avatar">
+                <div class="profile-info">
+                    <h1 id="profile-heading">Your name</h1>
+                    <p>yourname@gmail.com</p>
                 </div>
-                <div class="profile-card-header-info">
-                    <h1 id="profile-heading" class="profile-card-name">Your name</h1>
-                    <p class="profile-card-email">yourname@gmail.com</p>
-                </div>
+                <a href="login.html" class="btn-logout">Log out</a>
             </header>
 
-            <hr class="profile-card-divider">
+            <hr>
 
-            <!-- Formulár -->
-            <form class="profile-form" action="#" method="post" novalidate>
-                <fieldset class="profile-form-fieldset">
+            <form action="#" method="post" novalidate>
+                <fieldset>
 
-                    <div class="profile-form-row">
-                        <label for="first-name" class="profile-form-label">Meno</label>
-                        <input type="text" id="first-name" name="first_name" class="profile-form-input"
-                            placeholder="Vaše meno" autocomplete="given-name">
+                    <div class="form-row">
+                        <label for="first-name">First name</label>
+                        <input type="text" id="first-name" name="first_name" placeholder="Your first name">
                     </div>
 
-                    <div class="profile-form-row">
-                        <label for="last-name" class="profile-form-label">Priezvisko</label>
-                        <input type="text" id="last-name" name="last_name" class="profile-form-input"
-                            placeholder="Vaše priezvisko" autocomplete="family-name">
+                    <div class="form-row">
+                        <label for="last-name">Last name</label>
+                        <input type="text" id="last-name" name="last_name" placeholder="Your last name">
                     </div>
 
-                    <div class="profile-form-row">
-                        <label for="email" class="profile-form-label">E-mail</label>
-                        <input type="email" id="email" name="email" class="profile-form-input"
-                            placeholder="yourname@gmail.com" autocomplete="email">
+                    <div class="form-row">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" placeholder="yourname@gmail.com">
                     </div>
 
-                    <div class="profile-form-row">
-                        <label for="password" class="profile-form-label">Heslo</label>
-                        <input type="password" id="password" name="password" class="profile-form-input"
-                            placeholder="••••••••" autocomplete="new-password">
+                    <div class="form-row">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="password">
                     </div>
 
-                    <div class="profile-form-row">
-                        <label for="phone" class="profile-form-label">Telefónne číslo</label>
-                        <input type="tel" id="phone" name="phone" class="profile-form-input"
-                            placeholder="+421 900 000 000" autocomplete="tel">
+                    <div class="form-row">
+                        <label for="phone">Phone number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+421 900 000 000">
                     </div>
 
                 </fieldset>
 
-                <div class="profile-form-actions">
-                    <button type="submit" class="btn-save">Uložiť zmeny</button>
+                <div class="form-actions">
+                    <button type="submit" class="btn-save">Save changes</button>
                 </div>
             </form>
 
         </section>
     </main>
 
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-left">
+                <h4>Kamen</h4>
+                <p>Small company description</p>
+            </div>
+            <div class="footer-right">
+                <p><strong>Contact us</strong></p>
+                <p>Mail - kamen@gmail.com</p>
+                <p>Phone - +421 xxx xxx xxx</p>
+            </div>
+        </div>
+    </footer>
 
-<footer class="footer-section">
-  <div class="footer-container">
-
-    <div class="footer-left">
-      <h4>Kamen</h4>
-      <p>Small company description</p>
-    </div>
-
-    <div class="footer-right">
-      <p><strong>Contact us</strong></p>
-      <p>Mail - kamen@gmail.com</p>
-      <p>Phone - +421 xxx xxx xxx</p>
-    </div>
-
-  </div>
-</footer>
 </body>
 
 </html>
