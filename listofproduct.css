@@ -1,0 +1,522 @@
+/* =====================================================
+   product.css  —  Product listing page
+   Pairs with navbar.css & footer.css  |  Font: DM Sans
+   ===================================================== */
+
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* ── Page layout via body grid ─────────────────── */
+body {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  grid-template-areas:
+    "header header"
+    "aside  main"
+    "footer footer";
+}
+
+.site-header    { grid-area: header; }
+.footer-section { grid-area: footer; }
+
+body > aside {
+  grid-area: aside;
+  align-self: start;
+  top: 85px;
+  padding: 28px 20px;
+  border-right: 1px solid #e2e2e2;
+  scrollbar-width: thin;
+  scrollbar-color: #e2e2e2 transparent;
+}
+
+body > main {
+  grid-area: main;
+  padding: 32px 36px;
+}
+
+
+/* ── Aside: filter sections ────────────────────── */
+aside section {
+  margin-bottom: 24px;
+}
+
+aside h2 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 10px;
+}
+
+aside details {
+  margin-bottom: 2px;
+}
+
+aside details summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+}
+
+aside details summary::-webkit-details-marker { display: none; }
+
+aside details summary::after {
+  content: '';
+  width: 7px; height: 7px;
+  border-right: 1.5px solid #999;
+  border-bottom: 1.5px solid #999;
+  transform: rotate(45deg);
+  transition: transform 0.18s ease;
+  flex-shrink: 0;
+}
+
+aside details[open] summary::after {
+  transform: rotate(-135deg);
+}
+
+aside details fieldset {
+  border: none;
+  padding: 0;
+  margin: 8px 0 10px 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+
+/* ── Filter checkboxes ─────────────────────────── */
+.filter-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #555;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.filter-check:hover { color: #111; }
+
+.filter-check input[type="checkbox"] {
+  appearance: none;
+  width: 15px; height: 15px;
+  border: 1.5px solid #c8c8c8;
+  border-radius: 3px;
+  flex-shrink: 0;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.filter-check input[type="checkbox"]:checked {
+  background: #111;
+  border-color: #111;
+}
+
+.filter-check input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 3px; top: 1px;
+  width: 5px; height: 4px;
+  border-left: 1.5px solid #fff;
+  border-bottom: 1.5px solid #fff;
+  transform: rotate(-45deg);
+}
+
+
+/* ── Price range (from / to) ───────────────────── */
+.price-range {
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.price-range label {
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.price-range input[type="number"] {
+  width: 78px;
+  padding: 6px 8px;
+  border: 1px solid #e2e2e2;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.82rem;
+  color: #111;
+  background: #f7f7f7;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.price-range input[type="number"]:focus {
+  border-color: #111;
+}
+
+
+/* ── Color swatches ────────────────────────────── */
+/* --c and --border are set as inline styles on each label */
+.filter-colors {
+  border: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.color-swatch {
+  display: block;
+  width: 22px; height: 22px;
+  cursor: pointer;
+  position: relative;
+}
+
+.color-swatch input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0; height: 0;
+}
+
+.color-swatch::after {
+  content: '';
+  display: block;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--c);
+  border: 1.5px solid var(--border, transparent);
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition: outline-color 0.15s, transform 0.15s;
+}
+
+.color-swatch:hover::after              { transform: scale(1.1); }
+.color-swatch:has(input:checked)::after { outline-color: #111; transform: scale(1.12); }
+
+
+/* ── Size options ──────────────────────────────── */
+.filter-sizes {
+  border: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.size-option {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border: 1px solid #e2e2e2;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.size-option input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0; height: 0;
+}
+
+.size-option:hover                      { border-color: #111; color: #111; }
+.size-option:has(input:checked)         { background: #111; border-color: #111; color: #fff; }
+
+
+/* ── Apply filters button ──────────────────────── */
+.btn-filter {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  background: #111;
+  color: #fff;
+  border: 1px solid #111;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.btn-filter:hover { opacity: 0.72; }
+
+
+/* ── Main: listing header ──────────────────────── */
+main > header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+main > header h1 {
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  font-weight: 600;
+  margin-right: auto;
+}
+
+.product-count {
+  font-size: 0.85rem;
+  color: #555;
+  white-space: nowrap;
+}
+
+main > header select {
+  padding: 6px 10px;
+  border: 1px solid #e2e2e2;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: #111;
+  background: #fff;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+main > header select:focus { border-color: #111; }
+
+
+/* ── Product grid ──────────────────────────────── */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+
+/* ── Product card ──────────────────────────────── */
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e2e2e2;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: box-shadow 0.18s, border-color 0.18s;
+}
+
+.card:hover {
+  border-color: #c8c8c8;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Image: grey placeholder */
+.card figure {
+  aspect-ratio: 1;
+  background: #d9d9d9;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Real image sits above */
+.card figure img {
+  position: relative;
+  z-index: 1;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card h3 {
+  padding: 10px 12px 0;
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.card h3 a {
+  color: #111;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.card h3 a:hover { color: #555; }
+
+/* Card footer: price on its own row, qty + btn on the next */
+.card footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px 12px;
+  margin-top: auto;
+}
+
+.card .price {
+  flex-basis: 100%;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #111;
+  margin: 0;
+}
+
+
+/* ── Quantity selector ─────────────────────────── */
+.qty {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e2e2e2;
+  border-radius: 6px;
+  padding: 0;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.qty button {
+  background: none;
+  border: none;
+  width: 26px; height: 28px;
+  font-size: 1rem;
+  color: #555;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+}
+
+.qty button:hover { background: #f0f0f0; color: #111; }
+
+.qty output {
+  width: 24px;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 28px;
+  border-left: 1px solid #e2e2e2;
+  border-right: 1px solid #e2e2e2;
+}
+
+.btn-cart {
+  flex: 1;
+  height: 28px;
+  background: #111;
+  color: #fff;
+  border: 1px solid #111;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+
+.btn-cart:hover { opacity: 0.72; }
+
+
+/* ── Pagination ────────────────────────────────── */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.pagination ol {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+  padding: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.page-num,
+.page-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px; height: 34px;
+  border: 1px solid #e2e2e2;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #555;
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.page-num:hover,
+.page-arrow:hover         { border-color: #111; color: #111; }
+
+.page-num[aria-current]   { background: #111; border-color: #111; color: #fff; pointer-events: none; }
+
+.page-arrow[aria-disabled] { opacity: 0.35; pointer-events: none; }
+
+
+/* ── Responsive ────────────────────────────────── */
+
+/* Tablet: aside on top, 3-col grid */
+@media (max-width: 1023px) {
+  body {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas:
+      "header"
+      "aside"
+      "main"
+      "footer";
+  }
+
+  body > aside {
+    position: static;
+    height: auto;
+    overflow-y: visible;
+    border-right: none;
+    border-bottom: 1px solid #e2e2e2;
+    padding: 20px 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 0 24px;
+  }
+
+  body > aside .btn-filter { grid-column: 1 / -1; }
+
+  body > main { padding: 24px 20px; }
+
+  .product-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+}
+
+/* Mobile: 2-col grid */
+@media (max-width: 767px) {
+  .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+
+  main > header { flex-direction: column; align-items: flex-start; }
+}
+
+/* Large desktop: 4-col grid */
+@media (min-width: 1440px) {
+  body { grid-template-columns: 240px 1fr; }
+
+  .product-grid { grid-template-columns: repeat(4, 1fr); }
+}

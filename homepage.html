@@ -1,201 +1,259 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homepage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="navbar.css" />
+    <link rel="stylesheet" href="homepage.css" />
+    <link rel="stylesheet" href="footer.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Homepage</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="navbar.css">
-  <link rel="stylesheet" href="homepage.css">
-  <link rel="stylesheet" href="footer.css">
-</head>
+  <body>
+    <header class="site-header">
+      <nav class="navbar" aria-label="Hlavná navigácia">
+        <!-- Logo -->
+        <a
+          class="navbar-logo"
+          href="homepage.html"
+          aria-label="Go to the home page"
+        >
+          <img src="src/Logo.png" alt="Logo obchodu" />
+        </a>
 
-<body>
+        <!-- Hamburger toggle (CSS-only checkbox hack) -->
+        <input
+          type="checkbox"
+          id="nav-toggle"
+          class="nav-toggle"
+          aria-hidden="true"
+        />
+        <label for="nav-toggle" class="nav-toggle-label" aria-label="Open menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
 
-  <header class="site-header">
-    <nav class="navbar" aria-label="Hlavná navigácia">
+        <!-- Collapsible wrapper -->
+        <div class="navbar-collapse">
+          <!-- Primary nav links -->
+          <ul class="navbar-links" role="list">
+            <li>
+              <a
+                href="homepage.html"
+                class="navbar-link navbar-link--active"
+                aria-current="page"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a href="homepage.html#sports" class="navbar-link">Sports</a>
+            </li>
+            <li><a href="listofproduct.html" class="navbar-link">Men</a></li>
+            <li><a href="listofproduct.html" class="navbar-link">Women</a></li>
+            <li>
+              <a href="listofproduct.html" class="navbar-link">Children</a>
+            </li>
+          </ul>
 
-      <!-- Logo -->
-      <a class="navbar-logo" href="homepage.html" aria-label="Go to the home page">
-        <img src="src/Logo.png" alt="Logo obchodu">
-      </a>
+          <!-- Search -->
+          <search class="navbar-search" role="search">
+            <label for="site-search" class="sr-only">Search products</label>
+            <img
+              src="src/magnifying-glass.png"
+              alt=""
+              class="navbar-search-icon"
+              aria-hidden="true"
+            />
+            <input
+              type="search"
+              id="site-search"
+              class="navbar-search-input"
+              placeholder="Search"
+              autocomplete="off"
+            />
+          </search>
 
-      <!-- Hamburger toggle (CSS-only checkbox hack) -->
-      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
-      <label for="nav-toggle" class="nav-toggle-label" aria-label="Open menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </label>
+          <!-- Actions -->
+          <div class="navbar-actions">
+            <a href="register.html" class="btn-signup">Sign Up</a>
 
-      <!-- Collapsible wrapper -->
-      <div class="navbar-collapse">
+            <a
+              href="profile.html"
+              class="navbar-icon-btn"
+              aria-label="My profile"
+            >
+              <img src="src/profile.jpg" alt="" aria-hidden="true" />
+            </a>
 
-        <!-- Primary nav links -->
-        <ul class="navbar-links" role="list">
-          <li><a href="homepage.html" class="navbar-link navbar-link--active" aria-current="page">Home</a></li>
-          <li><a href="homepage.html#sports" class="navbar-link">Sports</a></li>
-          <li><a href="#" class="navbar-link">Men</a></li>
-          <li><a href="#" class="navbar-link">Women</a></li>
-          <li><a href="#" class="navbar-link">Children</a></li>
-        </ul>
+            <a
+              href="cart.html"
+              class="navbar-icon-btn"
+              aria-label="Shopping cart"
+            >
+              <img src="src/shoping-cart.png" alt="" aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+      </nav>
+    </header>
 
-        <!-- Search -->
-        <search class="navbar-search" role="search">
-          <label for="site-search" class="sr-only">Search products</label>
-          <img src="src/magnifying-glass.png" alt="" class="navbar-search-icon" aria-hidden="true">
-          <input type="search" id="site-search" class="navbar-search-input" placeholder="Search" autocomplete="off">
-        </search>
+    <div>
+      <img src="src/Homepage/intro-image.png" class="intro-image" />
+    </div>
 
-        <!-- Actions -->
-        <div class="navbar-actions">
-          <a href="register.html" class="btn-signup">Sign Up</a>
+    <section class="sale-section">
+      <h2 class="sale-title">SALE</h2>
 
-          <a href="profile.html" class="navbar-icon-btn" aria-label="My profile">
-            <img src="src/profile.jpg" alt="" aria-hidden="true">
+      <div class="sale-grid">
+        <div class="sale-card">
+          <a href="productpage.html">
+            <img src="src/Homepage/SALE-1.png" class="sale-image img-fluid" />
           </a>
-
-          <a href="cart.html" class="navbar-icon-btn" aria-label="Shopping cart">
-            <img src="src/shoping-cart.png" alt="" aria-hidden="true">
-          </a>
+          <p class="sale-name">La sportiva rock climbing shoes</p>
+          <p class="sale-price">100,50$</p>
         </div>
 
+        <div class="sale-card">
+          <a href="productpage.html">
+            <img src="src/Homepage/SALE-1.png" class="sale-image img-fluid" />
+          </a>
+          <p class="sale-name">La sportiva rock climbing shoes</p>
+          <p class="sale-price">100,50$</p>
+        </div>
+
+        <div class="sale-card">
+          <a href="productpage.html">
+            <img src="src/Homepage/SALE-1.png" class="sale-image img-fluid" />
+          </a>
+          <p class="sale-name">La sportiva rock climbing shoes</p>
+          <p class="sale-price">100,50$</p>
+        </div>
       </div>
-    </nav>
-  </header>
+    </section>
 
-  <div>
-    <img src="src/Homepage/intro-image.png" class="intro-image">
-  </div>
+    <section class="sports-section" id="sports">
+      <h2 class="sports-title">Sports</h2>
 
-  <section class="sale-section">
-    <h2 class="sale-title">SALE</h2>
-
-
-    <div class="sale-grid">
-
-      <div class="sale-card">
-        <a href="productpage.html">
-          <img src="src/Homepage/SALE-1.png" class="sale-image img-fluid">
+      <div class="sports-grid">
+        <a href="#" class="sport-card">
+          <img
+            src="src/Sport-icons/badminton-racket.png"
+            class="sport-image img-fluid"
+          />
         </a>
-        <p class="sale-name">La sportiva rock climbing shoes</p>
-        <p class="sale-price">100,50$</p>
-      </div>
 
-      <div class="sale-card">
-        <a href="productpage.html">
-          <img src="src/Homepage/SALE-1.png" class="sale-image img-fluid">
+        <a href="#" class="sport-card">
+          <img
+            src="src/Sport-icons/bicycle.png"
+            class="sport-image img-fluid"
+          />
         </a>
-        <p class="sale-name">La sportiva rock climbing shoes</p>
-        <p class="sale-price">100,50$</p>
-      </div>
 
-      <div class="sale-card">
-        <a href="productpage.html">
-          <img src="src/Homepage/SALE-1.png" class="sale-image img-fluid">
+        <a href="#" class="sport-card">
+          <img src="src/Sport-icons/boxing.png" class="sport-image img-fluid" />
         </a>
-        <p class="sale-name">La sportiva rock climbing shoes</p>
-        <p class="sale-price">100,50$</p>
+
+        <a href="#" class="sport-card">
+          <img
+            src="src/Sport-icons/climbing.png"
+            class="sport-image img-fluid"
+          />
+        </a>
+
+        <a href="#" class="sport-card">
+          <img
+            src="src/Sport-icons/fencing.png"
+            class="sport-image img-fluid"
+          />
+        </a>
+
+        <a href="#" class="sport-card">
+          <img
+            src="src/Sport-icons/skateboard.png"
+            class="sport-image img-fluid"
+          />
+        </a>
+
+        <a href="#" class="sport-card">
+          <img
+            src="src/Sport-icons/ski-board.png"
+            class="sport-image img-fluid"
+          />
+        </a>
+
+        <a href="#" class="sport-card">
+          <img
+            src="src/Sport-icons/soccer-ball.png"
+            class="sport-image img-fluid"
+          />
+        </a>
+
+        <a href="#" class="sport-card">
+          <img
+            src="src/Sport-icons/surfing-board.png"
+            class="sport-image img-fluid"
+          />
+        </a>
+
+        <a href="#" class="sport-card">
+          <img
+            src="src/Sport-icons/swimming-glasses.png"
+            class="sport-image img-fluid"
+          />
+        </a>
       </div>
+    </section>
 
-    </div>
+    <section class="description-section">
+      <h2 class="description-title">Description</h2>
 
-  </section>
+      <div class="description-content">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+          id elit nibh. Aliquam iaculis enim at ante imperdiet, a porta nisl
+          feugiat. Nulla laoreet lacus quis sapien dapibus tristique. Etiam eu
+          accumsan magna, a consequat ex. Pellentesque sit amet velit tempus,
+          tempor tortor vitae, tempus metus.Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. Suspendisse id elit nibh. Aliquam iaculis
+          enim at ante imperdiet, a porta nisl feugiat. Nulla laoreet lacus quis
+          sapien dapibus tristique. Etiam eu accumsan magna, a consequat ex.
+          Pellentesque sit amet velit tempus, tempor tortor vitae, tempus metus.
+        </p>
 
-  <section class="sports-section" id="sports">
-
-    <h2 class="sports-title">Sports</h2>
-
-    <div class="sports-grid">
-      <a href="#" class="sport-card">
-        <img src="src/Sport-icons/badminton-racket.png" class="sport-image img-fluid">
-      </a>
-
-      <a href="#" class="sport-card">
-        <img src="src/Sport-icons/bicycle.png" class="sport-image img-fluid">
-      </a>
-
-      <a href="#" class="sport-card">
-        <img src="src/Sport-icons/boxing.png" class="sport-image img-fluid">
-      </a>
-
-      <a href="#" class="sport-card">
-        <img src="src/Sport-icons/climbing.png" class="sport-image img-fluid">
-      </a>
-
-      <a href="#" class="sport-card">
-        <img src="src/Sport-icons/fencing.png" class="sport-image img-fluid">
-      </a>
-
-      <a href="#" class="sport-card">
-        <img src="src/Sport-icons/skateboard.png" class="sport-image img-fluid">
-      </a>
-
-      <a href="#" class="sport-card">
-        <img src="src/Sport-icons/ski-board.png" class="sport-image img-fluid">
-      </a>
-
-      <a href="#" class="sport-card">
-        <img src="src/Sport-icons/soccer-ball.png" class="sport-image img-fluid">
-      </a>
-
-      <a href="#" class="sport-card">
-        <img src="src/Sport-icons/surfing-board.png" class="sport-image img-fluid">
-      </a>
-
-      <a href="#" class="sport-card">
-        <img src="src/Sport-icons/swimming-glasses.png" class="sport-image img-fluid">
-      </a>
-    </div>
-
-  </section>
-
-  <section class="description-section">
-    <h2 class="description-title">Description</h2>
-
-    <div class="description-content">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id
-        elit nibh. Aliquam iaculis enim at ante imperdiet, a porta nisl feugiat.
-        Nulla laoreet lacus quis sapien dapibus tristique. Etiam eu accumsan magna,
-        a consequat ex. Pellentesque sit amet velit tempus, tempor tortor vitae,
-        tempus metus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id
-        elit nibh. Aliquam iaculis enim at ante imperdiet, a porta nisl feugiat.
-        Nulla laoreet lacus quis sapien dapibus tristique. Etiam eu accumsan magna,
-        a consequat ex. Pellentesque sit amet velit tempus, tempor tortor vitae,
-        tempus metus.
-      </p>
-
-      <p>
-        Duis sollicitudin sapien non elementum sollicitudin. Nullam accumsan
-        elementum est ac accumsan. Donec urna nibh, cursus in lacus id, commodo
-        imperdiet quam. Proin sollicitudin pharetra eleifend. Pellentesque habitant
-        morbi tristique senectus et netus et malesuada fames ac turpis egestas.Lorem ipsum dolor sit amet, consectetur
-        adipiscing elit. Suspendisse id
-        elit nibh. Aliquam iaculis enim at ante imperdiet, a porta nisl feugiat.
-        Nulla laoreet lacus quis sapien dapibus tristique. Etiam eu accumsan magna,
-        a consequat ex. Pellentesque sit amet velit tempus, tempor tortor vitae,
-        tempus metus.
-      </p>
-    </div>
-  </section>
-
-  <footer class="footer-section">
-    <div class="footer-container">
-
-      <div class="footer-left">
-        <h4>Kamen</h4>
-        <p>Small company description</p>
+        <p>
+          Duis sollicitudin sapien non elementum sollicitudin. Nullam accumsan
+          elementum est ac accumsan. Donec urna nibh, cursus in lacus id,
+          commodo imperdiet quam. Proin sollicitudin pharetra eleifend.
+          Pellentesque habitant morbi tristique senectus et netus et malesuada
+          fames ac turpis egestas.Lorem ipsum dolor sit amet, consectetur
+          adipiscing elit. Suspendisse id elit nibh. Aliquam iaculis enim at
+          ante imperdiet, a porta nisl feugiat. Nulla laoreet lacus quis sapien
+          dapibus tristique. Etiam eu accumsan magna, a consequat ex.
+          Pellentesque sit amet velit tempus, tempor tortor vitae, tempus metus.
+        </p>
       </div>
+    </section>
 
-      <div class="footer-right">
-        <p><strong>Contact us</strong></p>
-        <p>Mail - kamen@gmail.com</p>
-        <p>Phone - +421 xxx xxx xxx</p>
+    <footer class="footer-section">
+      <div class="footer-container">
+        <div class="footer-left">
+          <h4>Kamen</h4>
+          <p>Small company description</p>
+        </div>
+
+        <div class="footer-right">
+          <p><strong>Contact us</strong></p>
+          <p>Mail - kamen@gmail.com</p>
+          <p>Phone - +421 xxx xxx xxx</p>
+        </div>
       </div>
-
-    </div>
-  </footer>
+    </footer>
+  </body>
+</html>

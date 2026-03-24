@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="sk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>List of products</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="navbar.css" />
+    <link rel="stylesheet" href="footer.css" />
+    <link rel="stylesheet" href="listofproduct.css" />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <header class="site-header">
+      <nav class="navbar" aria-label="Hlavná navigácia">
+        <a
+          class="navbar-logo"
+          href="homepage.html"
+          aria-label="Prejsť na úvodnú stránku"
+        >
+          <img src="src/Logo.png" alt="Logo obchodu" />
+        </a>
+
+        <input
+          type="checkbox"
+          id="nav-toggle"
+          class="nav-toggle"
+          aria-hidden="true"
+        />
+        <label
+          for="nav-toggle"
+          class="nav-toggle-label"
+          aria-label="Otvoriť menu"
+        >
+          <span></span><span></span><span></span>
+        </label>
+
+        <div class="navbar-collapse">
+          <ul class="navbar-links" role="list">
+            <li><a href="homepage.html" class="navbar-link">Home</a></li>
+            <li><a href="#" class="navbar-link">Sports</a></li>
+            <li><a href="#" class="navbar-link">Men</a></li>
+            <li><a href="#" class="navbar-link">Women</a></li>
+            <li><a href="#" class="navbar-link">Children</a></li>
+          </ul>
+
+          <search class="navbar-search" role="search">
+            <img
+              src="src/magnifying-glass.png"
+              alt=""
+              class="navbar-search-icon"
+              aria-hidden="true"
+            />
+            <input
+              type="search"
+              id="site-search"
+              class="navbar-search-input"
+              placeholder="Search"
+              autocomplete="off"
+            />
+          </search>
+
+          <div class="navbar-actions">
+            <a href="register.html" class="btn-signup">Sign Up</a>
+            <a
+              href="profile.html"
+              class="navbar-icon-btn"
+              aria-label="Môj profil"
+            >
+              <img src="src/profile.jpg" alt="" aria-hidden="true" />
+            </a>
+            <a
+              href="cart.html"
+              class="navbar-icon-btn"
+              aria-label="Nákupný košík"
+            >
+              <img src="src/shoping-cart.png" alt="" aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- ASIDE – FILTRE -->
+    <aside aria-label="Filtrovanie produktov">
+      <section>
+        <h2>Categories</h2>
+
+        <details open>
+          <summary>Gender</summary>
+          <fieldset>
+            <legend class="sr-only">Pohlavie</legend>
+            <label class="filter-check">
+              <input type="checkbox" name="gender" value="woman" />
+              woman
+            </label>
+            <label class="filter-check">
+              <input type="checkbox" name="gender" value="man" />
+              man
+            </label>
+          </fieldset>
+        </details>
+
+        <details open>
+          <summary>Sports</summary>
+          <fieldset>
+            <legend class="sr-only">Typ športu</legend>
+            <label class="filter-check">
+              <input type="checkbox" name="sport" value="tennis" />
+              tennis
+            </label>
+            <label class="filter-check">
+              <input type="checkbox" name="sport" value="football" />
+              football
+            </label>
+            <label class="filter-check">
+              <input type="checkbox" name="sport" value="basketball" />
+              basketball
+            </label>
+            <label class="filter-check">
+              <input type="checkbox" name="sport" value="running" />
+              running
+            </label>
+            <label class="filter-check">
+              <input type="checkbox" name="sport" value="cycling" />
+              cycling
+            </label>
+          </fieldset>
+        </details>
+      </section>
+
+      <section>
+        <h2>Price range</h2>
+        <fieldset class="price-range">
+          <legend class="sr-only">Cenový rozsah</legend>
+          <label for="price-from">From</label>
+          <input
+            type="number"
+            id="price-from"
+            name="price-from"
+            min="0"
+            placeholder="€ 0"
+          />
+          <label for="price-to">To</label>
+          <input
+            type="number"
+            id="price-to"
+            name="price-to"
+            max="9999"
+            placeholder="€ 250"
+          />
+        </fieldset>
+      </section>
+
+      <section>
+        <h2>Colors</h2>
+        <fieldset class="filter-colors">
+          <legend class="sr-only">Farba produktu</legend>
+          <label class="color-swatch" style="--c: #2a2a2a" title="Čierna">
+            <input type="checkbox" name="color" value="black" />
+          </label>
+          <label class="color-swatch" style="--c: #666666" title="Tmavosivá">
+            <input type="checkbox" name="color" value="darkgray" />
+          </label>
+          <label class="color-swatch" style="--c: #b0b0b0" title="Sivá">
+            <input type="checkbox" name="color" value="gray" />
+          </label>
+          <label class="color-swatch" style="--c: #d9d9d9" title="Svetlosivá">
+            <input type="checkbox" name="color" value="lightgray" />
+          </label>
+          <label
+            class="color-swatch"
+            style="--c: #ffffff; --border: #d0d0d0"
+            title="Biela"
+          >
+            <input type="checkbox" name="color" value="white" />
+          </label>
+          <label class="color-swatch" style="--c: #3b6fd4" title="Modrá">
+            <input type="checkbox" name="color" value="blue" />
+          </label>
+          <label class="color-swatch" style="--c: #d43b3b" title="Červená">
+            <input type="checkbox" name="color" value="red" />
+          </label>
+          <label class="color-swatch" style="--c: #3b9e5e" title="Zelená">
+            <input type="checkbox" name="color" value="green" />
+          </label>
+        </fieldset>
+      </section>
+
+      <section>
+        <h2>Size</h2>
+        <fieldset class="filter-sizes">
+          <legend class="sr-only">Veľkosť</legend>
+          <label class="size-option"
+            ><input type="checkbox" name="size" value="XS" /> XS</label
+          >
+          <label class="size-option"
+            ><input type="checkbox" name="size" value="S" /> S</label
+          >
+          <label class="size-option"
+            ><input type="checkbox" name="size" value="M" /> M</label
+          >
+          <label class="size-option"
+            ><input type="checkbox" name="size" value="L" /> L</label
+          >
+          <label class="size-option"
+            ><input type="checkbox" name="size" value="XL" /> XL</label
+          >
+          <label class="size-option"
+            ><input type="checkbox" name="size" value="XXL" /> XXL</label
+          >
+        </fieldset>
+      </section>
+
+      <button type="button" class="btn-filter">Apply filters</button>
+    </aside>
+
+    <!-- MAIN – PRODUKTY -->
+    <main>
+      <header>
+        <h1>All products</h1>
+        <p class="product-count"><strong>48</strong> products</p>
+        <label for="sort-by" class="sr-only">Sort by</label>
+        <select id="sort-by" name="sort">
+          <option value="popular">Most popular</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="newest">Newest</option>
+        </select>
+      </header>
+
+      <section class="product-grid" aria-label="Zoznam produktov">
+        <article class="card">
+          <a href="#" aria-hidden="true" tabindex="-1">
+            <figure><img src="" alt="" loading="lazy" /></figure>
+          </a>
+          <h3><a href="#">Product Name</a></h3>
+          <footer>
+            <p class="price">100,50 €</p>
+            <fieldset class="qty">
+              <legend class="sr-only">Počet kusov</legend>
+              <button type="button" aria-label="Znížiť">−</button>
+              <output aria-live="polite">1</output>
+              <button type="button" aria-label="Zvýšiť">+</button>
+            </fieldset>
+            <button type="button" class="btn-cart">Add to cart</button>
+          </footer>
+        </article>
+
+        <article class="card">
+          <a href="#" aria-hidden="true" tabindex="-1">
+            <figure><img src="" alt="" loading="lazy" /></figure>
+          </a>
+          <h3><a href="#">Product Name</a></h3>
+          <footer>
+            <p class="price">89,99 €</p>
+            <fieldset class="qty">
+              <legend class="sr-only">Počet kusov</legend>
+              <button type="button" aria-label="Znížiť">−</button>
+              <output aria-live="polite">1</output>
+              <button type="button" aria-label="Zvýšiť">+</button>
+            </fieldset>
+            <button type="button" class="btn-cart">Add to cart</button>
+          </footer>
+        </article>
+
+        <article class="card">
+          <a href="#" aria-hidden="true" tabindex="-1">
+            <figure><img src="" alt="" loading="lazy" /></figure>
+          </a>
+          <h3><a href="#">Product Name</a></h3>
+          <footer>
+            <p class="price">54,99 €</p>
+            <fieldset class="qty">
+              <legend class="sr-only">Počet kusov</legend>
+              <button type="button" aria-label="Znížiť">−</button>
+              <output aria-live="polite">1</output>
+              <button type="button" aria-label="Zvýšiť">+</button>
+            </fieldset>
+            <button type="button" class="btn-cart">Add to cart</button>
+          </footer>
+        </article>
+
+        <article class="card">
+          <a href="#" aria-hidden="true" tabindex="-1">
+            <figure><img src="" alt="" loading="lazy" /></figure>
+          </a>
+          <h3><a href="#">Product Name</a></h3>
+          <footer>
+            <p class="price">39,99 €</p>
+            <fieldset class="qty">
+              <legend class="sr-only">Počet kusov</legend>
+              <button type="button" aria-label="Znížiť">−</button>
+              <output aria-live="polite">1</output>
+              <button type="button" aria-label="Zvýšiť">+</button>
+            </fieldset>
+            <button type="button" class="btn-cart">Add to cart</button>
+          </footer>
+        </article>
+
+        <article class="card">
+          <a href="#" aria-hidden="true" tabindex="-1">
+            <figure><img src="" alt="" loading="lazy" /></figure>
+          </a>
+          <h3><a href="#">Product Name</a></h3>
+          <footer>
+            <p class="price">64,99 €</p>
+            <fieldset class="qty">
+              <legend class="sr-only">Počet kusov</legend>
+              <button type="button" aria-label="Znížiť">−</button>
+              <output aria-live="polite">1</output>
+              <button type="button" aria-label="Zvýšiť">+</button>
+            </fieldset>
+            <button type="button" class="btn-cart">Add to cart</button>
+          </footer>
+        </article>
+
+        <article class="card">
+          <a href="#" aria-hidden="true" tabindex="-1">
+            <figure><img src="" alt="" loading="lazy" /></figure>
+          </a>
+          <h3><a href="#">Product Name</a></h3>
+          <footer>
+            <p class="price">29,99 €</p>
+            <fieldset class="qty">
+              <legend class="sr-only">Počet kusov</legend>
+              <button type="button" aria-label="Znížiť">−</button>
+              <output aria-live="polite">1</output>
+              <button type="button" aria-label="Zvýšiť">+</button>
+            </fieldset>
+            <button type="button" class="btn-cart">Add to cart</button>
+          </footer>
+        </article>
+
+        <article class="card">
+          <a href="#" aria-hidden="true" tabindex="-1">
+            <figure><img src="" alt="" loading="lazy" /></figure>
+          </a>
+          <h3><a href="#">Product Name</a></h3>
+          <footer>
+            <p class="price">74,99 €</p>
+            <fieldset class="qty">
+              <legend class="sr-only">Počet kusov</legend>
+              <button type="button" aria-label="Znížiť">−</button>
+              <output aria-live="polite">1</output>
+              <button type="button" aria-label="Zvýšiť">+</button>
+            </fieldset>
+            <button type="button" class="btn-cart">Add to cart</button>
+          </footer>
+        </article>
+
+        <article class="card">
+          <a href="#" aria-hidden="true" tabindex="-1">
+            <figure><img src="" alt="" loading="lazy" /></figure>
+          </a>
+          <h3><a href="#">Product Name</a></h3>
+          <footer>
+            <p class="price">44,99 €</p>
+            <fieldset class="qty">
+              <legend class="sr-only">Počet kusov</legend>
+              <button type="button" aria-label="Znížiť">−</button>
+              <output aria-live="polite">1</output>
+              <button type="button" aria-label="Zvýšiť">+</button>
+            </fieldset>
+            <button type="button" class="btn-cart">Add to cart</button>
+          </footer>
+        </article>
+
+        <article class="card">
+          <a href="#" aria-hidden="true" tabindex="-1">
+            <figure><img src="" alt="" loading="lazy" /></figure>
+          </a>
+          <h3><a href="#">Product Name</a></h3>
+          <footer>
+            <p class="price">22,99 €</p>
+            <fieldset class="qty">
+              <legend class="sr-only">Počet kusov</legend>
+              <button type="button" aria-label="Znížiť">−</button>
+              <output aria-live="polite">1</output>
+              <button type="button" aria-label="Zvýšiť">+</button>
+            </fieldset>
+            <button type="button" class="btn-cart">Add to cart</button>
+          </footer>
+        </article>
+
+        <article class="card">
+          <a href="#" aria-hidden="true" tabindex="-1">
+            <figure><img src="" alt="" loading="lazy" /></figure>
+          </a>
+          <h3><a href="#">Product Name</a></h3>
+          <footer>
+            <p class="price">49,99 €</p>
+            <fieldset class="qty">
+              <legend class="sr-only">Počet kusov</legend>
+              <button type="button" aria-label="Znížiť">−</button>
+              <output aria-live="polite">1</output>
+              <button type="button" aria-label="Zvýšiť">+</button>
+            </fieldset>
+            <button type="button" class="btn-cart">Add to cart</button>
+          </footer>
+        </article>
+
+        <article class="card">
+          <a href="#" aria-hidden="true" tabindex="-1">
+            <figure><img src="" alt="" loading="lazy" /></figure>
+          </a>
+          <h3><a href="#">Product Name</a></h3>
+          <footer>
+            <p class="price">34,99 €</p>
+            <fieldset class="qty">
+              <legend class="sr-only">Počet kusov</legend>
+              <button type="button" aria-label="Znížiť">−</button>
+              <output aria-live="polite">1</output>
+              <button type="button" aria-label="Zvýšiť">+</button>
+            </fieldset>
+            <button type="button" class="btn-cart">Add to cart</button>
+          </footer>
+        </article>
+
+        <article class="card">
+          <a href="#" aria-hidden="true" tabindex="-1">
+            <figure><img src="" alt="" loading="lazy" /></figure>
+          </a>
+          <h3><a href="#">Product Name</a></h3>
+          <footer>
+            <p class="price">59,99 €</p>
+            <fieldset class="qty">
+              <legend class="sr-only">Počet kusov</legend>
+              <button type="button" aria-label="Znížiť">−</button>
+              <output aria-live="polite">1</output>
+              <button type="button" aria-label="Zvýšiť">+</button>
+            </fieldset>
+            <button type="button" class="btn-cart">Add to cart</button>
+          </footer>
+        </article>
+      </section>
+
+      <nav class="pagination" aria-label="Stránkovanie">
+        <a
+          href="#"
+          class="page-arrow"
+          aria-label="Predchádzajúca strana"
+          aria-disabled="true"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </a>
+        <ol>
+          <li><a href="#" class="page-num" aria-current="page">1</a></li>
+          <li><a href="#" class="page-num">2</a></li>
+          <li><a href="#" class="page-num">3</a></li>
+          <li><a href="#" class="page-num">4</a></li>
+          <li><a href="#" class="page-num">5</a></li>
+          <li><a href="#" class="page-num">6</a></li>
+          <li><a href="#" class="page-num">7</a></li>
+          <li><a href="#" class="page-num">8</a></li>
+          <li><a href="#" class="page-num">9</a></li>
+          <li><a href="#" class="page-num">10</a></li>
+        </ol>
+        <a href="#" class="page-arrow" aria-label="Nasledujúca strana">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </a>
+      </nav>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer-section">
+      <div class="footer-container">
+        <div class="footer-left">
+          <h4>Kamen</h4>
+          <p>Small company description</p>
+        </div>
+        <div class="footer-right">
+          <p><strong>Contact us</strong></p>
+          <p>Mail - kamen@gmail.com</p>
+          <p>Phone - +421 xxx xxx xxx</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
