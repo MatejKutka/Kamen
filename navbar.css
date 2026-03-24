@@ -148,7 +148,7 @@ body {
     padding-right: 12px;
     border: none;
     border-radius: 999px;
-    background-color: #efefef;
+    background-color: rgb(221, 214, 214);
     font-family: inherit;
     font-size: clamp(0.875rem, 1.2vw, 1rem);
     color: #111111;
