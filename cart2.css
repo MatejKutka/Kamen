@@ -1,3 +1,106 @@
+.cart-steps {
+    position: relative;
+    max-width: 900px;
+    margin: 2rem auto 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.steps-line {
+    position: absolute;
+    top: 50%;
+    left: calc(2rem + 21px);
+    right: calc(2rem + 21px);
+    height: 3px;
+    background-color: #d9d9d9;
+    transform: translateY(-50%);
+    z-index: 0;
+}
+
+.cart-steps::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: calc(2rem + 21px);
+    height: 3px;
+    background-color: #f59e0b;
+    transform: translateY(-50%);
+    z-index: 1;
+    width: 0;
+}
+
+.cart-steps.step-1::before { width: 0%; }
+.cart-steps.step-2::before { width: 30%; }
+.cart-steps.step-3::before { width: 60%; }
+.cart-steps.step-4::before { width: 90%; }
+
+.step {
+    position: relative;
+    z-index: 2;
+}
+
+.step-circle {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e5e5e5;
+    color: #777;
+    font-weight: 600;
+}
+
+/* STEP 1 */
+.cart-steps.step-1 .step:nth-child(2) .step-circle {
+    background-color: #f59e0b;
+    color: white;
+    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.18);
+}
+
+/* STEP 2 */
+.cart-steps.step-2 .step:nth-child(2) .step-circle {
+    background-color: #222;
+    color: white;
+}
+.cart-steps.step-2 .step:nth-child(3) .step-circle {
+    background-color: #f59e0b;
+    color: white;
+    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.18);
+}
+
+/* STEP 3 */
+.cart-steps.step-3 .step:nth-child(2) .step-circle,
+.cart-steps.step-3 .step:nth-child(3) .step-circle {
+    background-color: #222;
+    color: white;
+}
+.cart-steps.step-3 .step:nth-child(4) .step-circle {
+    background-color: #f59e0b;
+    color: white;
+    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.18);
+}
+
+/* STEP 4 */
+.cart-steps.step-4 .step:nth-child(2) .step-circle,
+.cart-steps.step-4 .step:nth-child(3) .step-circle,
+.cart-steps.step-4 .step:nth-child(4) .step-circle {
+    background-color: #222;
+    color: white;
+}
+.cart-steps.step-4 .step:nth-child(5) .step-circle {
+    background-color: #f59e0b;
+    color: white;
+    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.18);
+}
+
+.step-link{
+    text-decoration: none;
+    color: black;
+}
+
 
 /* === PAYMENT === */
 .payment-title {
