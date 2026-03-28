@@ -1,193 +1,527 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="newnav.css">
   <link rel="stylesheet" href="productpage-admin.css">
+  <link rel="stylesheet" href="footer.css">
 </head>
+
 <body>
 
-<nav class="navbar navbar-expand-lg custom-navbar">
-  <div class="container-fluid px-4">
 
-    <a class="navbar-brand d-flex align-items-center" href="homepage.html">
-      <img src="src/Logo.png" alt="Shop logo" class="navbar-logo">
-    </a>
+  <!--
+     MOBILNÉ OVERLAY PANELY
+     Vrstva 1 - Vrstva 2 - Vrstva 3
+    -->
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <!-- VRSTVA 1: Hlavné menu -->
+  <dialog id="mobile-menu" class="mobile-panel">
+    <header class="mobile-panel-header">
+      <a href="homepage.html" class="navbar-logo">
+        <img src="src/Logo.png" alt="Logo e-shopu">
+      </a>
+      <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
+    </header>
+    <nav aria-label="Mobile menu">
+      <ul role="list">
+        <li><a href="homepage.html" class="mobile-main-link">Home</a></li>
+        <li><a href="#mobile-men" class="mobile-cat-link">Men <span aria-hidden="true">›</span></a></li>
+        <li><a href="#mobile-women" class="mobile-cat-link">Women <span aria-hidden="true">›</span></a></li>
+        <li><a href="#mobile-accessories" class="mobile-cat-link">Accessories <span aria-hidden="true">›</span></a></li>
+      </ul>
+    </nav>
+    <footer class="mobile-panel-footer">
+      <ul class="mobile-actions" role="list">
+        <li><a href="register.html" class="btn-login">Sign up</a></li>
+        <li>
+          <a href="profile.html" class="mobile-profile" aria-label="My profile">
+            <img src="src/profile.jpg" alt="" aria-hidden="true">
+          </a>
+        </li>
+        <li>
+          <a href="cart.html" class="mobile-cart" aria-label="Shopping cart">
+            <img src="src/shoping-cart.png" alt="" aria-hidden="true">
+          </a>
+        </li>
+      </ul>
+    </footer>
+  </dialog>
 
-    <div class="collapse navbar-collapse" id="mainNavbar">
+  <!-- VRSTVA 2: Men -->
+  <dialog id="mobile-men" class="mobile-panel">
+    <header class="mobile-panel-header">
+      <a href="#mobile-menu" class="mobile-btn-back" aria-label="Back to menu">‹ Back</a>
+      <span class="mobile-panel-title">Men</span>
+      <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
+    </header>
+    <nav aria-label="Men categories">
+      <ul role="list">
+        <li><a href="#mobile-men-clothes" class="mobile-cat-link">Clothes <span aria-hidden="true">›</span></a>
+        </li>
+        <li><a href="#mobile-men-shoes" class="mobile-cat-link">Shoes <span aria-hidden="true">›</span></a></li>
+        <li><a href="#mobile-men-sports" class="mobile-cat-link">Sports <span aria-hidden="true">›</span></a>
+        </li>
+        <li><a href="#mobile-men-accessories" class="mobile-cat-link">Accessories <span aria-hidden="true">›</span></a>
+        </li>
+      </ul>
+    </nav>
+  </dialog>
 
-      <ul class="navbar-nav me-lg-4 mb-2 mb-lg-0 custom-nav-links">
-        <li class="nav-item">
-          <a class="nav-link active-link" href="homepage.html">Home</a>
+  <!-- VRSTVA 3: Men: Clothes -->
+  <dialog id="mobile-men-clothes" class="mobile-panel">
+    <header class="mobile-panel-header">
+      <a href="#mobile-men" class="mobile-btn-back" aria-label="Back to Men">‹ Back</a>
+      <span class="mobile-panel-title">Clothes</span>
+      <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
+    </header>
+    <nav aria-label="Men clothes">
+      <ul role="list">
+        <li><a href="listofproduct.html" class="mobile-sub-link">T-shirt</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Pants</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Hoodies</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Underwear</a></li>
+      </ul>
+    </nav>
+  </dialog>
+
+  <!-- VRSTVA 3: Men: Shoes -->
+  <dialog id="mobile-men-shoes" class="mobile-panel">
+    <header class="mobile-panel-header">
+      <a href="#mobile-men" class="mobile-btn-back" aria-label="Back to Men">‹ Back</a>
+      <span class="mobile-panel-title">Shoes</span>
+      <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
+    </header>
+    <nav aria-label="Men shoes">
+      <ul role="list">
+        <li><a href="listofproduct.html" class="mobile-sub-link">Running shoes</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Sport shoes</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Climbing shoes</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Open shoes</a></li>
+      </ul>
+    </nav>
+  </dialog>
+
+  <!-- VRSTVA 3: Men: Sports -->
+  <dialog id="mobile-men-sports" class="mobile-panel">
+    <header class="mobile-panel-header">
+      <a href="#mobile-men" class="mobile-btn-back" aria-label="Back to Men">‹ Back</a>
+      <span class="mobile-panel-title">Sports</span>
+      <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
+    </header>
+    <nav aria-label="Men sports">
+      <ul role="list">
+        <li><a href="listofproduct.html" class="mobile-sub-link">Climbing</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Running</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Football</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Basketball</a></li>
+      </ul>
+    </nav>
+  </dialog>
+
+  <!-- VRSTVA 3: Men: Accessories -->
+  <dialog id="mobile-men-accessories" class="mobile-panel">
+    <header class="mobile-panel-header">
+      <a href="#mobile-men" class="mobile-btn-back" aria-label="Back to Men">‹ Back</a>
+      <span class="mobile-panel-title">Accessories</span>
+      <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
+    </header>
+    <nav aria-label="Men accessories">
+      <ul role="list">
+        <li><a href="listofproduct.html" class="mobile-sub-link">Caps & hats</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Bags & backpacks</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Socks</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Watches</a></li>
+      </ul>
+    </nav>
+  </dialog>
+
+  <!-- VRSTVA 2: Women -->
+  <dialog id="mobile-women" class="mobile-panel">
+    <header class="mobile-panel-header">
+      <a href="#mobile-menu" class="mobile-btn-back" aria-label="Back to menu">‹ Back</a>
+      <span class="mobile-panel-title">Women</span>
+      <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
+    </header>
+    <nav aria-label="Women categories">
+      <ul role="list">
+        <li><a href="#mobile-women-clothes" class="mobile-cat-link">Clothes <span aria-hidden="true">›</span></a></li>
+        <li><a href="#mobile-women-shoes" class="mobile-cat-link">Shoes <span aria-hidden="true">›</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="homepage.html#sports">Sports</a>
+        <li><a href="#mobile-women-sports" class="mobile-cat-link">Sports <span aria-hidden="true">›</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Men</a>
+        <li><a href="#mobile-women-accessories" class="mobile-cat-link">Accessories <span
+              aria-hidden="true">›</span></a></li>
+      </ul>
+    </nav>
+  </dialog>
+
+  <!-- VRSTVA 3: Women: Clothes -->
+  <dialog id="mobile-women-clothes" class="mobile-panel">
+    <header class="mobile-panel-header">
+      <a href="#mobile-women" class="mobile-btn-back" aria-label="Back to Women">‹ Back</a>
+      <span class="mobile-panel-title">Clothes</span>
+      <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
+    </header>
+    <nav aria-label="Women clothes">
+      <ul role="list">
+        <li><a href="listofproduct.html" class="mobile-sub-link">Tops</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Pants</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Jackets</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Underwear</a></li>
+      </ul>
+    </nav>
+  </dialog>
+
+  <!-- VRSTVA 3: Women: Shoes -->
+  <dialog id="mobile-women-shoes" class="mobile-panel">
+    <header class="mobile-panel-header">
+      <a href="#mobile-women" class="mobile-btn-back" aria-label="Back to Women">‹ Back</a>
+      <span class="mobile-panel-title">Shoes</span>
+      <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
+    </header>
+    <nav aria-label="Women shoes">
+      <ul role="list">
+        <li><a href="listofproduct.html" class="mobile-sub-link">Running shoes</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Sport shoes</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Climbing shoes</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Open shoes</a></li>
+      </ul>
+    </nav>
+  </dialog>
+
+  <!-- VRSTVA 3: Women: Sports -->
+  <dialog id="mobile-women-sports" class="mobile-panel">
+    <header class="mobile-panel-header">
+      <a href="#mobile-women" class="mobile-btn-back" aria-label="Back to Women">‹ Back</a>
+      <span class="mobile-panel-title">Sports</span>
+      <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
+    </header>
+    <nav aria-label="Women sports">
+      <ul role="list">
+        <li><a href="listofproduct.html" class="mobile-sub-link">Climbing</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Running</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Volleyball</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Basketball</a></li>
+      </ul>
+    </nav>
+  </dialog>
+
+  <!-- VRSTVA 3: Women: Accessories -->
+  <dialog id="mobile-women-accessories" class="mobile-panel">
+    <header class="mobile-panel-header">
+      <a href="#mobile-women" class="mobile-btn-back" aria-label="Back to Women">‹ Back</a>
+      <span class="mobile-panel-title">Accessories</span>
+      <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
+    </header>
+    <nav aria-label="Women accessories">
+      <ul role="list">
+        <li><a href="listofproduct.html" class="mobile-sub-link">Caps & hats</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Bags & backpacks</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Socks</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Watches</a></li>
+      </ul>
+    </nav>
+  </dialog>
+
+  <!-- VRSTVA 2: Accessories -->
+  <dialog id="mobile-accessories" class="mobile-panel">
+    <header class="mobile-panel-header">
+      <a href="#mobile-menu" class="mobile-btn-back" aria-label="Back to menu">‹ Back</a>
+      <span class="mobile-panel-title">Accessories</span>
+      <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
+    </header>
+    <nav aria-label="Accessories">
+      <ul role="list">
+        <li><a href="listofproduct.html" class="mobile-sub-link">Bags & backpacks</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Sunglasses</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Gloves</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Hats & caps</a></li>
+        <li><a href="listofproduct.html" class="mobile-sub-link">Water bottles</a></li>
+      </ul>
+    </nav>
+  </dialog>
+
+  <header class="site-header">
+    <nav class="navbar" aria-label="Hlavná navigácia">
+
+      <a href="homepage.html" class="navbar-logo">
+        <img src="src/Logo.png" alt="Logo e-shopu">
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
+      <label for="nav-toggle" class="nav-toggle-label desktop-hamburger" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+
+      <a href="#mobile-menu" class="mobile-hamburger" aria-label="Otvoriť menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
+
+      <!-- desktop -->
+      <ul class="menu">
+        <li><a href="homepage.html" class="menu-link">Home</a></li>
+
+        <!-- Men category menu -->
+        <li class="menu-item">
+          <a href="#" class="menu-link">Men</a>
+          <ul class="submenu">
+            <li class="submenu-title"><a href="listofproduct.html">Men</a></li>
+            <li class="submenu-item"><a href="listofproduct.html">Clothes</a>
+              <ul class="sub-submenu">
+                <li><a href="listofproduct.html">T-shirt</a></li>
+                <li><a href="listofproduct.html">Pants</a></li>
+                <li><a href="listofproduct.html">Hoodies</a></li>
+                <li><a href="listofproduct.html">Underwear</a></li>
+              </ul>
+            </li>
+            <li class="submenu-item"><a href="listofproduct.html">Shoes</a>
+              <ul class="sub-submenu">
+                <li><a href="listofproduct.html">Running shoes</a></li>
+                <li><a href="listofproduct.html">Sport shoes</a></li>
+                <li><a href="listofproduct.html">Climbing shoes</a></li>
+                <li><a href="listofproduct.html">Open shoes</a></li>
+              </ul>
+            </li>
+            <li class="submenu-item"><a href="listofproduct.html">Sports</a>
+              <ul class="sub-submenu">
+                <li><a href="listofproduct.html">Climbing</a></li>
+                <li><a href="listofproduct.html">Running</a></li>
+                <li><a href="listofproduct.html">Football</a></li>
+                <li><a href="listofproduct.html">Basketball</a></li>
+              </ul>
+            </li>
+            <li class="submenu-item"><a href="listofproduct.html">Accessories</a>
+              <ul class="sub-submenu">
+                <li><a href="listofproduct.html">Caps & hats</a></li>
+                <li><a href="listofproduct.html">Bags & backpacks</a></li>
+                <li><a href="listofproduct.html">Socks</a></li>
+                <li><a href="listofproduct.html">Watches</a></li>
+              </ul>
+            </li>
+          </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Women</a>
+
+        <!-- Women category menu -->
+        <li class="menu-item">
+          <a href="#" class="menu-link">Women</a>
+          <ul class="submenu">
+            <li class="submenu-title"><a href="listofproduct.html">Women</a></li>
+            <li class="submenu-item"><a href="listofproduct.html">Clothes</a>
+              <ul class="sub-submenu">
+                <li><a href="listofproduct.html">Tops</a></li>
+                <li><a href="listofproduct.html">Pants</a></li>
+                <li><a href="listofproduct.html">Jackets</a></li>
+                <li><a href="listofproduct.html">Underwear</a></li>
+              </ul>
+            </li>
+            <li class="submenu-item"><a href="listofproduct.html">Shoes</a>
+              <ul class="sub-submenu">
+                <li><a href="listofproduct.html">Running shoes</a></li>
+                <li><a href="listofproduct.html">Sport shoes</a></li>
+                <li><a href="listofproduct.html">Climbing shoes</a></li>
+                <li><a href="listofproduct.html">Open shoes</a></li>
+              </ul>
+            </li>
+            <li class="submenu-item"><a href="listofproduct.html">Sports</a>
+              <ul class="sub-submenu">
+                <li><a href="listofproduct.html">Climbing</a></li>
+                <li><a href="listofproduct.html">Running</a></li>
+                <li><a href="listofproduct.html">Volleyball</a></li>
+                <li><a href="listofproduct.html">Basketball</a></li>
+              </ul>
+            </li>
+            <li class="submenu-item"><a href="listofproduct.html">Accessories</a>
+              <ul class="sub-submenu">
+                <li><a href="listofproduct.html">Caps & hats</a></li>
+                <li><a href="listofproduct.html">Bags & backpacks</a></li>
+                <li><a href="listofproduct.html">Socks</a></li>
+                <li><a href="listofproduct.html">Watches</a></li>
+              </ul>
+            </li>
+          </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Children</a>
+
+        <!-- Accessories category menu -->
+        <li class="menu-item">
+          <a href="#" class="menu-link">Accessories</a>
+          <ul class="submenu">
+            <li class="submenu-title"><a href="listofproduct.html">Accessories</a></li>
+            <li class="submenu-item">
+              <ul class="sub-submenu">
+                <li><a href="listofproduct.html">Bags & backpacks</a></li>
+                <li><a href="listofproduct.html">Sunglasses</a></li>
+                <li><a href="listofproduct.html">Gloves</a></li>
+                <li><a href="listofproduct.html">Hats & caps</a></li>
+                <li><a href="listofproduct.html">Water bottles</a></li>
+              </ul>
+            </li>
+          </ul>
         </li>
       </ul>
 
-      <div class="search-container mx-lg-auto my-3 my-lg-0">
-        <img src="src/magnifying-glass.png" class="search-icon" alt="search">
-        <input type="text" placeholder="Search" class="search-bar">
+      <!-- search -->
+      <search class="navbar-search" role="search">
+        <img src="src/magnifying-glass.png" alt="" class="navbar-search-icon" aria-hidden="true">
+        <input type="search" id="site-search" class="navbar-search-input" placeholder="Search" autocomplete="off">
+      </search>
+
+      <!-- right navbar actions -->
+      <ul class="navbar-actions">
+        <li><a href="register.html" class="btn-login">Sign up</a></li>
+        <li><a href="profile.html" class="profile-link" aria-label="My profile"><img src="src/profile.jpg" alt=""
+              aria-hidden="true"></a></li>
+        <li><a href="cart.html" class="cart-link" aria-label="Shopping cart"><img src="src/shoping-cart.png" alt=""
+              aria-hidden="true"></a></li>
+      </ul>
+
+    </nav>
+  </header>
+
+  <section class="product-detail-section">
+    <div class="product-detail-container">
+
+      <div class="product-left">
+        <img id="mainProductImage" src="src/Homepage/SALE-1.png" alt="Product" class="product-detail-image">
+
+        <div class="image-controls">
+          <button type="button" class="admin-btn">Upload photo</button>
+          <button type="button" class="arrow-btn" id="prevImage">←</button>
+          <button type="button" class="arrow-btn" id="nextImage">→</button>
+          <button type="button" class="admin-btn">Delete photo</button>
+        </div>
       </div>
 
-      <div class="navbar-actions ms-lg-4">
-        <a class="signup-btn" href="login.html">Sign Up</a>
-        <img src="src/profile.jpg" class="icon" alt="user">
-        <img src="src/shoping-cart.png" class="icon" alt="cart">
-      </div>
+      <div class="product-right">
+        <h1 class="product-detail-title">La Sportiva Theory</h1>
 
-    </div>
-  </div>
-</nav>
+        <p class="product-detail-description">
+          Extreme sensitivity combined with high dynamism allows the Theory to have unprecedented pedidextarity and
+          reactivity on holds.
+          Climbers looking to take their comp style to the next level need look no further.
+          An aggressive yet ultra-sensitive slipper with a single hook and loop closure locks the heel in.
+          They offer top to bottom sticky rubber and an all-new hybrid sole that combines No-Edge features to adapt to
+          the futuristic footwork required for modern competition climbing.
+        </p>
 
-<section class="product-detail-section">
-  <div class="product-detail-container">
+        <hr>
 
-    <div class="product-left">
-      <img id="mainProductImage" src="src/Homepage/SALE-1.png" alt="Product" class="product-detail-image">
+        <p class="product-detail-price">100,50 $</p>
 
-      <div class="image-controls">
-        <button type="button" class="admin-btn">Upload photo</button>
-        <button type="button" class="arrow-btn" id="prevImage">←</button>
-        <button type="button" class="arrow-btn" id="nextImage">→</button>
-        <button type="button" class="admin-btn">Delete photo</button>
-      </div>
-    </div>
+        <div class="product-buttons">
+          <button type="button" class="size-btn">Size</button>
 
-    <div class="product-right">
-      <h1 class="product-detail-title">La Sportiva Theory</h1>
+          <div class="quantity-box">
+            <button type="button" class="arrow-btn">-</button>
+            <p class="product-amount">10</p>
+            <button type="button" class="arrow-btn">+</button>
+          </div>
 
-      <p class="product-detail-description">
-        Extreme sensitivity combined with high dynamism allows the Theory to have unprecedented pedidextarity and reactivity on holds.
-        Climbers looking to take their comp style to the next level need look no further.
-        An aggressive yet ultra-sensitive slipper with a single hook and loop closure locks the heel in. 
-        They offer top to bottom sticky rubber and an all-new hybrid sole that combines No-Edge features to adapt to the futuristic footwork required for modern competition climbing.
-      </p>
-
-      <hr>
-
-      <p class="product-detail-price">100,50 $</p>
-
-      <div class="product-buttons">
-        <button type="button" class="size-btn">Size</button>
-
-        <div class="quantity-box">
-          <button type="button" class="arrow-btn">-</button>
-          <p class="product-amount">10</p>
-          <button type="button" class="arrow-btn">+</button>
+          <button type="button" class="tocart-btn">Add to cart</button>
         </div>
 
-        <button type="button" class="tocart-btn">Add to cart</button>
+        <button type="button" class="admin-btn edit-details-btn">Edit details</button>
+      </div>
+  </section>
+
+
+
+  <section class="details-section">
+    <h2 class="details-title">Detailed description</h2>
+
+    <div class="table-wrapper">
+      <table class="details-table">
+        <tr>
+          <td>Material</td>
+          <td>Rubber</td>
+          <td>Weight</td>
+          <td>200g</td>
+        </tr>
+        <tr>
+          <td>Color</td>
+          <td>Black/Yellow/Red</td>
+          <td>Brand</td>
+          <td>La Sportiva</td>
+        </tr>
+        <tr>
+          <td>Type</td>
+          <td>Climbing shoes</td>
+          <td>Closure</td>
+          <td>Velcro</td>
+        </tr>
+        <tr>
+          <td>Usage</td>
+          <td>Indoor/Outdoor</td>
+          <td>Level</td>
+          <td>Advanced</td>
+        </tr>
+      </table>
+    </div>
+    <button type="button" class="admin-btn edit-text-bottom-btn">Edit text</button>
+  </section>
+
+  <section class="others-section" id="others">
+
+    <h2 class="others-title">Other like this</h2>
+
+    <div class="others-grid">
+      <a href="#" class="others-card">
+        <img src="src/Homepage/SALE-1.png" class="others-image img-fluid">
+        <p class="others-text">La Sportiva Theory</p>
+        <p class="others-text">100,50 $</p>
+      </a>
+
+      <a href="#" class="others-card">
+        <img src="src/Homepage/SALE-1.png" class="others-image img-fluid">
+        <p class="others-text">La Sportiva Theory</p>
+        <p class="others-text">100,50 $</p>
+      </a>
+
+      <a href="#" class="others-card">
+        <img src="src/Homepage/SALE-1.png" class="others-image img-fluid">
+        <p class="others-text">La Sportiva Theory</p>
+        <p class="others-text">100,50 $</p>
+      </a>
+
+      <a href="#" class="others-card">
+        <img src="src/Homepage/SALE-1.png" class="others-image img-fluid">
+        <p class="others-text">La Sportiva Theory</p>
+        <p class="others-text">100,50 $</p>
+      </a>
+
+      <a href="#" class="others-card">
+        <img src="src/Homepage/SALE-1.png" class="others-image img-fluid">
+        <p class="others-text">La Sportiva Theory</p>
+        <p class="others-text">100,50 $</p>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer-section">
+    <div class="footer-container">
+
+      <div class="footer-left">
+        <h4>Kamen</h4>
+        <p>Small company description</p>
       </div>
 
-      <button type="button" class="admin-btn edit-details-btn">Edit details</button>
-  </div>
-</section>
+      <div class="footer-right">
+        <p><strong>Contact us</strong></p>
+        <p>Mail - kamen@gmail.com</p>
+        <p>Phone - +421 xxx xxx xxx</p>
+      </div>
 
-
-
-<section class="details-section">
-  <h2 class="details-title">Detailed description</h2>
-
-  <div class="table-wrapper">
-    <table class="details-table">
-      <tr>
-        <td>Material</td>
-        <td>Rubber</td>
-        <td>Weight</td>
-        <td>200g</td>
-      </tr>
-      <tr>
-        <td>Color</td>
-        <td>Black/Yellow/Red</td>
-        <td>Brand</td>
-        <td>La Sportiva</td>
-      </tr>
-      <tr>
-        <td>Type</td>
-        <td>Climbing shoes</td>
-        <td>Closure</td>
-        <td>Velcro</td>
-      </tr>
-      <tr>
-        <td>Usage</td>
-        <td>Indoor/Outdoor</td>
-        <td>Level</td>
-        <td>Advanced</td>
-      </tr>
-    </table>
-  </div>
-  <button type="button" class="admin-btn edit-text-bottom-btn">Edit text</button>
-</section>
-
-<section class="others-section" id="others">
-
-  <h2 class="others-title">Other like this</h2>
-
-  <div class="others-grid">
-    <a href="#" class="others-card">
-        <img src="src/Homepage/SALE-1.png" class="others-image img-fluid">
-        <p class="others-text">La Sportiva Theory</p>
-        <p class="others-text">100,50 $</p>
-    </a>
-
-    <a href="#" class="others-card">
-        <img src="src/Homepage/SALE-1.png" class="others-image img-fluid">
-        <p class="others-text">La Sportiva Theory</p>
-        <p class="others-text">100,50 $</p>
-    </a>
-
-    <a href="#" class="others-card">
-        <img src="src/Homepage/SALE-1.png" class="others-image img-fluid">
-        <p class="others-text">La Sportiva Theory</p>
-        <p class="others-text">100,50 $</p>
-    </a>
-
-    <a href="#" class="others-card">
-        <img src="src/Homepage/SALE-1.png" class="others-image img-fluid">
-        <p class="others-text">La Sportiva Theory</p>
-        <p class="others-text">100,50 $</p>
-    </a>
-
-    <a href="#" class="others-card">
-        <img src="src/Homepage/SALE-1.png" class="others-image img-fluid">
-        <p class="others-text">La Sportiva Theory</p>
-        <p class="others-text">100,50 $</p>
-    </a>
-  </div>
-</section>
-
-<footer class="footer-section">
-
-  <div class="footer-container">
-
-    <div class="footer-left">
-      <h4>Kamen</h4>
-      <p>Small company description</p>
     </div>
+  </footer>
 
-    <div class="footer-right">
-      <p><strong>Contact us</strong></p>
-      <p>Mail - kamen@gmail.com</p>
-      <p>Phone - +421 xxx xxx xxx</p>
-    </div>
 
-  </div>
-
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

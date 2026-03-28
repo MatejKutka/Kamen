@@ -1,14 +1,10 @@
-/* =====================================================
-   product.css  —  Product listing page
-   Pairs with navbar.css & footer.css  |  Font: DM Sans
-   ===================================================== */
-
-
 /* Accessibility */
 .sr-only {
   position: absolute;
-  width: 1px; height: 1px;
-  padding: 0; margin: -1px;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
   overflow: hidden;
   clip: rect(0 0 0 0);
   white-space: nowrap;
@@ -16,7 +12,7 @@
 }
 
 
-/* ── Page layout via body grid ─────────────────── */
+/*  Page layout via body grid  */
 body {
   display: grid;
   grid-template-columns: 220px 1fr;
@@ -28,10 +24,15 @@ body {
     "footer footer";
 }
 
-.site-header    { grid-area: header; }
-.footer-section { grid-area: footer; }
+.site-header {
+  grid-area: header;
+}
 
-body > aside {
+.footer-section {
+  grid-area: footer;
+}
+
+body>aside {
   grid-area: aside;
   align-self: start;
   top: 85px;
@@ -41,13 +42,13 @@ body > aside {
   scrollbar-color: #e2e2e2 transparent;
 }
 
-body > main {
+body>main {
   grid-area: main;
   padding: 32px 36px;
 }
 
 
-/* ── Aside: filter sections ────────────────────── */
+/*  Aside: filter sections  */
 aside section {
   margin-bottom: 24px;
 }
@@ -76,11 +77,14 @@ aside details summary {
   list-style: none;
 }
 
-aside details summary::-webkit-details-marker { display: none; }
+aside details summary::-webkit-details-marker {
+  display: none;
+}
 
 aside details summary::after {
   content: '';
-  width: 7px; height: 7px;
+  width: 7px;
+  height: 7px;
   border-right: 1.5px solid #999;
   border-bottom: 1.5px solid #999;
   transform: rotate(45deg);
@@ -102,7 +106,7 @@ aside details fieldset {
 }
 
 
-/* ── Filter checkboxes ─────────────────────────── */
+/*  Filter checkboxes  */
 .filter-check {
   display: flex;
   align-items: center;
@@ -113,11 +117,14 @@ aside details fieldset {
   transition: color 0.15s;
 }
 
-.filter-check:hover { color: #111; }
+.filter-check:hover {
+  color: #111;
+}
 
 .filter-check input[type="checkbox"] {
   appearance: none;
-  width: 15px; height: 15px;
+  width: 15px;
+  height: 15px;
   border: 1.5px solid #c8c8c8;
   border-radius: 3px;
   flex-shrink: 0;
@@ -134,15 +141,17 @@ aside details fieldset {
 .filter-check input[type="checkbox"]:checked::after {
   content: '';
   position: absolute;
-  left: 3px; top: 1px;
-  width: 5px; height: 4px;
+  left: 3px;
+  top: 1px;
+  width: 5px;
+  height: 4px;
   border-left: 1.5px solid #fff;
   border-bottom: 1.5px solid #fff;
   transform: rotate(-45deg);
 }
 
 
-/* ── Price range (from / to) ───────────────────── */
+/*  Price range (from / to)  */
 .price-range {
   border: none;
   padding: 0;
@@ -175,7 +184,7 @@ aside details fieldset {
 }
 
 
-/* ── Color swatches ────────────────────────────── */
+/*  Color swatches  */
 /* --c and --border are set as inline styles on each label */
 .filter-colors {
   border: none;
@@ -187,7 +196,8 @@ aside details fieldset {
 
 .color-swatch {
   display: block;
-  width: 22px; height: 22px;
+  width: 22px;
+  height: 22px;
   cursor: pointer;
   position: relative;
 }
@@ -195,13 +205,15 @@ aside details fieldset {
 .color-swatch input[type="checkbox"] {
   position: absolute;
   opacity: 0;
-  width: 0; height: 0;
+  width: 0;
+  height: 0;
 }
 
 .color-swatch::after {
   content: '';
   display: block;
-  width: 22px; height: 22px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background: var(--c);
   border: 1.5px solid var(--border, transparent);
@@ -210,11 +222,17 @@ aside details fieldset {
   transition: outline-color 0.15s, transform 0.15s;
 }
 
-.color-swatch:hover::after              { transform: scale(1.1); }
-.color-swatch:has(input:checked)::after { outline-color: #111; transform: scale(1.12); }
+.color-swatch:hover::after {
+  transform: scale(1.1);
+}
+
+.color-swatch:has(input:checked)::after {
+  outline-color: #111;
+  transform: scale(1.12);
+}
 
 
-/* ── Size options ──────────────────────────────── */
+/*  Size options  */
 .filter-sizes {
   border: none;
   padding: 0;
@@ -241,14 +259,23 @@ aside details fieldset {
 .size-option input[type="checkbox"] {
   position: absolute;
   opacity: 0;
-  width: 0; height: 0;
+  width: 0;
+  height: 0;
 }
 
-.size-option:hover                      { border-color: #111; color: #111; }
-.size-option:has(input:checked)         { background: #111; border-color: #111; color: #fff; }
+.size-option:hover {
+  border-color: #111;
+  color: #111;
+}
+
+.size-option:has(input:checked) {
+  background: #111;
+  border-color: #111;
+  color: #fff;
+}
 
 
-/* ── Apply filters button ──────────────────────── */
+/*  Apply filters button  */
 .btn-filter {
   display: block;
   width: 100%;
@@ -265,11 +292,13 @@ aside details fieldset {
   transition: opacity 0.15s;
 }
 
-.btn-filter:hover { opacity: 0.72; }
+.btn-filter:hover {
+  opacity: 0.72;
+}
 
 
-/* ── Main: listing header ──────────────────────── */
-main > header {
+/*  Main: listing header  */
+main>header {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -277,7 +306,7 @@ main > header {
   margin-bottom: 24px;
 }
 
-main > header h1 {
+main>header h1 {
   font-size: clamp(1.3rem, 2.5vw, 1.8rem);
   font-weight: 600;
   margin-right: auto;
@@ -289,7 +318,7 @@ main > header h1 {
   white-space: nowrap;
 }
 
-main > header select {
+main>header select {
   padding: 6px 10px;
   border: 1px solid #e2e2e2;
   border-radius: 6px;
@@ -302,10 +331,12 @@ main > header select {
   transition: border-color 0.15s;
 }
 
-main > header select:focus { border-color: #111; }
+main>header select:focus {
+  border-color: #111;
+}
 
 
-/* ── Product grid ──────────────────────────────── */
+/*  Product grid  */
 .product-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -314,7 +345,7 @@ main > header select:focus { border-color: #111; }
 }
 
 
-/* ── Product card ──────────────────────────────── */
+/*  Product card  */
 .card {
   display: flex;
   flex-direction: column;
@@ -342,7 +373,8 @@ main > header select:focus { border-color: #111; }
 .card figure img {
   position: relative;
   z-index: 1;
-  width: 100%; height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
@@ -359,7 +391,9 @@ main > header select:focus { border-color: #111; }
   transition: color 0.15s;
 }
 
-.card h3 a:hover { color: #555; }
+.card h3 a:hover {
+  color: #555;
+}
 
 /* Card footer: price on its own row, qty + btn on the next */
 .card footer {
@@ -380,7 +414,7 @@ main > header select:focus { border-color: #111; }
 }
 
 
-/* ── Quantity selector ─────────────────────────── */
+/*  Quantity selector  */
 .qty {
   display: flex;
   align-items: center;
@@ -394,7 +428,8 @@ main > header select:focus { border-color: #111; }
 .qty button {
   background: none;
   border: none;
-  width: 26px; height: 28px;
+  width: 26px;
+  height: 28px;
   font-size: 1rem;
   color: #555;
   cursor: pointer;
@@ -404,7 +439,10 @@ main > header select:focus { border-color: #111; }
   transition: background 0.15s, color 0.15s;
 }
 
-.qty button:hover { background: #f0f0f0; color: #111; }
+.qty button:hover {
+  background: #f0f0f0;
+  color: #111;
+}
 
 .qty output {
   width: 24px;
@@ -431,10 +469,12 @@ main > header select:focus { border-color: #111; }
   transition: opacity 0.15s;
 }
 
-.btn-cart:hover { opacity: 0.72; }
+.btn-cart:hover {
+  opacity: 0.72;
+}
 
 
-/* ── Pagination ────────────────────────────────── */
+/*  Pagination  */
 .pagination {
   display: flex;
   align-items: center;
@@ -456,7 +496,8 @@ main > header select:focus { border-color: #111; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 34px; height: 34px;
+  width: 34px;
+  height: 34px;
   border: 1px solid #e2e2e2;
   border-radius: 6px;
   font-size: 0.85rem;
@@ -467,14 +508,25 @@ main > header select:focus { border-color: #111; }
 }
 
 .page-num:hover,
-.page-arrow:hover         { border-color: #111; color: #111; }
+.page-arrow:hover {
+  border-color: #111;
+  color: #111;
+}
 
-.page-num[aria-current]   { background: #111; border-color: #111; color: #fff; pointer-events: none; }
+.page-num[aria-current] {
+  background: #111;
+  border-color: #111;
+  color: #fff;
+  pointer-events: none;
+}
 
-.page-arrow[aria-disabled] { opacity: 0.35; pointer-events: none; }
+.page-arrow[aria-disabled] {
+  opacity: 0.35;
+  pointer-events: none;
+}
 
 
-/* ── Responsive ────────────────────────────────── */
+/*  Responsive  */
 
 /* Tablet: aside on top, 3-col grid */
 @media (max-width: 1023px) {
@@ -488,7 +540,7 @@ main > header select:focus { border-color: #111; }
       "footer";
   }
 
-  body > aside {
+  body>aside {
     position: static;
     height: auto;
     overflow-y: visible;
@@ -500,23 +552,40 @@ main > header select:focus { border-color: #111; }
     gap: 0 24px;
   }
 
-  body > aside .btn-filter { grid-column: 1 / -1; }
+  body>aside .btn-filter {
+    grid-column: 1 / -1;
+  }
 
-  body > main { padding: 24px 20px; }
+  body>main {
+    padding: 24px 20px;
+  }
 
-  .product-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
 }
 
 /* Mobile: 2-col grid */
 @media (max-width: 767px) {
-  .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
 
-  main > header { flex-direction: column; align-items: flex-start; }
+  main>header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 /* Large desktop: 4-col grid */
 @media (min-width: 1440px) {
-  body { grid-template-columns: 240px 1fr; }
+  body {
+    grid-template-columns: 240px 1fr;
+  }
 
-  .product-grid { grid-template-columns: repeat(4, 1fr); }
+  .product-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }

@@ -1,24 +1,19 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shopping cart</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>new navbar</title>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="newnav.css">
-    <link rel="stylesheet" href="cart.css">
-    <link rel="stylesheet" href="footer.css">
 </head>
 
 <body>
 
     <!--
      MOBILNÉ OVERLAY PANELY
-     Vrstva 1 - Vrstva 2 - Vrstva 3
+     Vrstva 1 - Vrstva 2 - Vrstva 3;
     -->
 
     <!-- VRSTVA 1: Hlavné menu -->
@@ -390,178 +385,6 @@
 
         </nav>
     </header>
-
-    <section class="cart">
-        <h2 class="cart-title">Shopping cart</h2>
-
-        <div class="cart-item">
-            <div class="item-image-wrap">
-                <img src="src/Homepage/SALE-1.png" alt="Item 1" class="item-image">
-            </div>
-
-            <div class="item-info">
-                <h3>La Sportiva Theory</h3>
-                <p>
-                    Extreme sensitivity combined with high dynamism allows the Theory to have unprecedented
-                    pedidextarity and reactivity on holds.
-                    Climbers looking to take their comp style to the next level need look no further.
-                    An aggressive yet ultra-sensitive slipper with a single hook and loop closure locks the heel in.
-                    They offer top to bottom sticky rubber and an all-new hybrid sole that combines No-Edge features to
-                    adapt to the futuristic footwork required for modern competition climbing.
-                </p>
-            </div>
-
-            <div class="item-actions">
-                <div class="left-actions">
-                    <span class="price">100,50 $</span>
-
-                    <div class="quantity">
-                        <button type="button">-</button>
-                        <span>1</span>
-                        <button type="button">+</button>
-                    </div>
-                </div>
-
-                <button class="delete" type="button" aria-label="Remove item">🗑</button>
-            </div>
-        </div>
-
-        <div class="cart-item">
-            <div class="item-image-wrap">
-                <img src="src/Homepage/SALE-1.png" alt="Item 1" class="item-image">
-            </div>
-
-            <div class="item-info">
-                <h3>La Sportiva Theory</h3>
-                <p>
-                    Extreme sensitivity combined with high dynamism allows the Theory to have unprecedented
-                    pedidextarity and reactivity on holds.
-                    Climbers looking to take their comp style to the next level need look no further.
-                    An aggressive yet ultra-sensitive slipper with a single hook and loop closure locks the heel in.
-                    They offer top to bottom sticky rubber and an all-new hybrid sole that combines No-Edge features to
-                    adapt to the futuristic footwork required for modern competition climbing.
-                </p>
-            </div>
-
-            <div class="item-actions">
-                <div class="left-actions">
-                    <span class="price">100,50 $</span>
-
-                    <div class="quantity">
-                        <button type="button">-</button>
-                        <span>1</span>
-                        <button type="button">+</button>
-                    </div>
-                </div>
-
-                <button class="delete" type="button" aria-label="Remove item">🗑</button>
-            </div>
-        </div>
-    </section>
-
-    <section class="checkout">
-
-        <!-- LEFT: DELIVERY -->
-        <div class="delivery-box">
-
-            <div class="delivery-toggle">
-                <input type="radio" name="delivery" id="delivery" checked>
-                <label for="delivery">Delivery</label>
-
-                <input type="radio" name="delivery" id="store">
-                <label for="store">Order to store</label>
-            </div>
-
-            <form class="delivery-form">
-                <label>Name and surname</label>
-                <input type="text">
-
-                <div class="row">
-                    <div>
-                        <label>Street name</label>
-                        <input type="text">
-                    </div>
-                    <div>
-                        <label>Street number</label>
-                        <input type="text">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div>
-                        <label>City</label>
-                        <input type="text">
-                    </div>
-                    <div>
-                        <label>Postal code</label>
-                        <input type="text">
-                    </div>
-                </div>
-
-                <label>Country</label>
-                <input type="text">
-
-                <div class="row">
-                    <div>
-                        <label>Mail address</label>
-                        <input type="text">
-                    </div>
-                    <div>
-                        <label>Phone number</label>
-                        <input type="text">
-                    </div>
-                </div>
-            </form>
-
-        </div>
-
-        <!-- RIGHT: PAYMENT -->
-        <div class="payment-box">
-
-            <h3 class="payment-title">Payment</h3>
-
-            <div class="payment-options">
-
-                <input type="radio" name="payment" id="card-online">
-                <label for="card-online">Card online</label>
-
-                <input type="radio" name="payment" id="card-delivery">
-                <label for="card-delivery">Card after delivery</label>
-
-                <input type="radio" name="payment" id="paypal">
-                <label for="paypal">PayPal</label>
-
-                <input type="radio" name="payment" id="google" checked>
-                <label for="google">Google pay</label>
-
-                <input type="radio" name="payment" id="apple">
-                <label for="apple">Apple pay</label>
-
-                <input type="radio" name="payment" id="bank">
-                <label for="bank">Bank transfer</label>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <button class="continue-btn">Continue</button>
-
-
-    <footer class="footer-section">
-        <div class="footer-container">
-            <div class="footer-left">
-                <h4>Kamen</h4>
-                <p>Small company description</p>
-            </div>
-            <div class="footer-right">
-                <p><strong>Contact us</strong></p>
-                <p>Mail - kamen@gmail.com</p>
-                <p>Phone - +421 xxx xxx xxx</p>
-            </div>
-        </div>
-    </footer>
 
 </body>
 

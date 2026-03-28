@@ -1,0 +1,2 @@
+menu-item zmenit na hover pre desktop
+poreisit semanticke znacenia
