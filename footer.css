@@ -5,6 +5,8 @@
 }
 
 .footer-container {
+    list-style: none;
+    padding: 0;
     display: flex;
     justify-content: space-between;
     max-width: 1200px;

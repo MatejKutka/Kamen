@@ -59,6 +59,29 @@ main {
     text-overflow: ellipsis;
 }
 
+.btn-home {
+    display: inline-flex;
+    align-items: center;
+    padding: clamp(7px, 1vw, 10px) clamp(14px, 2vw, 18px);
+    gap: 8px;
+    border: 1px solid #080808;
+    border-radius: 8px;
+    background: #fff;
+    font-family: inherit;
+    font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+    font-weight: 500;
+    color: #252323;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-home:hover {
+    background: #1f1f1f;
+    color: #e6e6e6;
+}
+
 .btn-logout {
     display: inline-flex;
     align-items: center;
@@ -160,6 +183,7 @@ fieldset {
 .btn-save:hover {
     background: #b0b7c0;
 }
+
 
 /* === Mobile === */
 @media only screen and (max-width: 600px) {
