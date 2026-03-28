@@ -1,2 +1,5 @@
 menu-item zmenit na hover pre desktop
 poreisit semanticke znacenia
+
+zmenit velkost buttonov product page
+pridat menu na size

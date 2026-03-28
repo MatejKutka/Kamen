@@ -413,7 +413,17 @@
         <p class="product-detail-price">100,50 $</p>
 
         <div class="product-buttons">
-          <button type="button" class="size-btn">Size</button>
+          <label class="size-select-wrap">
+            <span class="visually-hidden">Select size</span>
+            <select class="size-select" name="size" aria-label="Select size">
+              <option value="" selected disabled>Size</option>
+              <option value="s">S</option>
+              <option value="m">M</option>
+              <option value="l">L</option>
+              <option value="xl">XL</option>
+              <option value="xxl">XXL</option>
+            </select>
+          </label>
 
           <div class="quantity-box">
             <button type="button" class="arrow-btn">-</button>

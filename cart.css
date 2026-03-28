@@ -1,3 +1,102 @@
+.cart-steps {
+    position: relative;
+    max-width: 900px;
+    margin: 2rem auto 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.steps-line {
+    position: absolute;
+    top: 50%;
+    left: calc(2rem + 21px);
+    right: calc(2rem + 21px);
+    height: 3px;
+    background-color: #d9d9d9;
+    transform: translateY(-50%);
+    z-index: 0;
+}
+
+.cart-steps::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: calc(2rem + 21px);
+    height: 3px;
+    background-color: #f59e0b;
+    transform: translateY(-50%);
+    z-index: 1;
+    width: 0;
+}
+
+.cart-steps.step-1::before { width: 0%; }
+.cart-steps.step-2::before { width: 30%; }
+.cart-steps.step-3::before { width: 60%; }
+.cart-steps.step-4::before { width: 90%; }
+
+.step {
+    position: relative;
+    z-index: 2;
+}
+
+.step-circle {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e5e5e5;
+    color: #777;
+    font-weight: 600;
+}
+
+/* STEP 1 */
+.cart-steps.step-1 .step:nth-child(2) .step-circle {
+    background-color: #f59e0b;
+    color: white;
+    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.18);
+}
+
+/* STEP 2 */
+.cart-steps.step-2 .step:nth-child(2) .step-circle {
+    background-color: #222;
+    color: white;
+}
+.cart-steps.step-2 .step:nth-child(3) .step-circle {
+    background-color: #f59e0b;
+    color: white;
+    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.18);
+}
+
+/* STEP 3 */
+.cart-steps.step-3 .step:nth-child(2) .step-circle,
+.cart-steps.step-3 .step:nth-child(3) .step-circle {
+    background-color: #222;
+    color: white;
+}
+.cart-steps.step-3 .step:nth-child(4) .step-circle {
+    background-color: #f59e0b;
+    color: white;
+    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.18);
+}
+
+/* STEP 4 */
+.cart-steps.step-4 .step:nth-child(2) .step-circle,
+.cart-steps.step-4 .step:nth-child(3) .step-circle,
+.cart-steps.step-4 .step:nth-child(4) .step-circle {
+    background-color: #222;
+    color: white;
+}
+.cart-steps.step-4 .step:nth-child(5) .step-circle {
+    background-color: #f59e0b;
+    color: white;
+    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.18);
+}
+
+
 /* === CART CONTAINER === */
 .cart {
     background: rgb(221, 214, 214);
@@ -81,9 +180,12 @@
 }
 
 .price {
+    align-self: center;
     font-weight: 700;
     font-size: 1.1rem;
 }
+
+
 
 .quantity {
     display: flex;
@@ -166,74 +268,50 @@
     font-weight: 600;
 }
 
-/* === FORM === */
-.delivery-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+.cart-bottom {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 24px;
+    margin-top: 20px;
 }
 
-.delivery-form input {
+.price-summary,
+.continue-btn{
     width: 100%;
-    padding: 10px;
-    border-radius: 10px;
-    border: none;
+    max-width: 360px;
+    min-width: 0;
+    min-width: 200px;
 }
 
-.row {
+.price-summary {
+    justify-self: center;
     display: flex;
-    gap: 15px;
-}
-
-.row>div {
-    flex: 1;
-}
-
-/* === PAYMENT === */
-.payment-title {
-    text-align: center;
-    background: white;
-    padding: 10px;
-    border-radius: 20px;
-    margin-bottom: 20px;
-}
-
-.payment-options {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.payment-options input {
-    display: none;
-}
-
-.payment-options label {
-    text-align: center;
-    padding: 12px;
-    border-radius: 20px;
-    background: rgb(172, 167, 167);
-    cursor: pointer;
-    opacity: 0.5;
-}
-
-.payment-options input:checked+label {
-    background: white;
-    opacity: 1;
-    font-weight: 600;
-}
-
-/* === CONTINUE BUTTON === */
-.continue-btn {
-    display: block;
-    margin: 20px auto;
+    align-items: center;
+    justify-content: center;
     padding: 12px 40px;
     border-radius: 20px;
-    max-width: 400px;
-    width: 100%;
+    background: white;
+    text-align: center;
+}
+
+.price-summary .price {
+    margin: 0;
+    text-align: center;
+}
+
+.continue-btn {
+    justify-self: end;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 40px;
+    border-radius: 20px;
     border: none;
-    background: rgb(221, 214, 214);
+    background: #f59e0b;
     cursor: pointer;
+    text-decoration: none;
+    color: black;
 }
 
 
@@ -368,5 +446,17 @@
     .delete {
         align-self: center;
         font-size: 2rem;
+    }
+
+    .cart-bottom {
+        grid-template-columns: 1fr;
+    }
+
+    .price-summary,
+    .continue-btn {
+        justify-self: center;
+        width: 100%;
+        min-width: 0;
+        max-width: 400px;
     }
 }

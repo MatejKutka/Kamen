@@ -391,26 +391,6 @@
         </nav>
     </header>
 
-    <section class="cart-steps step-1">
-        <div class="steps-line"></div>
-
-         <div class="step">
-            <span class="step-circle">1</span>
-        </div>
-
-        <div class="step">
-            <span class="step-circle">2</span>
-        </div>
-
-        <div class="step">
-            <span class="step-circle">3</span>
-        </div>
-
-        <div class="step">
-            <span class="step-circle">4</span>
-        </div>
-    </section>
-
     <section class="cart">
         <h2 class="cart-title">Shopping cart</h2>
 
@@ -448,9 +428,7 @@
 
         <div class="cart-item">
             <div class="item-image-wrap">
-                <a href="productpage.html">
-                    <img src="src/Homepage/SALE-1.png" alt="Item 1" class="item-image" >
-                </a>
+                <img src="src/Homepage/SALE-1.png" alt="Item 1" class="item-image">
             </div>
 
             <div class="item-info">
@@ -479,17 +457,97 @@
                 <button class="delete" type="button" aria-label="Remove item">🗑</button>
             </div>
         </div>
+    </section>
 
-       <div class="cart-bottom">
-            <div></div>
+    <section class="checkout">
 
-            <div class="price-summary">
-                <span class="price">201,00 $</span>
+        <!-- LEFT: DELIVERY -->
+        <div class="delivery-box">
+
+            <div class="delivery-toggle">
+                <input type="radio" name="delivery" id="delivery" checked>
+                <label for="delivery">Delivery</label>
+
+                <input type="radio" name="delivery" id="store">
+                <label for="store">Order to store</label>
             </div>
 
-            <a class="continue-btn continue-link" href="cart1.html">Continue</a>
+            <form class="delivery-form">
+                <label>Name and surname</label>
+                <input type="text">
+
+                <div class="row">
+                    <div>
+                        <label>Street name</label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label>Street number</label>
+                        <input type="text">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div>
+                        <label>City</label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label>Postal code</label>
+                        <input type="text">
+                    </div>
+                </div>
+
+                <label>Country</label>
+                <input type="text">
+
+                <div class="row">
+                    <div>
+                        <label>Mail address</label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label>Phone number</label>
+                        <input type="text">
+                    </div>
+                </div>
+            </form>
+
         </div>
+
+        <!-- RIGHT: PAYMENT -->
+        <div class="payment-box">
+
+            <h3 class="payment-title">Payment</h3>
+
+            <div class="payment-options">
+
+                <input type="radio" name="payment" id="card-online">
+                <label for="card-online">Card online</label>
+
+                <input type="radio" name="payment" id="card-delivery">
+                <label for="card-delivery">Card after delivery</label>
+
+                <input type="radio" name="payment" id="paypal">
+                <label for="paypal">PayPal</label>
+
+                <input type="radio" name="payment" id="google" checked>
+                <label for="google">Google pay</label>
+
+                <input type="radio" name="payment" id="apple">
+                <label for="apple">Apple pay</label>
+
+                <input type="radio" name="payment" id="bank">
+                <label for="bank">Bank transfer</label>
+
+            </div>
+
+        </div>
+
     </section>
+
+    <button class="continue-btn">Continue</button>
+
 
     <footer class="footer-section">
         <ul class="footer-container">

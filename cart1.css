@@ -1,0 +1,22 @@
+/* === FORM === */
+.delivery-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.delivery-form input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+.row {
+    display: flex;
+    gap: 15px;
+}
+
+.row>div {
+    flex: 1;
+}
