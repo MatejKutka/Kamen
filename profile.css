@@ -1,6 +1,6 @@
 /* === Main === */
 main {
-    min-height: calc(100vh - clamp(56px, 8vw, 85px));
+    min-height: 100vh;
     background-image: url('src/background.png');
     background-size: cover;
     background-position: center;
