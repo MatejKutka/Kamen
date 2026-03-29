@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="newnav.css">
-    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="cart2.css">
     <link rel="stylesheet" href="footer.css">
 </head>
 
@@ -413,60 +413,27 @@
 
 
     <section class="checkout">
+        <div class="summary-box">
+            <h3 class="summary-title">Order summary</h3>
 
-        <!-- LEFT: ORDER SUMMARY -->
-        <div class="delivery-box">
-
-            <div class="delivery-toggle">
-                <input type="radio" name="delivery" id="delivery" checked>
-                <label for="delivery">Delivery</label>
-
-                <input type="radio" name="delivery" id="store">
-                <label for="store">Order to store</label>
+            <div class="summary-row">
+                <span>La Sportiva Theory</span>
+                <span>1</span>
+                <span>100,50 $</span>
             </div>
 
-            <form class="delivery-form">
-                <label>Name and surname</label>
-                <input type="text">
+            <div class="summary-row">
+                <span>La Sportiva Theory</span>
+                <span>1</span>
+                <span>100,50 $</span>
+            </div>
 
-                <div class="row">
-                    <div>
-                        <label>Street name</label>
-                        <input type="text">
-                    </div>
-                    <div>
-                        <label>Street number</label>
-                        <input type="text">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div>
-                        <label>City</label>
-                        <input type="text">
-                    </div>
-                    <div>
-                        <label>Postal code</label>
-                        <input type="text">
-                    </div>
-                </div>
-
-                <label>Country</label>
-                <input type="text">
-
-                <div class="row">
-                    <div>
-                        <label>Mail address</label>
-                        <input type="text">
-                    </div>
-                    <div>
-                        <label>Phone number</label>
-                        <input type="text">
-                    </div>
-                </div>
-            </form>
-
+            <div class="summary-total">
+                <span>Total: 201,00 $</span>
+            </div>
         </div>
+
+
 
         <!-- RIGHT: PAYMENT -->
         <div class="payment-box">
@@ -495,11 +462,12 @@
 
             </div>
 
+            <a class="continue-btn continue-link" href="cart3.html">Continue</a>
         </div>
 
     </section>
 
-    <button class="continue-btn">Continue</button>
+    
 
 
     <footer class="footer-section">

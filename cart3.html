@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="newnav.css">
-    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="cart3.css">
     <link rel="stylesheet" href="footer.css">
 </head>
 
@@ -411,108 +411,89 @@
         </div>
     </section>
 
-    <section class="cart">
-        <h2 class="cart-title">Shopping cart</h2>
+    <section class="summary-section">
+        <div class="delivery-summary">
+            <div class="summary-message summary-message-small">Order #123178 accepted!</div>
+                <div class="summary-message">Thank you for your order!</div>
 
-        <div class="cart-item">
-            <div class="item-image-wrap">
-                <img src="src/Homepage/SALE-1.png" alt="Item 1" class="item-image">
-            </div>
+                <div class="summary-row">
+                    <div class="summary-pill">Delivery</div>
+                    <div class="summary-pill">Payment: PayPal</div>
+                </div>
 
-            <div class="item-info">
-                <h3>La Sportiva Theory</h3>
-                <p>
-                    Extreme sensitivity combined with high dynamism allows the Theory to have unprecedented
-                    pedidextarity and reactivity on holds.
-                    Climbers looking to take their comp style to the next level need look no further.
-                    An aggressive yet ultra-sensitive slipper with a single hook and loop closure locks the heel in.
-                    They offer top to bottom sticky rubber and an all-new hybrid sole that combines No-Edge features to
-                    adapt to the futuristic footwork required for modern competition climbing.
-                </p>
-            </div>
+                <div class="summary-field">
+                    <label>Name and surname</label>
+                    <div class="summary-value">Jozef Kamen</div>
+                </div>
 
-            <div class="item-actions">
-                <div class="left-actions">
-                    <span class="price">100,50 $</span>
-
-                    <div class="quantity">
-                        <button type="button">-</button>
-                        <span>1</span>
-                        <button type="button">+</button>
+                <div class="summary-row">
+                    <div class="summary-field">
+                        <label>Street name</label>
+                        <div class="summary-value">Ilkovičova</div>
+                    </div>
+                    <div class="summary-field">
+                        <label>Street number</label>
+                        <div class="summary-value">6276/2</div>
                     </div>
                 </div>
 
-                <button class="delete" type="button" aria-label="Remove item">🗑</button>
-            </div>
-        </div>
-
-        <div class="cart-item">
-            <div class="item-image-wrap">
-                <img src="src/Homepage/SALE-1.png" alt="Item 1" class="item-image">
-            </div>
-
-            <div class="item-info">
-                <h3>La Sportiva Theory</h3>
-                <p>
-                    Extreme sensitivity combined with high dynamism allows the Theory to have unprecedented
-                    pedidextarity and reactivity on holds.
-                    Climbers looking to take their comp style to the next level need look no further.
-                    An aggressive yet ultra-sensitive slipper with a single hook and loop closure locks the heel in.
-                    They offer top to bottom sticky rubber and an all-new hybrid sole that combines No-Edge features to
-                    adapt to the futuristic footwork required for modern competition climbing.
-                </p>
-            </div>
-
-            <div class="item-actions">
-                <div class="left-actions">
-                    <span class="price">100,50 $</span>
-
-                    <div class="quantity">
-                        <button type="button">-</button>
-                        <span>1</span>
-                        <button type="button">+</button>
+                <div class="summary-row">
+                    <div class="summary-field">
+                        <label>City</label>
+                        <div class="summary-value">Bratislava</div>
+                    </div>
+                    <div class="summary-field">
+                        <label>Postal code</label>
+                        <div class="summary-value">842 16</div>
                     </div>
                 </div>
 
-                <button class="delete" type="button" aria-label="Remove item">🗑</button>
+                <div class="summary-field">
+                    <label>Country</label>
+                    <div class="summary-value">Slovakia</div>
+                </div>
+
+                <div class="summary-row">
+                    <div class="summary-field">
+                        <label>Mail address</label>
+                        <div class="summary-value">kamen@gmail.com</div>
+                    </div>
+                    <div class="summary-field">
+                        <label>Phone number</label>
+                        <div class="summary-value">+421 xxx xxx xxx</div>
+                    </div>
+                </div>
+
+                <a class="continue-btn continue-link" href="homepage.html">Continue</a>
+            </div>
+    </section>
+
+    <section class="summary-checkout">
+        <div class="summary-checkout-box">
+            <h3 class="summary-title">Order summary</h3>
+
+            <div class="summary-row-cart">
+                <span>La Sportiva Theory</span>
+                <span>1</span>
+                <span>100,50 $</span>
+            </div>
+
+            <div class="summary-row-cart">
+                <span>La Sportiva Theory</span>
+                <span>1</span>
+                <span>100,50 $</span>
+            </div>
+
+            <div class="summary-total-cart">
+                <span>Total: 201,00 $</span>
             </div>
         </div>
     </section>
+    
+        
 
-    <section class="checkout">
+    
 
-        <!-- RIGHT: PAYMENT -->
-        <div class="payment-box">
-
-            <h3 class="payment-title">Payment</h3>
-
-            <div class="payment-options">
-
-                <input type="radio" name="payment" id="card-online">
-                <label for="card-online">Card online</label>
-
-                <input type="radio" name="payment" id="card-delivery">
-                <label for="card-delivery">Card after delivery</label>
-
-                <input type="radio" name="payment" id="paypal">
-                <label for="paypal">PayPal</label>
-
-                <input type="radio" name="payment" id="google" checked>
-                <label for="google">Google pay</label>
-
-                <input type="radio" name="payment" id="apple">
-                <label for="apple">Apple pay</label>
-
-                <input type="radio" name="payment" id="bank">
-                <label for="bank">Bank transfer</label>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <button class="continue-btn">Continue</button>
 
 
     <footer class="footer-section">

@@ -284,6 +284,23 @@
 
 /* ===== TABLET ===== */
 @media (max-width: 900px) {
+    .cart-steps {
+        padding: 0 1.2rem;
+    }
+
+    .steps-line {
+        left: calc(1.2rem + 21px);
+        right: calc(1.2rem + 21px);
+    }
+
+    .cart-steps::before {
+        left: calc(1.2rem + 21px);
+    }
+
+    .cart-steps.step-4::before {
+        right: calc(1.2rem + 21px);
+    }
+    
     .cart {
         padding: 24px;
         width: 100%;
@@ -349,6 +366,23 @@
 
 /* ===== MOBILE ===== */
 @media (max-width: 600px) {
+    .cart-steps {
+        padding: 0 1rem;
+    }
+
+    .steps-line,
+    .cart-steps::before {
+        left: calc(1rem + 21px);
+    }
+
+    .steps-line {
+        right: calc(1rem + 21px);
+    }
+
+    .cart-steps.step-4::before {
+        right: calc(1rem + 21px);
+    }
+
     .cart {
         padding: 18px;
         border-radius: 22px;
@@ -426,4 +460,5 @@
         min-width: 0;
         max-width: 400px;
     }
+
 }
