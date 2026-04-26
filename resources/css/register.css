@@ -1,0 +1,191 @@
+/* === Main === */
+main {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(24px, 4vw, 48px);
+    min-height: 100vh;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+main::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: blur(6px);
+    transform: scale(1.05);
+    z-index: 0;
+}
+
+/* === Card === */
+article {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 480px;
+    background: rgb(81 64 64 / 22%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 24px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
+    padding: 56px 48px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.btn-home {
+    display: inline-flex;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    align-items: center;
+    padding: clamp(7px, 1vw, 10px) clamp(14px, 2vw, 18px);
+    gap: 8px;
+    border: 1px solid #080808;
+    border-radius: 8px;
+    background: #fff;
+    font-family: inherit;
+    font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+    font-weight: 500;
+    color: #252323;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-home:hover {
+    background: #1f1f1f;
+    color: #fff;
+}
+
+/* === Avatar === */
+.login-avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.7);
+    overflow: hidden;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.login-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* === Title === */
+article h1 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+    margin-bottom: 40px;
+}
+
+/* === Form === */
+form {
+    width: 100%;
+}
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding-block: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+    margin-bottom: 8px;
+}
+
+.field-group label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.field-group input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 1rem;
+    color: #fff;
+}
+
+.field-group input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* === Register button === */
+.btn-register {
+    display: block;
+    width: 100%;
+    margin-top: 40px;
+    padding: 16px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    transition: 0.2s ease;
+}
+
+.btn-register:hover {
+    background: rgba(255, 255, 255, 0.42);
+}
+
+/* === Switch link === */
+.switch-link {
+    font-size: 1rem;
+    margin-top: 24px;
+    color: rgba(255, 255, 255, 0.85);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.switch-link a {
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.switch-link a:hover {
+    text-decoration: underline;
+}
+
+/* === Mobile === */
+@media only screen and (max-width: 600px) {
+    article {
+        padding: 40px 28px 36px;
+        max-width: 100%;
+    }
+
+    article h1 {
+        font-size: 1.1rem;
+    }
+}
