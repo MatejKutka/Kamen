@@ -1,0 +1,634 @@
+/* =====================
+   HEADER - sticky
+===================== */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+/* =====================
+   NAVBAR
+===================== */
+.site-navbar {
+    display: flex;
+    align-items: center;
+    padding-inline: clamp(16px, 4vw, 48px);
+    position: relative;
+    gap: clamp(12px, 2vw, 32px);
+    height: clamp(56px, 8vw, 85px);
+}
+
+/* =====================
+   LOGO
+===================== */
+.navbar-logo {
+    flex-shrink: 0;
+    line-height: 0;
+}
+
+.navbar-logo img {
+    height: clamp(28px, 4vw, 40px);
+    width: auto;
+    display: block;
+}
+
+/* =====================
+   HLAVNÉ MENU — vľavo
+===================== */
+.menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    flex-shrink: 0;
+    max-width: 35%;
+}
+
+.menu-item {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: static;
+}
+
+.menu-link {
+    display: block;
+    padding: 8px clamp(8px, 1.2vw, 16px);
+    color: #111111;
+    text-decoration: none;
+    white-space: nowrap;
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
+    font-weight: 500;
+    transition: color 0.15s ease;
+}
+
+.menu-link:hover {
+    color: #555555;
+}
+
+.menu-item>.menu-link {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.menu-item>.menu-link::after {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-right: 2px solid #aaa;
+    border-bottom: 2px solid #aaa;
+    transform: rotate(45deg);
+    transition: transform 0.2s ease;
+}
+
+.menu-item:hover>.menu-link::after {
+    transform: rotate(-135deg);
+}
+
+/* =====================
+   SUBMENU - mega menu panel
+===================== */
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    color: #111;
+    list-style: none;
+    margin: 0;
+    padding: clamp(16px, 3vw, 32px) clamp(16px, 4vw, 48px);
+    border-bottom: 1px solid #ddd;
+    z-index: 100;
+    flex-wrap: wrap;
+    gap: clamp(24px, 4vw, 48px);
+}
+
+.menu-item:hover>.submenu {
+    display: flex;
+}
+
+/* =====================
+   SUBMENU TOGGLE — checkbox trick
+===================== */
+.submenu-toggle {
+    display: none;
+}
+
+.menu-item>label.menu-link {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.menu-item>label.menu-link::after {
+    content: '';
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-right: 2px solid #aaa;
+    border-bottom: 2px solid #aaa;
+    transform: rotate(45deg) translateY(-2px);
+    transition: transform 0.2s ease, border-color 0.15s ease;
+    flex-shrink: 0;
+}
+
+.submenu-toggle:checked+label.menu-link::after {
+    transform: rotate(-135deg) translateY(2px);
+    border-color: #fff;
+}
+
+.submenu-toggle:checked~.submenu {
+    display: flex;
+}
+
+/* =====================
+   SUBMENU TITLE
+===================== */
+.submenu-title {
+    width: 100%;
+}
+
+.submenu-title a {
+    position: relative;
+    font-size: clamp(1rem, 1.8vw, 1.25rem);
+    font-weight: bold;
+    color: #111;
+    text-decoration: none;
+}
+
+/* =====================
+   UNDERLINE HOVER EFFECT
+===================== */
+.submenu-title a::after,
+.submenu-item>a::after,
+.sub-submenu li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 3px;
+    background-color: #333;
+    transition: width 0.3s ease-in-out;
+}
+
+.submenu-title a::after {
+    bottom: -10px;
+    height: 5px;
+}
+
+.submenu-title a:hover::after,
+.submenu-item>a:hover::after,
+.sub-submenu li a:hover::after {
+    width: 100%;
+}
+
+/* =====================
+   SUBMENU ITEM
+===================== */
+.submenu-item {
+    flex: 1;
+    min-width: 140px;
+}
+
+.submenu-item>a {
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
+    color: #111;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+/* =====================
+   SUB-SUBMENU
+===================== */
+.sub-submenu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sub-submenu li a {
+    display: inline-block;
+    position: relative;
+    padding: 3px 0;
+    color: #555;
+    text-decoration: none;
+    font-size: clamp(0.8rem, 1.1vw, 0.9rem);
+}
+
+.sub-submenu li a:hover {
+    color: #111;
+}
+
+/* =====================
+   SEARCH
+===================== */
+.navbar-search {
+    position: relative;
+    flex: 1;
+    max-width: clamp(180px, 28vw, 480px);
+    margin-inline: auto;
+}
+
+.navbar-search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: clamp(14px, 1.5vw, 18px);
+    height: clamp(14px, 1.5vw, 18px);
+    pointer-events: none;
+    object-fit: contain;
+    opacity: 0.6;
+}
+
+.navbar-search-input {
+    width: 100%;
+    padding-block: clamp(6px, 1vw, 9px);
+    padding-left: clamp(32px, 3.5vw, 38px);
+    padding-right: 12px;
+    border: none;
+    border-radius: 999px;
+    background-color: #efefef;
+    font-family: inherit;
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
+    color: #111111;
+    outline-offset: 2px;
+    transition: background-color 0.15s ease;
+}
+
+.navbar-search-input::placeholder {
+    color: #555555;
+}
+
+.navbar-search-input:focus {
+    background-color: #e0e0e0;
+    outline: 2px solid #111111;
+}
+
+.navbar-search-input::-webkit-search-cancel-button {
+    display: none;
+}
+
+/* =====================
+   AKCIE — vpravo
+===================== */
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 1.5vw, 18px);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+/* =====================
+   BTN LOGIN — teraz <a> nie <button>
+===================== */
+.btn-login {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(6px, 1vw, 9px) clamp(12px, 2vw, 18px);
+    background-color: transparent;
+    color: #111111;
+    border: 1px solid #111111;
+    border-radius: 8px;
+    white-space: nowrap;
+    font-family: inherit;
+    font-size: clamp(0.8rem, 1.1vw, 0.9rem);
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-login:hover {
+    background-color: #c7c7c7;
+    color: #ffffff;
+}
+
+.profile-link img,
+.cart-link img {
+    width: clamp(22px, 3vw, 28px);
+    height: clamp(22px, 3vw, 28px);
+    display: block;
+    object-fit: contain;
+}
+
+/* =====================
+   HAMBURGER — desktop checkbox
+===================== */
+.nav-toggle {
+    display: none;
+}
+
+.nav-toggle-label {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.nav-toggle-label span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: #111111;
+    border-radius: 999px;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+    transform-origin: center;
+}
+
+.nav-toggle:checked+.nav-toggle-label span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle:checked+.nav-toggle-label span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.nav-toggle:checked+.nav-toggle-label span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* =====================
+   HAMBURGER — mobile
+===================== */
+.mobile-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    margin-left: auto;
+    flex-shrink: 0;
+    text-decoration: none;
+}
+
+.mobile-hamburger span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: #111111;
+    border-radius: 999px;
+}
+
+/* ════════════════════════════════════════════════════════
+   MOBILNÉ OVERLAY PANELY — <dialog>
+   ════════════════════════════════════════════════════════ */
+
+/* Reset dialog default styles */
+dialog.mobile-panel {
+    display: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    inset: 0;
+    background-color: #ffffff;
+    z-index: 500;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+/* Zobraz panel cez :target */
+dialog.mobile-panel:target {
+    display: flex;
+}
+
+.mobile-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: clamp(56px, 8vw, 72px);
+    padding: 0 clamp(16px, 4vw, 24px);
+    border-bottom: 1px solid #2e2e2e;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    background-color: #ffffff;
+    z-index: 1;
+}
+
+.mobile-panel-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111111;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.mobile-btn-back,
+.mobile-btn-close {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #111111;
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border: 1px solid #2e2e2e;
+    border-radius: 6px;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+.mobile-btn-back:hover,
+.mobile-btn-close:hover {
+    color: #111111;
+    border-color: #555;
+}
+
+.mobile-btn-close {
+    font-size: 1rem;
+}
+
+/* Nav ul reset */
+.mobile-panel nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Linky: Home (bez šípky) */
+.mobile-main-link {
+    display: block;
+    padding: 1rem clamp(16px, 4vw, 24px);
+    color: #111111;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    border-bottom: 1px solid #2e2e2e;
+    transition: color 0.15s, background-color 0.15s;
+}
+
+.mobile-main-link:hover {
+    color: #eeeeee;
+    background-color: #222;
+}
+
+/* Linky so šípkou (otvára ďalší panel) */
+.mobile-cat-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem clamp(16px, 4vw, 24px);
+    color: #111111;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    border-bottom: 1px solid #2e2e2e;
+    transition: color 0.15s, background-color 0.15s;
+}
+
+.mobile-cat-link span {
+    color: #555;
+    font-size: 1.1rem;
+}
+
+.mobile-cat-link:hover {
+    color: #eeeeee;
+    background-color: #222;
+}
+
+.mobile-cat-link:hover span {
+    color: #eeeeee;
+}
+
+/* Finálne linky (produkty) */
+.mobile-sub-link {
+    display: block;
+    padding: 0.85rem clamp(16px, 4vw, 24px);
+    color: #111111;
+    text-decoration: none;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #2e2e2e;
+    transition: color 0.15s, background-color 0.15s, padding-left 0.15s;
+}
+
+.mobile-sub-link:hover {
+    color: #eeeeee;
+    background-color: #222;
+    padding-left: calc(clamp(16px, 4vw, 24px) + 8px);
+}
+
+/* Footer */
+.mobile-panel-footer {
+    padding: 1.25rem clamp(16px, 4vw, 24px);
+    border-top: 1px solid #2e2e2e;
+    margin-top: auto;
+}
+
+.mobile-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mobile-actions a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-actions img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.mobile-actions a:hover img {
+    transform: scale(1.1);
+}
+
+.mobile-btn-close {
+    /* doplň na začiatok existujúcich štýlov */
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+/* =====================
+   TABLET/MOBILE — do 992px
+===================== */
+@media (max-width: 992px) {
+
+    .desktop-hamburger {
+        display: none !important;
+    }
+
+    .mobile-hamburger {
+        display: flex;
+    }
+
+    .menu,
+    .navbar-search,
+    .navbar-actions {
+        display: none;
+    }
+
+    .navbar {
+        height: clamp(56px, 8vw, 72px);
+        flex-wrap: nowrap;
+    }
+}
+
+/* =====================
+   DESKTOP — nad 992px
+===================== */
+@media (min-width: 993px) {
+    dialog.mobile-panel {
+        display: none !important;
+    }
+
+    .mobile-hamburger {
+        display: none !important;
+    }
+}
+
+/* =====================
+   MOBILE — do 576px
+===================== */
+@media (max-width: 576px) {
+    .submenu {
+        gap: 16px;
+    }
+
+    .submenu-item {
+        min-width: 100%;
+    }
+}

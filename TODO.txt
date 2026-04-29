@@ -1,0 +1,4 @@
+Zmenit admin product page aby bola taka ista ako product page (css aj html)
+
+
+

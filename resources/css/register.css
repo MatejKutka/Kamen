@@ -8,15 +8,13 @@ main {
     padding: clamp(24px, 4vw, 48px);
     min-height: 100vh;
     overflow: hidden;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 main::before {
     content: '';
     position: absolute;
     inset: 0;
+    background-image: url('src/background.png');
     background-size: cover;
     background-position: center;
     filter: blur(6px);

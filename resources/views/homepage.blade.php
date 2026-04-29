@@ -1,47 +1,20 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="sk">
 
 <head>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="reset.css">
-  <link rel="stylesheet" href="newnav.css">
-  <link rel="stylesheet" href="productpage-admin.css">
-  <link rel="stylesheet" href="footer.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homepage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  @vite([
+    'resources/css/reset.css',
+    'resources/css/newnav.css',
+    'resources/css/homepage.css',
+    'resources/css/footer.css'
+  ])
 </head>
-
-<script>
-  const images = [
-    "src/Homepage/SALE-1.png",
-    "src/Homepage/intro-image.png",
-    "src/Homepage/SALE-1.png"
-  ];
-
-  let currentImageIndex = 0;
-
-  const mainImage = document.getElementById("mainProductImage");
-  const prevButton = document.getElementById("prevImage");
-  const nextButton = document.getElementById("nextImage");
-
-  nextButton.addEventListener("click", function () {
-    currentImageIndex++;
-
-    if (currentImageIndex >= images.length) {
-      currentImageIndex = 0;
-    }
-
-    mainImage.src = images[currentImageIndex];
-  });
-
-  prevButton.addEventListener("click", function () {
-    currentImageIndex--;
-
-    if (currentImageIndex < 0) {
-      currentImageIndex = images.length - 1;
-    }
-
-    mainImage.src = images[currentImageIndex];
-  });
-</script>
 
 <body>
   <!--
@@ -52,14 +25,14 @@
   <!-- VRSTVA 1: Hlavné menu -->
   <dialog id="mobile-menu" class="mobile-panel">
     <header class="mobile-panel-header">
-      <a href="homepage.html" class="navbar-logo">
-        <img src="src/Logo.png" alt="Logo e-shopu">
+      <a href="{{ route('home') }}" class="navbar-logo">
+        <img src="{{ asset('images/Logo.png') }}" alt="Logo e-shopu">
       </a>
       <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
     </header>
     <nav aria-label="Mobile menu">
       <ul role="list">
-        <li><a href="homepage.html" class="mobile-main-link">Home</a></li>
+        <li><a href="{{ route('home') }}" class="mobile-main-link">Home</a></li>
         <li><a href="#mobile-men" class="mobile-cat-link">Men <span aria-hidden="true">›</span></a></li>
         <li><a href="#mobile-women" class="mobile-cat-link">Women <span aria-hidden="true">›</span></a></li>
         <li><a href="#mobile-accessories" class="mobile-cat-link">Accessories <span aria-hidden="true">›</span></a></li>
@@ -67,15 +40,15 @@
     </nav>
     <footer class="mobile-panel-footer">
       <ul class="mobile-actions" role="list">
-        <li><a href="register.html" class="btn-login">Sign up</a></li>
+        <li><a href="{{ route('register') }}" class="btn-login">Sign up</a></li>
         <li>
-          <a href="profile.html" class="mobile-profile" aria-label="My profile">
-            <img src="src/profile.jpg" alt="" aria-hidden="true">
+          <a href="{{ route('profile.edit') }}" class="mobile-profile" aria-label="My profile">
+            <img src="{{ asset('images/profile.png') }}" alt="" aria-hidden="true">
           </a>
         </li>
         <li>
           <a href="cart.html" class="mobile-cart" aria-label="Shopping cart">
-            <img src="src/shoping-cart.png" alt="" aria-hidden="true">
+            <img src="{{ asset('images/shoping-cart.png') }}" alt="" aria-hidden="true">
           </a>
         </li>
       </ul>
@@ -279,8 +252,8 @@
   <header class="site-header">
     <nav class="site-navbar" aria-label="Hlavná navigácia">
 
-      <a href="homepage.html" class="navbar-logo">
-        <img src="src/Logo.png" alt="Logo e-shopu">
+      <a href="{{ route('home') }}" class="navbar-logo">
+        <img src="{{ asset('images/Logo.png') }}" alt="Logo e-shopu">
       </a>
 
       <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
@@ -298,7 +271,7 @@
 
       <!-- desktop -->
       <ul class="menu">
-        <li><a href="homepage.html" class="menu-link">Home</a></li>
+        <li><a href="{{ route('home') }}" class="menu-link">Home</a></li>
 
         <!-- Men category menu -->
         <li class="menu-item">
@@ -400,138 +373,129 @@
 
       <!-- search -->
       <search class="navbar-search" role="search">
-        <img src="src/magnifying-glass.png" alt="" class="navbar-search-icon" aria-hidden="true">
+        <img src="{{ asset('images/magnifying-glass.png') }}" alt="" class="navbar-search-icon" aria-hidden="true">
         <input type="search" id="site-search" class="navbar-search-input" placeholder="Search" autocomplete="off">
       </search>
 
       <!-- right navbar actions -->
       <ul class="navbar-actions">
-        <li><a href="register.html" class="btn-login">Sign up</a></li>
-        <li><a href="profile.html" class="profile-link" aria-label="My profile"><img src="src/profile.jpg" alt=""
+        <li><a href="{{ route('register') }}" class="btn-login">Sign up</a></li>
+        <li><a href="{{ route('profile.edit') }}" class="profile-link" aria-label="My profile"><img src="{{ asset('images/profile.jpg') }}" alt=""
               aria-hidden="true"></a></li>
-        <li><a href="cart.html" class="cart-link" aria-label="Shopping cart"><img src="src/shoping-cart.png" alt=""
+        <li><a href="cart.html" class="cart-link" aria-label="Shopping cart"><img src="{{ asset('images/shoping-cart.png') }}" alt=""
               aria-hidden="true"></a></li>
       </ul>
 
     </nav>
   </header>
 
-  <section class="product-detail-section">
-    <div class="product-detail-container">
+  <div>
+    <img src="{{ asset('images/Homepage/intro-image.png') }}" class="intro-image" />
+  </div>
 
-      <div class="product-left">
-        <img id="mainProductImage" src="src/Homepage/SALE-1.png" alt="Product" class="product-detail-image">
+  <section class="sale-section">
+    <h2 class="sale-title">SALE</h2>
 
-        <div class="image-controls">
-          <button type="button" class="admin-btn">Upload photo</button>
-          <button type="button" class="arrow-btn" id="prevImage">←</button>
-          <button type="button" class="arrow-btn" id="nextImage">→</button>
-          <button type="button" class="admin-btn">Delete photo</button>
-        </div>
+    <div class="sale-grid">
+      <div class="sale-card">
+        <a href="{{ route('product.show') }}">
+          <img src="{{ asset('images/Homepage/SALE-1.png') }}" class="sale-image img-fluid" />
+        </a>
+        <p class="sale-name">La sportiva rock climbing shoes</p>
+        <p class="sale-price">100,50$</p>
       </div>
 
-      <div class="product-right">
-        <h1 class="product-detail-title">La Sportiva Theory</h1>
-
-        <p class="product-detail-description">
-          Extreme sensitivity combined with high dynamism allows the Theory to have unprecedented pedidextarity and
-          reactivity on holds.
-          Climbers looking to take their comp style to the next level need look no further.
-          An aggressive yet ultra-sensitive slipper with a single hook and loop closure locks the heel in.
-          They offer top to bottom sticky rubber and an all-new hybrid sole that combines No-Edge features to adapt to
-          the futuristic footwork required for modern competition climbing.
-        </p>
-
-        <hr>
-
-        <p class="product-detail-price">100,50 $</p>
-
-        <div class="product-buttons">
-          <button type="button" class="size-btn">Size</button>
-
-          <div class="quantity-box">
-            <button type="button" class="arrow-btn">-</button>
-            <p class="product-amount">10</p>
-            <button type="button" class="arrow-btn">+</button>
-          </div>
-
-          <button type="button" class="tocart-btn">Add to cart</button>
-        </div>
-
-        <button type="button" class="admin-btn edit-details-btn">Edit details</button>
+      <div class="sale-card">
+        <a href="{{ route('product.show') }}">
+          <img src="{{ asset('images/Homepage/SALE-1.png') }}" class="sale-image img-fluid" />
+        </a>
+        <p class="sale-name">La sportiva rock climbing shoes</p>
+        <p class="sale-price">100,50$</p>
       </div>
-  </section>
 
-
-
-  <section class="details-section">
-    <h2 class="details-title">Detailed description</h2>
-
-    <div class="table-wrapper">
-      <table class="details-table">
-        <tr>
-          <td>Material</td>
-          <td>Rubber</td>
-          <td>Weight</td>
-          <td>200g</td>
-        </tr>
-        <tr>
-          <td>Color</td>
-          <td>Black/Yellow/Red</td>
-          <td>Brand</td>
-          <td>La Sportiva</td>
-        </tr>
-        <tr>
-          <td>Type</td>
-          <td>Climbing shoes</td>
-          <td>Closure</td>
-          <td>Velcro</td>
-        </tr>
-        <tr>
-          <td>Usage</td>
-          <td>Indoor/Outdoor</td>
-          <td>Level</td>
-          <td>Advanced</td>
-        </tr>
-      </table>
+      <div class="sale-card">
+        <a href="{{ route('product.show') }}">
+          <img src="{{ asset('images/Homepage/SALE-1.png') }}" class="sale-image img-fluid" />
+        </a>
+        <p class="sale-name">La sportiva rock climbing shoes</p>
+        <p class="sale-price">100,50$</p>
+      </div>
     </div>
-    <button type="button" class="admin-btn edit-text-bottom-btn">Edit text</button>
   </section>
 
-  <section class="others-section" id="others">
+  <section class="sports-section" id="sports">
+    <h2 class="sports-title">Sports</h2>
 
-    <h2 class="others-title">Other like this</h2>
-
-    <div class="others-grid">
-      <a href="#" class="others-card">
-        <img src="src/Homepage/SALE-1.png" class="others-image img-fluid">
-        <p class="others-text">La Sportiva Theory</p>
-        <p class="others-text">100,50 $</p>
+    <div class="sports-grid">
+      <a href="#" class="sport-card">
+        <img src="{{ asset('images/Sport-icons/badminton-racket.png') }}" class="sport-image img-fluid" />
       </a>
 
-      <a href="#" class="others-card">
-        <img src="src/Homepage/SALE-1.png" class="others-image img-fluid">
-        <p class="others-text">La Sportiva Theory</p>
-        <p class="others-text">100,50 $</p>
+      <a href="#" class="sport-card">
+        <img src="{{ asset('images/Sport-icons/bicycle.png') }}" class="sport-image img-fluid" />
       </a>
 
-      <a href="#" class="others-card">
-        <img src="src/Homepage/SALE-1.png" class="others-image img-fluid">
-        <p class="others-text">La Sportiva Theory</p>
-        <p class="others-text">100,50 $</p>
+      <a href="#" class="sport-card">
+        <img src="{{ asset('images/Sport-icons/boxing.png') }}" class="sport-image img-fluid" />
       </a>
 
-      <a href="#" class="others-card">
-        <img src="src/Homepage/SALE-1.png" class="others-image img-fluid">
-        <p class="others-text">La Sportiva Theory</p>
-        <p class="others-text">100,50 $</p>
+      <a href="#" class="sport-card">
+        <img src="{{ asset('images/Sport-icons/climbing.png') }}" class="sport-image img-fluid" />
       </a>
 
-      <a href="#" class="others-card">
-        <img src="src/Homepage/SALE-1.png" class="others-image img-fluid">
-        <p class="others-text">La Sportiva Theory</p>
-        <p class="others-text">100,50 $</p>
+      <a href="#" class="sport-card">
+        <img src="{{ asset('images/Sport-icons/fencing.png') }}" class="sport-image img-fluid" />
       </a>
+
+      <a href="#" class="sport-card">
+        <img src="{{ asset('images/Sport-icons/skateboard.png') }}" class="sport-image img-fluid" />
+      </a>
+
+      <a href="#" class="sport-card">
+        <img src="{{ asset('images/Sport-icons/ski-board.png') }}" class="sport-image img-fluid" />
+      </a>
+
+      <a href="#" class="sport-card">
+        <img src="{{ asset('images/Sport-icons/soccer-ball.png') }}" class="sport-image img-fluid" />
+      </a>
+
+      <a href="#" class="sport-card">
+        <img src="{{ asset('images/Sport-icons/surfing-board.png') }}" class="sport-image img-fluid" />
+      </a>
+
+      <a href="#" class="sport-card">
+        <img src="{{ asset('images/Sport-icons/swimming-glasses.png') }}" class="sport-image img-fluid" />
+      </a>
+    </div>
+  </section>
+
+  <section class="description-section">
+    <h2 class="description-title">Description</h2>
+
+    <div class="description-content">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+        id elit nibh. Aliquam iaculis enim at ante imperdiet, a porta nisl
+        feugiat. Nulla laoreet lacus quis sapien dapibus tristique. Etiam eu
+        accumsan magna, a consequat ex. Pellentesque sit amet velit tempus,
+        tempor tortor vitae, tempus metus.Lorem ipsum dolor sit amet,
+        consectetur adipiscing elit. Suspendisse id elit nibh. Aliquam iaculis
+        enim at ante imperdiet, a porta nisl feugiat. Nulla laoreet lacus quis
+        sapien dapibus tristique. Etiam eu accumsan magna, a consequat ex.
+        Pellentesque sit amet velit tempus, tempor tortor vitae, tempus metus.
+      </p>
+
+      <p>
+        Duis sollicitudin sapien non elementum sollicitudin. Nullam accumsan
+        elementum est ac accumsan. Donec urna nibh, cursus in lacus id,
+        commodo imperdiet quam. Proin sollicitudin pharetra eleifend.
+        Pellentesque habitant morbi tristique senectus et netus et malesuada
+        fames ac turpis egestas.Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit. Suspendisse id elit nibh. Aliquam iaculis enim at
+        ante imperdiet, a porta nisl feugiat. Nulla laoreet lacus quis sapien
+        dapibus tristique. Etiam eu accumsan magna, a consequat ex.
+        Pellentesque sit amet velit tempus, tempor tortor vitae, tempus metus.
+      </p>
     </div>
   </section>
 
@@ -553,10 +517,6 @@
 
     </ul>
   </footer>
-
-
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

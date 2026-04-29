@@ -22,6 +22,7 @@ main::before {
     content: '';
     position: absolute;
     inset: 0;
+    background-image: url('src/background.png');
     background-size: cover;
     background-position: center;
     filter: blur(6px);

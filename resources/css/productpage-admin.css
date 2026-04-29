@@ -1,0 +1,268 @@
+.product-detail-section {
+    padding: 60px 40px;
+}
+
+.product-detail-container {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 50px;
+    align-items: start;
+}
+
+.product-left {
+    text-align: center;
+}
+
+.product-detail-image {
+    width: 100%;
+    max-width: 650px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.product-right {
+    text-align: center;
+}
+
+.arrow-btn {
+    border: none;
+    background: #d9d9d9;
+    border-radius: 999px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.size-btn,
+.tocart-btn {
+    border: none;
+    background: #d9d9d9;
+    border-radius: 999px;
+    height: 20px;
+    min-width: 110px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+
+
+.product-detail-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 25px;
+}
+
+.product-detail-description {
+    font-size: clamp(1rem, 1.2vw, 1.1rem);
+    line-height: 1.8;
+    color: #333;
+}
+
+.product-detail-price {
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    text-align: center;
+    margin: 25px 0;
+}
+
+.product-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.quantity-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #d9d9d9;
+    border-radius: 999px;
+    padding: 8px 16px;
+}
+
+.product-amount {
+    font-size: 1.2rem;
+    margin: 0;
+    min-width: 20px;
+    text-align: center;
+}
+
+
+.arrow-btn:hover,
+.tocart-btn:hover,
+.size-btn:hover {
+    background: #cfcfcf;
+}
+
+
+.quantity-box .arrow-btn {
+    background: transparent;
+    padding: 0;
+}
+
+
+
+
+
+.details-section {
+    padding: 60px 40px;
+    text-align: center;
+}
+
+.details-title {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    margin-bottom: 30px;
+}
+
+.table-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.details-table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 800px;
+}
+
+.details-table td {
+    border: 1px solid #aaa;
+    padding: 12px 16px;
+    text-align: left;
+}
+
+
+.details-table td:nth-child(odd) {
+    font-weight: 600;
+    background: #f5f5f5;
+}
+
+
+
+.others-section {
+    text-align: center;
+    padding: 60px 40px;
+}
+
+.others-title {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    margin-bottom: 40px;
+}
+
+.others-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    max-width: 2000px;
+    margin: auto;
+}
+
+.others-card {
+    text-decoration: none;
+    color: black;
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.others-image {
+    width: 100%;
+    border-radius: 6px;
+}
+
+.others-text {
+    font-size: clamp(0.8rem, 1vw, 1rem);
+    margin: 4px 0;
+}
+
+
+
+
+.footer-section {
+    padding: 60px 40px;
+    border-top: 1px solid #dcdcdc;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer-left h4 {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.footer-left p {
+    color: #777;
+}
+
+.footer-right {
+    text-align: left;
+}
+
+.footer-right p {
+    margin: 2px 0;
+}
+
+.admin-btn {
+    border: none;
+    background: #d9d9d9;
+    border-radius: 999px;
+    min-width: 130px;
+    height: 34px;
+    padding: 0 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.95rem;
+    line-height: 1;
+    color: black;
+}
+
+.admin-btn:hover {
+    background: #cfcfcf;
+}
+
+.image-controls {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.edit-top-btn {
+    margin-bottom: 20px;
+}
+
+.edit-details-btn {
+    margin-top: 18px;
+}
+
+.edit-text-bottom-btn {
+    margin-top: 22px;
+}
+
+@media (max-width: 768px) {
+    .image-controls {
+        gap: 12px;
+    }
+
+    .admin-btn {
+        min-width: 115px;
+        font-size: 0.9rem;
+    }
+}

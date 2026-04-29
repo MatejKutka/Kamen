@@ -1,0 +1,281 @@
+/* ============================================================
+   Header & Navbar shell
+   ============================================================ */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: clamp(12px, 2vw, 32px);
+    height: clamp(56px, 8vw, 85px);
+    padding-inline: clamp(16px, 4vw, 48px);
+}
+
+/* ============================================================
+   Logo
+   ============================================================ */
+.navbar-logo {
+    flex-shrink: 0;
+    line-height: 0;
+}
+
+.navbar-logo img {
+    height: clamp(28px, 4vw, 38px);
+    width: auto;
+    display: block;
+}
+
+/* ============================================================
+   Hamburger toggle (CSS-only)
+   ============================================================ */
+.nav-toggle {
+    display: none;
+}
+
+.nav-toggle-label {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.nav-toggle-label span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: #111111;
+    border-radius: 999px;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+    transform-origin: center;
+}
+
+/* Animate to X when checked */
+.nav-toggle:checked+.nav-toggle-label span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle:checked+.nav-toggle-label span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.nav-toggle:checked+.nav-toggle-label span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ============================================================
+   Collapsible wrapper — desktop: flex row
+   ============================================================ */
+.navbar-collapse {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: clamp(12px, 2vw, 32px);
+}
+
+/* ============================================================
+   Nav links
+   ============================================================ */
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: clamp(8px, 2vw, 60px);
+    list-style: none;
+    flex-shrink: 0;
+}
+
+.navbar-link {
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
+    font-weight: 500;
+    color: #111111;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.15s ease;
+}
+
+.navbar-link:hover {
+    color: #555555;
+}
+
+.navbar-link--active {
+    font-weight: 600;
+}
+
+/* ============================================================
+   Search
+   ============================================================ */
+.navbar-search {
+    position: relative;
+    flex: 1;
+    max-width: clamp(180px, 28vw, 480px);
+    margin-inline: auto;
+}
+
+.navbar-search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: clamp(14px, 1.5vw, 18px);
+    height: clamp(14px, 1.5vw, 18px);
+    pointer-events: none;
+    object-fit: contain;
+    opacity: 0.6;
+}
+
+.navbar-search-input {
+    width: 100%;
+    padding-block: clamp(6px, 1vw, 9px);
+    padding-left: clamp(32px, 3.5vw, 38px);
+    padding-right: 12px;
+    border: none;
+    border-radius: 999px;
+    background-color: rgb(221, 214, 214);
+    font-family: inherit;
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
+    color: #111111;
+    outline-offset: 2px;
+    transition: background-color 0.15s ease;
+}
+
+.navbar-search-input::placeholder {
+    color: #555555;
+}
+
+.navbar-search-input:focus {
+    background-color: #e0e0e0;
+    outline: 2px solid #111111;
+}
+
+.navbar-search-input::-webkit-search-cancel-button {
+    display: none;
+}
+
+/* ============================================================
+   Actions
+   ============================================================ */
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 1.5vw, 18px);
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+.btn-signup {
+    display: inline-flex;
+    align-items: center;
+    padding-block: clamp(7px, 1vw, 10px);
+    padding-inline: clamp(14px, 2vw, 22px);
+    border: 1px solid #111111;
+    border-radius: 8px;
+    background-color: #ffffff;
+    font-family: inherit;
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
+    font-weight: 500;
+    color: #111111;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.btn-signup:hover {
+    background-color: #f5f5f5;
+}
+
+.navbar-icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+}
+
+.navbar-icon-btn:hover {
+    opacity: 0.6;
+}
+
+.navbar-icon-btn img {
+    width: clamp(22px, 3vw, 28px);
+    height: clamp(22px, 3vw, 28px);
+    object-fit: contain;
+    display: block;
+}
+
+
+/* ============================================================
+   Responsivnost pre vsetko <= 992px
+   ============================================================ */
+@media (max-width: 992px) {
+
+    .navbar {
+        position: relative;
+        flex-wrap: wrap;
+        height: auto;
+        min-height: clamp(56px, 8vw, 72px);
+        align-items: center;
+    }
+
+    .nav-toggle-label {
+        display: flex;
+    }
+
+    .navbar-collapse {
+        position: absolute;
+        top: clamp(56px, 8vw, 72px);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: center;
+        background-color: #ffffff;
+        border-bottom: 1px solid #e2e2e2;
+        gap: clamp(16px, 3vw, 24px);
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transition: max-height 0.3s ease, opacity 0.25s ease, padding 0.3s ease;
+        padding-block: 0;
+    }
+
+    .nav-toggle:checked~.navbar-collapse {
+        max-height: 500px;
+        opacity: 1;
+        pointer-events: auto;
+        padding-block: clamp(16px, 3vw, 24px);
+    }
+
+    .navbar-search {
+        order: -1;
+        width: 100%;
+        max-width: clamp(260px, 80vw, 400px);
+        margin-inline: 0;
+    }
+
+    .navbar-links {
+        order: 0;
+        flex-direction: column;
+        align-items: center;
+        gap: clamp(10px, 3vw, 16px);
+    }
+
+    .navbar-actions {
+        order: 1;
+        margin-left: 0;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: clamp(10px, 1.5vw, 18px);
+    }
+}

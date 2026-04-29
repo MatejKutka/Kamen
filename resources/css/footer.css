@@ -1,0 +1,33 @@
+.footer-section {
+    padding: 60px 40px;
+    border-top: 1px solid #dcdcdc;
+    background-color: white;
+}
+
+.footer-container {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+    gap: 30px;
+}
+
+.footer-left h4 {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.footer-left p {
+    color: #777;
+    margin: 0;
+}
+
+.footer-right {
+    text-align: left;
+}
+
+.footer-right p {
+    margin: 2px 0;
+}
