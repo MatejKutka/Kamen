@@ -73,6 +73,7 @@
     text-align: center;
 }
 
+
 .size-select-wrap::after {
     content: "▾";
     position: absolute;
@@ -273,7 +274,7 @@
     .product-detail-container {
         grid-template-columns: 1fr;
     }
-    
+
     .product-detail-image {
         height: 300px;
     }

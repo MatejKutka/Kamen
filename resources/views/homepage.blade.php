@@ -397,29 +397,15 @@
     <h2 class="sale-title">SALE</h2>
 
     <div class="sale-grid">
-      <div class="sale-card">
-        <a href="{{ route('product.show') }}">
-          <img src="{{ asset('images/Homepage/SALE-1.png') }}" class="sale-image img-fluid" />
-        </a>
-        <p class="sale-name">La sportiva rock climbing shoes</p>
-        <p class="sale-price">100,50$</p>
-      </div>
-
-      <div class="sale-card">
-        <a href="{{ route('product.show') }}">
-          <img src="{{ asset('images/Homepage/SALE-1.png') }}" class="sale-image img-fluid" />
-        </a>
-        <p class="sale-name">La sportiva rock climbing shoes</p>
-        <p class="sale-price">100,50$</p>
-      </div>
-
-      <div class="sale-card">
-        <a href="{{ route('product.show') }}">
-          <img src="{{ asset('images/Homepage/SALE-1.png') }}" class="sale-image img-fluid" />
-        </a>
-        <p class="sale-name">La sportiva rock climbing shoes</p>
-        <p class="sale-price">100,50$</p>
-      </div>
+        @foreach ($products as $product)
+            <div class="sale-card">
+                <a href="{{ route('productpage', $product->variant_id) }}">
+                    <img src="{{ asset($product->image_path) }}" class="sale-image img-fluid" alt="{{ $product->name }}">
+                </a>
+                <p class="sale-name">{{ $product->name }}</p>
+                <p class="sale-price">{{ number_format($product->price, 2) }} €</p>
+            </div>
+        @endforeach
     </div>
   </section>
 

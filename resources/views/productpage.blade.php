@@ -157,7 +157,12 @@
     <div class="product-detail-container">
 
       <div class="product-left">
-        <img id="mainProductImage" src="{{ asset('images/Homepage/SALE-1.png') }}" alt="Product" class="product-detail-image">
+        <img
+            id="mainProductImage"
+            src="{{ asset($images->first()->image_path ?? 'images/Homepage/SALE-1.png') }}"
+            alt="{{ $product->name }}"
+            class="product-detail-image"
+        >
 
         <div class="image-controls">
           <button type="button" class="arrow-btn" id="prevImage">←</button>
@@ -166,37 +171,38 @@
       </div>
 
       <div class="product-right">
-        <h1 class="product-detail-title">La Sportiva Theory</h1>
+        <h1 class="product-detail-title">
+          {{ ucfirst($variant->color) }} {{ $product->name }}
+        </h1>
 
         <p class="product-detail-description">
-          Extreme sensitivity combined with high dynamism allows the Theory to have unprecedented pedidextarity and
-          reactivity on holds.
-          Climbers looking to take their comp style to the next level need look no further.
-          An aggressive yet ultra-sensitive slipper with a single hook and loop closure locks the heel in.
-          They offer top to bottom sticky rubber and an all-new hybrid sole that combines No-Edge features to adapt to
-          the futuristic footwork required for modern competition climbing.
+            {{ $product->description }}
         </p>
 
         <hr>
 
-        <p class="product-detail-price">100,50 $</p>
+        <p class="product-detail-price">
+            {{ number_format($variant->price, 2) }} €
+        </p>
 
         <div class="product-buttons">
           <label class="size-select-wrap">
-            <span class="visually-hidden">Select size</span>
-            <select class="size-select" name="size" aria-label="Select size">
-              <option value="" selected disabled>Size</option>
-              <option value="s">S</option>
-              <option value="m">M</option>
-              <option value="l">L</option>
-              <option value="xl">XL</option>
-              <option value="xxl">XXL</option>
+              <span class="visually-hidden">Select size</span>
+
+              <select class="size-select" name="variant_id" aria-label="Select size">
+                <option value="" selected disabled>Size</option>
+
+                @foreach ($sizes as $sizeVariant)
+                    <option value="{{ $sizeVariant->id }}" @selected($sizeVariant->id === $variant->id)>
+                        {{ $sizeVariant->size }}
+                    </option>
+                @endforeach
             </select>
           </label>
 
           <div class="quantity-box">
             <button type="button" class="arrow-btn">-</button>
-            <p class="product-amount">10</p>
+            <p class="product-amount">1</p>
             <button type="button" class="arrow-btn">+</button>
           </div>
 
@@ -302,11 +308,9 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-    const images = [
-      "{{ asset('images/Homepage/SALE-1.png') }}",
-      "{{ asset('images/Homepage/intro-image.png') }}",
-      "{{ asset('images/Logo.png') }}"
-    ];
+    const images = @json(
+        $images->map(fn($image) => asset($image->image_path))->values()
+    );
 
     let currentImageIndex = 0;
 
@@ -315,23 +319,48 @@
     const nextButton = document.getElementById("nextImage");
 
     nextButton.addEventListener("click", function () {
-      currentImageIndex++;
+        if (images.length === 0) return;
 
-      if (currentImageIndex >= images.length) {
-        currentImageIndex = 0;
-      }
+        currentImageIndex++;
 
-      mainImage.src = images[currentImageIndex];
+        if (currentImageIndex >= images.length) {
+            currentImageIndex = 0;
+        }
+
+        mainImage.src = images[currentImageIndex];
     });
 
     prevButton.addEventListener("click", function () {
-      currentImageIndex--;
+        if (images.length === 0) return;
 
-      if (currentImageIndex < 0) {
-        currentImageIndex = images.length - 1;
+        currentImageIndex--;
+
+        if (currentImageIndex < 0) {
+            currentImageIndex = images.length - 1;
+        }
+
+        mainImage.src = images[currentImageIndex];
+    });
+  </script>
+
+  <script>
+    const minusBtn = document.querySelector(".quantity-box .arrow-btn:first-child");
+    const plusBtn = document.querySelector(".quantity-box .arrow-btn:last-child");
+    const amountText = document.querySelector(".product-amount");
+
+    let amount = 1;
+    amountText.textContent = amount;
+
+    minusBtn.addEventListener("click", function () {
+      if (amount > 1) {
+        amount--;
+        amountText.textContent = amount;
       }
+    });
 
-      mainImage.src = images[currentImageIndex];
+    plusBtn.addEventListener("click", function () {
+      amount++;
+      amountText.textContent = amount;
     });
   </script>
 </body>
