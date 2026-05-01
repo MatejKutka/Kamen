@@ -11,14 +11,14 @@ class ProductSeeder extends Seeder
     {
         // CATEGORY
         $categoryId = DB::table('categories')->insertGetId([
-            'name' => 'clothes',
+            'name' => 'Clothes',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
 
         // SUBCATEGORY
         $subcategoryId = DB::table('subcategories')->insertGetId([
-            'name' => 't-shirt',
+            'name' => 'T-shirt',
             'category_id' => $categoryId,
             'created_at' => now(),
             'updated_at' => now(),

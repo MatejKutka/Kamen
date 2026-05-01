@@ -1,4 +1,20 @@
-Zmenit admin product page aby bola taka ista ako product page (css aj html)
+1. Zmenit admin product page aby bola taka ista ako product page (css aj html)
+
+
+
+STVRTOK
+- spravit product list ✓
+- spravit filtrovanie nad product listom (navbar) ✓
+- spravit funkcny side filtering v product liste ✓
+- pridat do db viac zaznamov - aspon jeden z kazdeho filtru?
+- spravit funkcne strankovanie
+
+PIATOK
+- priradenie kosika novemu userovi
+- pridavanie do kosika
+- checkout
+- ulozenie objednavky (spolu s order items)
+
 
 
 

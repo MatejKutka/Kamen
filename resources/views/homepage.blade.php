@@ -35,6 +35,7 @@
         <li><a href="{{ route('home') }}" class="mobile-main-link">Home</a></li>
         <li><a href="#mobile-men" class="mobile-cat-link">Men <span aria-hidden="true">›</span></a></li>
         <li><a href="#mobile-women" class="mobile-cat-link">Women <span aria-hidden="true">›</span></a></li>
+        
         <li><a href="#mobile-accessories" class="mobile-cat-link">Accessories <span aria-hidden="true">›</span></a></li>
       </ul>
     </nav>
@@ -78,70 +79,70 @@
   <!-- VRSTVA 3: Men: Clothes -->
   <dialog id="mobile-men-clothes" class="mobile-panel">
     <header class="mobile-panel-header">
-      <a href="#mobile-men" class="mobile-btn-back" aria-label="Back to Men">‹ Back</a>
-      <span class="mobile-panel-title">Clothes</span>
-      <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
+        <a href="#mobile-men" class="mobile-btn-back" aria-label="Back to Men">‹ Back</a>
+        <span class="mobile-panel-title">Clothes</span>
+        <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
     </header>
     <nav aria-label="Men clothes">
-      <ul role="list">
-        <li><a href="listofproduct.html" class="mobile-sub-link">T-shirt</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Pants</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Hoodies</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Underwear</a></li>
-      </ul>
+        <ul role="list">
+        <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Clothes', 'subcategory' => 'T-shirt']) }}" class="mobile-sub-link">T-shirt</a></li>
+        <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Clothes', 'subcategory' => 'Pants']) }}" class="mobile-sub-link">Pants</a></li>
+        <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Clothes', 'subcategory' => 'Hoodies']) }}" class="mobile-sub-link">Hoodies</a></li>
+        <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Clothes', 'subcategory' => 'Underwear']) }}" class="mobile-sub-link">Underwear</a></li>
+        </ul>
     </nav>
-  </dialog>
+    </dialog>
 
   <!-- VRSTVA 3: Men: Shoes -->
   <dialog id="mobile-men-shoes" class="mobile-panel">
     <header class="mobile-panel-header">
-      <a href="#mobile-men" class="mobile-btn-back" aria-label="Back to Men">‹ Back</a>
-      <span class="mobile-panel-title">Shoes</span>
-      <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
+        <a href="#mobile-men" class="mobile-btn-back" aria-label="Back to Men">‹ Back</a>
+        <span class="mobile-panel-title">Shoes</span>
+        <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
     </header>
     <nav aria-label="Men shoes">
-      <ul role="list">
-        <li><a href="listofproduct.html" class="mobile-sub-link">Running shoes</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Sport shoes</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Climbing shoes</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Open shoes</a></li>
-      </ul>
+        <ul role="list">
+        <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Shoes', 'subcategory' => 'Running shoes']) }}" class="mobile-sub-link">Running shoes</a></li>
+        <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Shoes', 'subcategory' => 'Sport shoes']) }}" class="mobile-sub-link">Sport shoes</a></li>
+        <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Shoes', 'subcategory' => 'Climbing shoes']) }}" class="mobile-sub-link">Climbing shoes</a></li>
+        <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Shoes', 'subcategory' => 'Open shoes']) }}" class="mobile-sub-link">Open shoes</a></li>
+        </ul>
     </nav>
-  </dialog>
+    </dialog>
 
   <!-- VRSTVA 3: Men: Sports -->
   <dialog id="mobile-men-sports" class="mobile-panel">
     <header class="mobile-panel-header">
-      <a href="#mobile-men" class="mobile-btn-back" aria-label="Back to Men">‹ Back</a>
-      <span class="mobile-panel-title">Sports</span>
-      <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
+        <a href="#mobile-men" class="mobile-btn-back" aria-label="Back to Men">‹ Back</a>
+        <span class="mobile-panel-title">Sports</span>
+        <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
     </header>
     <nav aria-label="Men sports">
-      <ul role="list">
-        <li><a href="listofproduct.html" class="mobile-sub-link">Climbing</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Running</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Football</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Basketball</a></li>
-      </ul>
+        <ul role="list">
+        <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Sports', 'subcategory' => 'Climbing']) }}" class="mobile-sub-link">Climbing</a></li>
+        <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Sports', 'subcategory' => 'Running']) }}" class="mobile-sub-link">Running</a></li>
+        <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Sports', 'subcategory' => 'Football']) }}" class="mobile-sub-link">Football</a></li>
+        <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Sports', 'subcategory' => 'Basketball']) }}" class="mobile-sub-link">Basketball</a></li>
+        </ul>
     </nav>
-  </dialog>
+    </dialog>
 
   <!-- VRSTVA 3: Men: Accessories -->
   <dialog id="mobile-men-accessories" class="mobile-panel">
     <header class="mobile-panel-header">
-      <a href="#mobile-men" class="mobile-btn-back" aria-label="Back to Men">‹ Back</a>
-      <span class="mobile-panel-title">Accessories</span>
-      <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
+        <a href="#mobile-men" class="mobile-btn-back" aria-label="Back to Men">‹ Back</a>
+        <span class="mobile-panel-title">Accessories</span>
+        <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
     </header>
     <nav aria-label="Men accessories">
-      <ul role="list">
-        <li><a href="listofproduct.html" class="mobile-sub-link">Caps & hats</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Bags & backpacks</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Socks</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Watches</a></li>
-      </ul>
+        <ul role="list">
+        <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Accessories', 'subcategory' => 'Caps & hats']) }}" class="mobile-sub-link">Caps & hats</a></li>
+        <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Accessories', 'subcategory' => 'Bags & backpacks']) }}" class="mobile-sub-link">Bags & backpacks</a></li>
+        <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Accessories', 'subcategory' => 'Socks']) }}" class="mobile-sub-link">Socks</a></li>
+        <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Accessories', 'subcategory' => 'Watches']) }}" class="mobile-sub-link">Watches</a></li>
+        </ul>
     </nav>
-  </dialog>
+    </dialog>
 
   <!-- VRSTVA 2: Women -->
   <dialog id="mobile-women" class="mobile-panel">
@@ -166,88 +167,88 @@
   <!-- VRSTVA 3: Women: Clothes -->
   <dialog id="mobile-women-clothes" class="mobile-panel">
     <header class="mobile-panel-header">
-      <a href="#mobile-women" class="mobile-btn-back" aria-label="Back to Women">‹ Back</a>
-      <span class="mobile-panel-title">Clothes</span>
-      <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
+        <a href="#mobile-women" class="mobile-btn-back" aria-label="Back to Women">‹ Back</a>
+        <span class="mobile-panel-title">Clothes</span>
+        <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
     </header>
     <nav aria-label="Women clothes">
-      <ul role="list">
-        <li><a href="listofproduct.html" class="mobile-sub-link">Tops</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Pants</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Jackets</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Underwear</a></li>
-      </ul>
+        <ul role="list">
+        <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Clothes', 'subcategory' => 'T-shirt']) }}" class="mobile-sub-link">T-shirt</a></li>
+        <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Clothes', 'subcategory' => 'Pants']) }}" class="mobile-sub-link">Pants</a></li>
+        <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Clothes', 'subcategory' => 'Jackets']) }}" class="mobile-sub-link">Jackets</a></li>
+        <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Clothes', 'subcategory' => 'Underwear']) }}" class="mobile-sub-link">Underwear</a></li>
+        </ul>
     </nav>
-  </dialog>
+    </dialog>
 
   <!-- VRSTVA 3: Women: Shoes -->
   <dialog id="mobile-women-shoes" class="mobile-panel">
     <header class="mobile-panel-header">
-      <a href="#mobile-women" class="mobile-btn-back" aria-label="Back to Women">‹ Back</a>
-      <span class="mobile-panel-title">Shoes</span>
-      <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
+        <a href="#mobile-women" class="mobile-btn-back" aria-label="Back to Women">‹ Back</a>
+        <span class="mobile-panel-title">Shoes</span>
+        <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
     </header>
     <nav aria-label="Women shoes">
-      <ul role="list">
-        <li><a href="listofproduct.html" class="mobile-sub-link">Running shoes</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Sport shoes</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Climbing shoes</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Open shoes</a></li>
-      </ul>
+        <ul role="list">
+        <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Shoes', 'subcategory' => 'Running shoes']) }}" class="mobile-sub-link">Running shoes</a></li>
+        <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Shoes', 'subcategory' => 'Sport shoes']) }}" class="mobile-sub-link">Sport shoes</a></li>
+        <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Shoes', 'subcategory' => 'Climbing shoes']) }}" class="mobile-sub-link">Climbing shoes</a></li>
+        <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Shoes', 'subcategory' => 'Open shoes']) }}" class="mobile-sub-link">Open shoes</a></li>
+        </ul>
     </nav>
-  </dialog>
+    </dialog>
 
   <!-- VRSTVA 3: Women: Sports -->
   <dialog id="mobile-women-sports" class="mobile-panel">
     <header class="mobile-panel-header">
-      <a href="#mobile-women" class="mobile-btn-back" aria-label="Back to Women">‹ Back</a>
-      <span class="mobile-panel-title">Sports</span>
-      <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
+        <a href="#mobile-women" class="mobile-btn-back" aria-label="Back to Women">‹ Back</a>
+        <span class="mobile-panel-title">Sports</span>
+        <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
     </header>
     <nav aria-label="Women sports">
-      <ul role="list">
-        <li><a href="listofproduct.html" class="mobile-sub-link">Climbing</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Running</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Volleyball</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Basketball</a></li>
-      </ul>
+        <ul role="list">
+        <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Sports', 'subcategory' => 'Climbing']) }}" class="mobile-sub-link">Climbing</a></li>
+        <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Sports', 'subcategory' => 'Running']) }}" class="mobile-sub-link">Running</a></li>
+        <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Sports', 'subcategory' => 'Volleyball']) }}" class="mobile-sub-link">Volleyball</a></li>
+        <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Sports', 'subcategory' => 'Basketball']) }}" class="mobile-sub-link">Basketball</a></li>
+        </ul>
     </nav>
-  </dialog>
+    </dialog>
 
   <!-- VRSTVA 3: Women: Accessories -->
   <dialog id="mobile-women-accessories" class="mobile-panel">
     <header class="mobile-panel-header">
-      <a href="#mobile-women" class="mobile-btn-back" aria-label="Back to Women">‹ Back</a>
-      <span class="mobile-panel-title">Accessories</span>
-      <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
+        <a href="#mobile-women" class="mobile-btn-back" aria-label="Back to Women">‹ Back</a>
+        <span class="mobile-panel-title">Accessories</span>
+        <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
     </header>
     <nav aria-label="Women accessories">
-      <ul role="list">
-        <li><a href="listofproduct.html" class="mobile-sub-link">Caps & hats</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Bags & backpacks</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Socks</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Watches</a></li>
-      </ul>
+        <ul role="list">
+        <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Accessories', 'subcategory' => 'Caps & hats']) }}" class="mobile-sub-link">Caps & hats</a></li>
+        <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Accessories', 'subcategory' => 'Bags & backpacks']) }}" class="mobile-sub-link">Bags & backpacks</a></li>
+        <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Accessories', 'subcategory' => 'Socks']) }}" class="mobile-sub-link">Socks</a></li>
+        <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Accessories', 'subcategory' => 'Watches']) }}" class="mobile-sub-link">Watches</a></li>
+        </ul>
     </nav>
-  </dialog>
+    </dialog>
 
   <!-- VRSTVA 2: Accessories -->
   <dialog id="mobile-accessories" class="mobile-panel">
     <header class="mobile-panel-header">
-      <a href="#mobile-menu" class="mobile-btn-back" aria-label="Back to menu">‹ Back</a>
-      <span class="mobile-panel-title">Accessories</span>
-      <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
+        <a href="#mobile-menu" class="mobile-btn-back" aria-label="Back to menu">‹ Back</a>
+        <span class="mobile-panel-title">Accessories</span>
+        <a href="#" class="mobile-btn-close" aria-label="Close menu">✕</a>
     </header>
     <nav aria-label="Accessories">
-      <ul role="list">
-        <li><a href="listofproduct.html" class="mobile-sub-link">Bags & backpacks</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Sunglasses</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Gloves</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Hats & caps</a></li>
-        <li><a href="listofproduct.html" class="mobile-sub-link">Water bottles</a></li>
-      </ul>
+        <ul role="list">
+        <li><a href="{{ route('products.index', ['category' => 'Accessories', 'subcategory' => 'Bags & backpacks']) }}" class="mobile-sub-link">Bags & backpacks</a></li>
+        <li><a href="{{ route('products.index', ['category' => 'Accessories', 'subcategory' => 'Sunglasses']) }}" class="mobile-sub-link">Sunglasses</a></li>
+        <li><a href="{{ route('products.index', ['category' => 'Accessories', 'subcategory' => 'Gloves']) }}" class="mobile-sub-link">Gloves</a></li>
+        <li><a href="{{ route('products.index', ['category' => 'Accessories', 'subcategory' => 'Hats & caps']) }}" class="mobile-sub-link">Hats & caps</a></li>
+        <li><a href="{{ route('products.index', ['category' => 'Accessories', 'subcategory' => 'Water bottles']) }}" class="mobile-sub-link">Water bottles</a></li>
+        </ul>
     </nav>
-  </dialog>
+    </dialog>
 
   <header class="site-header">
     <nav class="site-navbar" aria-label="Hlavná navigácia">
@@ -275,107 +276,141 @@
 
         <!-- Men category menu -->
         <li class="menu-item">
-          <a href="#" class="menu-link">Men</a>
-          <ul class="submenu">
-            <li class="submenu-title"><a href="listofproduct.html">Men</a></li>
-            <li class="submenu-item"><a href="listofproduct.html">Clothes</a>
-              <ul class="sub-submenu">
-                <li><a href="listofproduct.html">T-shirt</a></li>
-                <li><a href="listofproduct.html">Pants</a></li>
-                <li><a href="listofproduct.html">Hoodies</a></li>
-                <li><a href="listofproduct.html">Underwear</a></li>
-              </ul>
+        <a href="{{ route('products.index', ['gender' => 'men']) }}" class="menu-link">Men</a>
+        <ul class="submenu">
+            <li class="submenu-title">
+            <a href="{{ route('products.index', ['gender' => 'men']) }}">Men</a>
             </li>
-            <li class="submenu-item"><a href="listofproduct.html">Shoes</a>
-              <ul class="sub-submenu">
-                <li><a href="listofproduct.html">Running shoes</a></li>
-                <li><a href="listofproduct.html">Sport shoes</a></li>
-                <li><a href="listofproduct.html">Climbing shoes</a></li>
-                <li><a href="listofproduct.html">Open shoes</a></li>
-              </ul>
+
+            <li class="submenu-item">
+            <a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Clothes']) }}">Clothes</a>
+            <ul class="sub-submenu">
+                <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Clothes', 'subcategory' => 'T-shirt']) }}">T-shirt</a></li>
+                <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Clothes', 'subcategory' => 'Pants']) }}">Pants</a></li>
+                <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Clothes', 'subcategory' => 'Hoodies']) }}">Hoodies</a></li>
+                <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Clothes', 'subcategory' => 'Underwear']) }}">Underwear</a></li>
+            </ul>
             </li>
-            <li class="submenu-item"><a href="listofproduct.html">Sports</a>
-              <ul class="sub-submenu">
-                <li><a href="listofproduct.html">Climbing</a></li>
-                <li><a href="listofproduct.html">Running</a></li>
-                <li><a href="listofproduct.html">Football</a></li>
-                <li><a href="listofproduct.html">Basketball</a></li>
-              </ul>
+
+            <li class="submenu-item">
+            <a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Shoes']) }}">Shoes</a>
+            <ul class="sub-submenu">
+                <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Shoes', 'subcategory' => 'Running shoes']) }}">Running shoes</a></li>
+                <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Shoes', 'subcategory' => 'Sport shoes']) }}">Sport shoes</a></li>
+                <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Shoes', 'subcategory' => 'Climbing shoes']) }}">Climbing shoes</a></li>
+                <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Shoes', 'subcategory' => 'Open shoes']) }}">Open shoes</a></li>
+            </ul>
             </li>
-            <li class="submenu-item"><a href="listofproduct.html">Accessories</a>
-              <ul class="sub-submenu">
-                <li><a href="listofproduct.html">Caps & hats</a></li>
-                <li><a href="listofproduct.html">Bags & backpacks</a></li>
-                <li><a href="listofproduct.html">Socks</a></li>
-                <li><a href="listofproduct.html">Watches</a></li>
-              </ul>
+
+            <li class="submenu-item">
+            <a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Sports']) }}">Sports</a>
+            <ul class="sub-submenu">
+                <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Sports', 'subcategory' => 'Climbing']) }}">Climbing</a></li>
+                <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Sports', 'subcategory' => 'Running']) }}">Running</a></li>
+                <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Sports', 'subcategory' => 'Football']) }}">Football</a></li>
+                <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Sports', 'subcategory' => 'Basketball']) }}">Basketball</a></li>
+            </ul>
             </li>
-          </ul>
+
+            <li class="submenu-item">
+            <a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Accessories']) }}">Accessories</a>
+            <ul class="sub-submenu">
+                <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Accessories', 'subcategory' => 'Caps & hats']) }}">Caps & hats</a></li>
+                <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Accessories', 'subcategory' => 'Bags & backpacks']) }}">Bags & backpacks</a></li>
+                <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Accessories', 'subcategory' => 'Socks']) }}">Socks</a></li>
+                <li><a href="{{ route('products.index', ['gender' => 'men', 'category' => 'Accessories', 'subcategory' => 'Watches']) }}">Watches</a></li>
+            </ul>
+            </li>
+        </ul>
         </li>
 
         <!-- Women category menu -->
         <li class="menu-item">
-          <a href="#" class="menu-link">Women</a>
-          <ul class="submenu">
-            <li class="submenu-title"><a href="listofproduct.html">Women</a></li>
-            <li class="submenu-item"><a href="listofproduct.html">Clothes</a>
-              <ul class="sub-submenu">
-                <li><a href="listofproduct.html">Tops</a></li>
-                <li><a href="listofproduct.html">Pants</a></li>
-                <li><a href="listofproduct.html">Jackets</a></li>
-                <li><a href="listofproduct.html">Underwear</a></li>
-              </ul>
+        <a href="{{ route('products.index', ['gender' => 'women']) }}" class="menu-link">Women</a>
+        <ul class="submenu">
+            <li class="submenu-title">
+            <a href="{{ route('products.index', ['gender' => 'women']) }}">Women</a>
             </li>
-            <li class="submenu-item"><a href="listofproduct.html">Shoes</a>
-              <ul class="sub-submenu">
-                <li><a href="listofproduct.html">Running shoes</a></li>
-                <li><a href="listofproduct.html">Sport shoes</a></li>
-                <li><a href="listofproduct.html">Climbing shoes</a></li>
-                <li><a href="listofproduct.html">Open shoes</a></li>
-              </ul>
+
+            <li class="submenu-item">
+            <a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Clothes']) }}">Clothes</a>
+            <ul class="sub-submenu">
+                <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Clothes', 'subcategory' => 'T-shirt']) }}">T-shirt</a></li>
+                <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Clothes', 'subcategory' => 'Pants']) }}">Pants</a></li>
+                <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Clothes', 'subcategory' => 'Jackets']) }}">Jackets</a></li>
+                <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Clothes', 'subcategory' => 'Underwear']) }}">Underwear</a></li>
+            </ul>
             </li>
-            <li class="submenu-item"><a href="listofproduct.html">Sports</a>
-              <ul class="sub-submenu">
-                <li><a href="listofproduct.html">Climbing</a></li>
-                <li><a href="listofproduct.html">Running</a></li>
-                <li><a href="listofproduct.html">Volleyball</a></li>
-                <li><a href="listofproduct.html">Basketball</a></li>
-              </ul>
+
+            <li class="submenu-item">
+            <a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Shoes']) }}">Shoes</a>
+            <ul class="sub-submenu">
+                <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Shoes', 'subcategory' => 'Running shoes']) }}">Running shoes</a></li>
+                <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Shoes', 'subcategory' => 'Sport shoes']) }}">Sport shoes</a></li>
+                <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Shoes', 'subcategory' => 'Climbing shoes']) }}">Climbing shoes</a></li>
+                <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Shoes', 'subcategory' => 'Open shoes']) }}">Open shoes</a></li>
+            </ul>
             </li>
-            <li class="submenu-item"><a href="listofproduct.html">Accessories</a>
-              <ul class="sub-submenu">
-                <li><a href="listofproduct.html">Caps & hats</a></li>
-                <li><a href="listofproduct.html">Bags & backpacks</a></li>
-                <li><a href="listofproduct.html">Socks</a></li>
-                <li><a href="listofproduct.html">Watches</a></li>
-              </ul>
+
+            <li class="submenu-item">
+            <a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Sports']) }}">Sports</a>
+            <ul class="sub-submenu">
+                <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Sports', 'subcategory' => 'Climbing']) }}">Climbing</a></li>
+                <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Sports', 'subcategory' => 'Running']) }}">Running</a></li>
+                <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Sports', 'subcategory' => 'Volleyball']) }}">Volleyball</a></li>
+                <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Sports', 'subcategory' => 'Basketball']) }}">Basketball</a></li>
+            </ul>
             </li>
-          </ul>
+
+            <li class="submenu-item">
+            <a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Accessories']) }}">Accessories</a>
+            <ul class="sub-submenu">
+                <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Accessories', 'subcategory' => 'Caps & hats']) }}">Caps & hats</a></li>
+                <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Accessories', 'subcategory' => 'Bags & backpacks']) }}">Bags & backpacks</a></li>
+                <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Accessories', 'subcategory' => 'Socks']) }}">Socks</a></li>
+                <li><a href="{{ route('products.index', ['gender' => 'women', 'category' => 'Accessories', 'subcategory' => 'Watches']) }}">Watches</a></li>
+            </ul>
+            </li>
+        </ul>
         </li>
 
         <!-- Accessories category menu -->
         <li class="menu-item">
-          <a href="#" class="menu-link">Accessories</a>
-          <ul class="submenu">
-            <li class="submenu-title"><a href="listofproduct.html">Accessories</a></li>
+        <a href="#" class="menu-link">Accessories</a>
+        <ul class="submenu">
+            <li class="submenu-title"><a href="{{ route('products.index', ['category' => 'Accessories']) }}">Accessories</a></li>
             <li class="submenu-item">
-              <ul class="sub-submenu">
-                <li><a href="listofproduct.html">Bags & backpacks</a></li>
-                <li><a href="listofproduct.html">Sunglasses</a></li>
-                <li><a href="listofproduct.html">Gloves</a></li>
-                <li><a href="listofproduct.html">Hats & caps</a></li>
-                <li><a href="listofproduct.html">Water bottles</a></li>
-              </ul>
+            <ul class="sub-submenu">
+                <li><a href="{{ route('products.index', ['category' => 'Accessories', 'subcategory' => 'Bags & backpacks']) }}">Bags & backpacks</a></li>
+                <li><a href="{{ route('products.index', ['category' => 'Accessories', 'subcategory' => 'Sunglasses']) }}">Sunglasses</a></li>
+                <li><a href="{{ route('products.index', ['category' => 'Accessories', 'subcategory' => 'Gloves']) }}">Gloves</a></li>
+                <li><a href="{{ route('products.index', ['category' => 'Accessories', 'subcategory' => 'Hats & caps']) }}">Hats & caps</a></li>
+                <li><a href="{{ route('products.index', ['category' => 'Accessories', 'subcategory' => 'Water bottles']) }}">Water bottles</a></li>
+            </ul>
             </li>
-          </ul>
+        </ul>
         </li>
-      </ul>
+        </ul>
+
+
 
       <!-- search -->
-      <search class="navbar-search" role="search">
-        <img src="{{ asset('images/magnifying-glass.png') }}" alt="" class="navbar-search-icon" aria-hidden="true">
-        <input type="search" id="site-search" class="navbar-search-input" placeholder="Search" autocomplete="off">
-      </search>
+      <form method="GET" action="{{ route('products.index') }}" class="navbar-search" role="search">
+
+        <img src="{{ asset('images/magnifying-glass.png') }}"
+            alt=""
+            class="navbar-search-icon"
+            aria-hidden="true">
+        <input
+          type="search"
+          id="site-search"
+          name="search"
+          class="navbar-search-input"
+          placeholder="Search"
+          value="{{ request('search') }}"
+          autocomplete="off"
+        >
+      </form>
 
       <!-- right navbar actions -->
       <ul class="navbar-actions">
@@ -413,45 +448,36 @@
     <h2 class="sports-title">Sports</h2>
 
     <div class="sports-grid">
-      <a href="#" class="sport-card">
-        <img src="{{ asset('images/Sport-icons/badminton-racket.png') }}" class="sport-image img-fluid" />
-      </a>
 
-      <a href="#" class="sport-card">
-        <img src="{{ asset('images/Sport-icons/bicycle.png') }}" class="sport-image img-fluid" />
-      </a>
+      @php
+        $sports = [
+          'Badminton' => 'badminton-racket.png',
+          'Cycling' => 'bicycle.png',
+          'Boxing' => 'boxing.png',
+          'Climbing' => 'climbing.png',
+          'Fencing' => 'fencing.png',
+          'Skateboarding' => 'skateboard.png',
+          'Skiing' => 'ski-board.png',
+          'Football' => 'soccer-ball.png',
+          'Surfing' => 'surfing-board.png',
+          'Swimming' => 'swimming-glasses.png',
+        ];
+      @endphp
 
-      <a href="#" class="sport-card">
-        <img src="{{ asset('images/Sport-icons/boxing.png') }}" class="sport-image img-fluid" />
-      </a>
+      @foreach ($sports as $sport => $icon)
+        <a
+          href="{{ route('products.index', array_merge(request()->all(), ['sport[]' => $sport])) }}"
+          class="sport-card"
+          title="{{ $sport }}"
+        >
+          <img
+            src="{{ asset('images/Sport-icons/' . $icon) }}"
+            alt="{{ $sport }}"
+            class="sport-image img-fluid"
+          >
+        </a>
+      @endforeach
 
-      <a href="#" class="sport-card">
-        <img src="{{ asset('images/Sport-icons/climbing.png') }}" class="sport-image img-fluid" />
-      </a>
-
-      <a href="#" class="sport-card">
-        <img src="{{ asset('images/Sport-icons/fencing.png') }}" class="sport-image img-fluid" />
-      </a>
-
-      <a href="#" class="sport-card">
-        <img src="{{ asset('images/Sport-icons/skateboard.png') }}" class="sport-image img-fluid" />
-      </a>
-
-      <a href="#" class="sport-card">
-        <img src="{{ asset('images/Sport-icons/ski-board.png') }}" class="sport-image img-fluid" />
-      </a>
-
-      <a href="#" class="sport-card">
-        <img src="{{ asset('images/Sport-icons/soccer-ball.png') }}" class="sport-image img-fluid" />
-      </a>
-
-      <a href="#" class="sport-card">
-        <img src="{{ asset('images/Sport-icons/surfing-board.png') }}" class="sport-image img-fluid" />
-      </a>
-
-      <a href="#" class="sport-card">
-        <img src="{{ asset('images/Sport-icons/swimming-glasses.png') }}" class="sport-image img-fluid" />
-      </a>
     </div>
   </section>
 

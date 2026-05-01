@@ -2,9 +2,14 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\ProductController;
 
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
+
+
+#HOMEPAGE
 Route::get('/', function () {
     $products = DB::table('product_variants')
         ->join('products', 'products.id', '=', 'product_variants.product_id')
@@ -32,6 +37,7 @@ Route::get('/', function () {
     return view('homepage', compact('products'));
 })->name('home');
 
+#PRODUCT PAGE
 Route::get('/product/{variantId}', function ($variantId) {
     $variant = DB::table('product_variants')
         ->where('id', $variantId)

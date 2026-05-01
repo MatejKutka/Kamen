@@ -1,18 +1,23 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="sk">
 
 <head>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>List of products</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   @vite([
     'resources/css/reset.css',
     'resources/css/newnav.css',
-    'resources/css/productpage.css',
+    'resources/css/listofproduct.css',
     'resources/css/footer.css'
   ])
 </head>
 
 <body>
-  
   <!--
      MOBILNÉ OVERLAY PANELY
      Vrstva 1 - Vrstva 2 - Vrstva 3
@@ -420,138 +425,260 @@
     </nav>
   </header>
 
+  <!-- ASIDE – FILTRE -->
+  <aside aria-label="Filtrovanie produktov">
+  <form method="GET" action="{{ route('products.index') }}">
+    <section>
+      <h2>Categories</h2>
 
-  <section class="product-detail-section">
-    <div class="product-detail-container">
+      @if(request('gender'))
+        <input type="hidden" name="gender" value="{{ request('gender') }}">
+      @endif
 
-      <div class="product-left">
-        <img
-            id="mainProductImage"
-            src="{{ asset($images->first()->image_path ?? 'images/Homepage/SALE-1.png') }}"
-            alt="{{ $product->name }}"
-            class="product-detail-image"
-        >
+      @if(request('category'))
+        <input type="hidden" name="category" value="{{ request('category') }}">
+      @endif
 
-        <div class="image-controls">
-          <button type="button" class="arrow-btn" id="prevImage">←</button>
-          <button type="button" class="arrow-btn" id="nextImage">→</button>
-        </div>
-      </div>
-
-      <div class="product-right">
-        <h1 class="product-detail-title">
-          {{ ucfirst($variant->color) }} {{ $product->name }}
-        </h1>
-
-        <p class="product-detail-description">
-            {{ $product->description }}
-        </p>
-
-        <hr>
-
-        <p class="product-detail-price">
-            {{ number_format($variant->price, 2) }} €
-        </p>
-
-        <div class="product-buttons">
-          <label class="size-select-wrap">
-              <span class="visually-hidden">Select size</span>
-
-              <select class="size-select" name="variant_id" aria-label="Select size">
-                <option value="" selected disabled>Size</option>
-
-                @foreach ($sizes as $sizeVariant)
-                    <option value="{{ $sizeVariant->id }}" @selected($sizeVariant->id === $variant->id)>
-                        {{ $sizeVariant->size }}
-                    </option>
-                @endforeach
-            </select>
+      @if(request('subcategory'))
+        <input type="hidden" name="subcategory" value="{{ request('subcategory') }}">
+      @endif
+      
+      <details open>
+        <summary>Sports</summary>
+        <fieldset>
+          <legend class="sr-only">Typ športu</legend>
+          <label class="filter-check">
+            <input type="checkbox" name="sport[]" value="Tennis" {{ in_array('Tennis', request('sport', [])) ? 'checked' : '' }} />
+            tennis
           </label>
+          <label class="filter-check">
+            <input type="checkbox" name="sport[]" value="Football" {{ in_array('Football', request('sport', [])) ? 'checked' : '' }} />
+            football
+          </label>
+          <label class="filter-check">
+            <input type="checkbox" name="sport[]" value="Basketball" {{ in_array('Basketball', request('sport', [])) ? 'checked' : '' }} />
+            basketball
+          </label>
+          <label class="filter-check">
+            <input type="checkbox" name="sport[]" value="Running" {{ in_array('Running', request('sport', [])) ? 'checked' : '' }} />
+            running
+          </label>
+          <label class="filter-check">
+            <input type="checkbox" name="sport[]" value="Cycling" {{ in_array('Cycling', request('sport', [])) ? 'checked' : '' }} />
+            cycling
+          </label>
+        </fieldset>
+      </details>
+    </section>
 
-          <div class="quantity-box">
-            <button type="button" class="arrow-btn">-</button>
-            <p class="product-amount">1</p>
-            <button type="button" class="arrow-btn">+</button>
-          </div>
+    <section>
+      <h2>Price range</h2>
+      <fieldset class="price-range">
+        <legend class="sr-only">Cenový rozsah</legend>
 
-          <button type="button" class="tocart-btn">Add to cart</button>
-        </div>
+        <label for="price-from">From</label>
+        <input
+          type="number"
+          id="price-from"
+          name="price_from"
+          min="0"
+          placeholder="€ 0"
+          value="{{ request('price_from') }}"
+        />
 
-      </div>
-  </section>
+        <label for="price-to">To</label>
+        <input
+          type="number"
+          id="price-to"
+          name="price_to"
+          max="9999"
+          placeholder="€ 250"
+          value="{{ request('price_to') }}"
+        />
+      </fieldset>
+    </section>
 
+    <section>
+      <h2>Colors</h2>
 
+      <fieldset class="filter-colors">
+        <legend class="sr-only">Product color</legend>
 
-  <section class="details-section">
-    <h2 class="details-title">Detailed description</h2>
+        @php
+          $selectedColors = request('color', []);
 
-    <div class="table-wrapper">
-      <table class="details-table">
-        <tr>
-          <td>Material</td>
-          <td>Rubber</td>
-          <td>Weight</td>
-          <td>200g</td>
-        </tr>
-        <tr>
-          <td>Color</td>
-          <td>Black/Yellow/Red</td>
-          <td>Brand</td>
-          <td>La Sportiva</td>
-        </tr>
-        <tr>
-          <td>Type</td>
-          <td>Climbing shoes</td>
-          <td>Closure</td>
-          <td>Velcro</td>
-        </tr>
-        <tr>
-          <td>Usage</td>
-          <td>Indoor/Outdoor</td>
-          <td>Level</td>
-          <td>Advanced</td>
-        </tr>
-      </table>
-    </div>
-  </section>
+          if (!is_array($selectedColors)) {
+              $selectedColors = [$selectedColors];
+          }
 
-  <section class="others-section" id="others">
+          $colors = [
+              'black' => ['#2a2a2a', 'Black'],
+              'darkgray' => ['#666666', 'Dark gray'],
+              'gray' => ['#b0b0b0', 'Gray'],
+              'lightgray' => ['#d9d9d9', 'Light gray'],
+              'white' => ['#ffffff', 'White'],
+              'blue' => ['#3b6fd4', 'Blue'],
+              'red' => ['#d43b3b', 'Red'],
+              'green' => ['#3b9e5e', 'Green'],
+          ];
+        @endphp
 
-    <h2 class="others-title">Other like this</h2>
+        @foreach ($colors as $value => [$hex, $label])
+          <label
+            class="color-swatch"
+            style="--c: {{ $hex }}; --border: {{ $value === 'white' ? '#d0d0d0' : 'transparent' }};"
+            title="{{ $label }}"
+            aria-label="{{ $label }}"
+          >
+            <input
+              type="checkbox"
+              name="color[]"
+              value="{{ $value }}"
+              {{ in_array($value, $selectedColors) ? 'checked' : '' }}
+            >
+          </label>
+        @endforeach
+      </fieldset>
+    </section>
 
-    <div class="others-grid">
-      <a href="#" class="others-card">
-        <img src="src/Homepage/SALE-1.png" class="others-image img-fluid">
-        <p class="others-text">La Sportiva Theory</p>
-        <p class="others-text">100,50 $</p>
+    <section>
+      <h2>Size</h2>
+
+      <fieldset class="filter-sizes">
+        <legend class="sr-only">Size</legend>
+
+        @php
+          $selectedSizes = request('size', []);
+
+          if (!is_array($selectedSizes)) {
+              $selectedSizes = [$selectedSizes];
+          }
+
+          $sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+        @endphp
+
+        @foreach ($sizes as $size)
+          <label class="size-option">
+            <input
+              type="checkbox"
+              name="size[]"
+              value="{{ $size }}"
+              {{ in_array($size, $selectedSizes) ? 'checked' : '' }}
+            >
+            {{ $size }}
+          </label>
+        @endforeach
+
+      </fieldset>
+    </section>
+
+        <button type="submit" class="btn-filter">Apply filters</button>
+    </form>
+  </aside>
+
+  <!-- MAIN – PRODUKTY -->
+  <main>
+    <header>
+      <h1>All products</h1>
+
+      <p class="product-count">
+        <strong>{{ $products->count() }}</strong> products
+      </p>
+
+      <label for="sort-by" class="sr-only">Sort by</label>
+      <form id="product-filters" method="GET" action="{{ route('products.index') }}">
+
+        {{-- keep existing filters --}}
+        @foreach(request()->except('sort') as $key => $value)
+            @if(is_array($value))
+                @foreach($value as $v)
+                    <input type="hidden" name="{{ $key }}[]" value="{{ $v }}">
+                @endforeach
+            @else
+                <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+            @endif
+        @endforeach
+
+        <select id="sort-by" name="sort" onchange="this.form.submit()">
+          <option value="popular" {{ request('sort', 'popular') === 'popular' ? 'selected' : '' }}>
+            Most popular
+          </option>
+
+          <option value="price-asc" {{ request('sort') === 'price-asc' ? 'selected' : '' }}>
+            Price: Low to High
+          </option>
+
+          <option value="price-desc" {{ request('sort') === 'price-desc' ? 'selected' : '' }}>
+            Price: High to Low
+          </option>
+
+          <option value="newest" {{ request('sort') === 'newest' ? 'selected' : '' }}>
+            Newest
+          </option>
+        </select>
+      </form>
+    </header>
+    <section class="product-grid" aria-label="Zoznam produktov">
+        @forelse ($products as $product)
+            <article class="card">
+                <a href="{{ route('productpage', $product->variant_id) }}">
+                    <figure>
+                        <img
+                            src="{{ $product->image_path ? asset($product->image_path) : asset('images/no-image.png') }}"
+                            alt="{{ $product->name }}"
+                            loading="lazy"
+                        />
+                    </figure>
+                </a>
+
+                <h3>
+                    <a href="{{ route('productpage', $product->variant_id) }}">
+                        {{ $product->name }} - {{ $product->color }}
+                    </a>
+                </h3>
+
+                <footer>
+                    <p class="price">
+                        {{ number_format($product->price, 2, ',', ' ') }} €
+                    </p>
+
+                    <button type="button" class="btn-cart">Add to cart</button>
+                </footer>
+            </article>
+        @empty
+            <p>No products found.</p>
+        @endforelse
+    </section>
+
+    <nav class="pagination" aria-label="Stránkovanie">
+      <a href="#" class="page-arrow" aria-label="Predchádzajúca strana" aria-disabled="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
       </a>
-
-      <a href="#" class="others-card">
-        <img src="src/Homepage/SALE-1.png" class="others-image img-fluid">
-        <p class="others-text">La Sportiva Theory</p>
-        <p class="others-text">100,50 $</p>
+      <ol>
+        <li><a href="#" class="page-num" aria-current="page">1</a></li>
+        <li><a href="#" class="page-num">2</a></li>
+        <li><a href="#" class="page-num">3</a></li>
+        <li><a href="#" class="page-num">4</a></li>
+        <li><a href="#" class="page-num">5</a></li>
+        <li><a href="#" class="page-num">6</a></li>
+        <li><a href="#" class="page-num">7</a></li>
+        <li><a href="#" class="page-num">8</a></li>
+        <li><a href="#" class="page-num">9</a></li>
+        <li><a href="#" class="page-num">10</a></li>
+      </ol>
+      <a href="#" class="page-arrow" aria-label="Nasledujúca strana">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
       </a>
+    </nav>
+  </main>
 
-      <a href="#" class="others-card">
-        <img src="src/Homepage/SALE-1.png" class="others-image img-fluid">
-        <p class="others-text">La Sportiva Theory</p>
-        <p class="others-text">100,50 $</p>
-      </a>
-
-      <a href="#" class="others-card">
-        <img src="src/Homepage/SALE-1.png" class="others-image img-fluid">
-        <p class="others-text">La Sportiva Theory</p>
-        <p class="others-text">100,50 $</p>
-      </a>
-
-      <a href="#" class="others-card">
-        <img src="src/Homepage/SALE-1.png" class="others-image img-fluid">
-        <p class="others-text">La Sportiva Theory</p>
-        <p class="others-text">100,50 $</p>
-      </a>
-    </div>
-  </section>
-
+  <!-- FOOTER -->
   <footer class="footer-section">
     <ul class="footer-container">
 
@@ -570,66 +697,6 @@
 
     </ul>
   </footer>
-
-
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-  <script>
-    const images = @json(
-        $images->map(fn($image) => asset($image->image_path))->values()
-    );
-
-    let currentImageIndex = 0;
-
-    const mainImage = document.getElementById("mainProductImage");
-    const prevButton = document.getElementById("prevImage");
-    const nextButton = document.getElementById("nextImage");
-
-    nextButton.addEventListener("click", function () {
-        if (images.length === 0) return;
-
-        currentImageIndex++;
-
-        if (currentImageIndex >= images.length) {
-            currentImageIndex = 0;
-        }
-
-        mainImage.src = images[currentImageIndex];
-    });
-
-    prevButton.addEventListener("click", function () {
-        if (images.length === 0) return;
-
-        currentImageIndex--;
-
-        if (currentImageIndex < 0) {
-            currentImageIndex = images.length - 1;
-        }
-
-        mainImage.src = images[currentImageIndex];
-    });
-  </script>
-
-  <script>
-    const minusBtn = document.querySelector(".quantity-box .arrow-btn:first-child");
-    const plusBtn = document.querySelector(".quantity-box .arrow-btn:last-child");
-    const amountText = document.querySelector(".product-amount");
-
-    let amount = 1;
-    amountText.textContent = amount;
-
-    minusBtn.addEventListener("click", function () {
-      if (amount > 1) {
-        amount--;
-        amountText.textContent = amount;
-      }
-    });
-
-    plusBtn.addEventListener("click", function () {
-      amount++;
-      amountText.textContent = amount;
-    });
-  </script>
 </body>
+
 </html>
