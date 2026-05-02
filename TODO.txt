@@ -10,10 +10,12 @@ STVRTOK
 - spravit funkcne strankovanie
 
 PIATOK
-- priradenie kosika novemu userovi
-- pridavanie do kosika
+- priradenie kosika novemu userovi ✓
+- pridavanie do kosika ✓
+- prenasanie kosika ✓
 - checkout
 - ulozenie objednavky (spolu s order items)
+- mozno pridat message do cart/product page ked nie je dost poloziek a pouzivatel chce pridat viac
 
 
 

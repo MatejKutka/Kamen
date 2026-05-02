@@ -413,13 +413,12 @@
         <li><a href="{{ route('register') }}" class="btn-login">Sign up</a></li>
         <li><a href="{{ route('profile.edit') }}" class="profile-link" aria-label="My profile"><img src="{{ asset('images/profile.jpg') }}" alt=""
               aria-hidden="true"></a></li>
-        <li><a href="cart.html" class="cart-link" aria-label="Shopping cart"><img src="{{ asset('images/shoping-cart.png') }}" alt=""
+        <li><a href="{{ route('cart.index') }}" class="cart-link" aria-label="Shopping cart"><img src="{{ asset('images/shoping-cart.png') }}" alt=""
               aria-hidden="true"></a></li>
       </ul>
 
     </nav>
   </header>
-
 
   <section class="product-detail-section">
     <div class="product-detail-container">
@@ -453,29 +452,34 @@
             {{ number_format($variant->price, 2) }} €
         </p>
 
-        <div class="product-buttons">
+        <form method="POST" action="{{ route('cart.add') }}" class="product-buttons">
+          @csrf
+
           <label class="size-select-wrap">
-              <span class="visually-hidden">Select size</span>
+            <span class="visually-hidden">Select size</span>
 
-              <select class="size-select" name="variant_id" aria-label="Select size">
-                <option value="" selected disabled>Size</option>
+            <select class="size-select" name="variant_id" aria-label="Select size" required>
+              <option value="" disabled>Size</option>
 
-                @foreach ($sizes as $sizeVariant)
-                    <option value="{{ $sizeVariant->id }}" @selected($sizeVariant->id === $variant->id)>
-                        {{ $sizeVariant->size }}
-                    </option>
-                @endforeach
+              @foreach ($sizes as $sizeVariant)
+                <option value="{{ $sizeVariant->id }}" @selected($sizeVariant->id === $variant->id)>
+                  {{ $sizeVariant->size }}
+                </option>
+              @endforeach
             </select>
           </label>
 
+          <input type="hidden" name="quantity" id="cartQuantity" value="1">
+
           <div class="quantity-box">
-            <button type="button" class="arrow-btn">-</button>
-            <p class="product-amount">1</p>
-            <button type="button" class="arrow-btn">+</button>
+            <button type="button" class="arrow-btn" id="minusQty">-</button>
+            <p class="product-amount" id="amountText">1</p>
+            <button type="button" class="arrow-btn" id="plusQty">+</button>
           </div>
 
-          <button type="button" class="tocart-btn">Add to cart</button>
-        </div>
+          <button type="submit" class="tocart-btn">Add to cart</button>
+
+        </form>
 
       </div>
   </section>
@@ -612,23 +616,28 @@
   </script>
 
   <script>
-    const minusBtn = document.querySelector(".quantity-box .arrow-btn:first-child");
-    const plusBtn = document.querySelector(".quantity-box .arrow-btn:last-child");
-    const amountText = document.querySelector(".product-amount");
+    const minusBtn = document.getElementById("minusQty");
+    const plusBtn = document.getElementById("plusQty");
+    const amountText = document.getElementById("amountText");
+    const quantityInput = document.getElementById("cartQuantity");
 
     let amount = 1;
-    amountText.textContent = amount;
+
+    function updateQuantity() {
+      amountText.textContent = amount;
+      quantityInput.value = amount;
+    }
 
     minusBtn.addEventListener("click", function () {
       if (amount > 1) {
         amount--;
-        amountText.textContent = amount;
+        updateQuantity();
       }
     });
 
     plusBtn.addEventListener("click", function () {
       amount++;
-      amountText.textContent = amount;
+      updateQuantity();
     });
   </script>
 </body>

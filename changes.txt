@@ -3,3 +3,7 @@ ZMENY v DB:
 gender premiestneny z product do product variant
 pridany color do product image -> nech su spravne farby na spravne obrazky
 pridany sport riadok do product aby sa dalo filtrovat
+pridane session id do cart
+
+
+odstraneny add to cart button v product liste

@@ -418,7 +418,7 @@
         <li><a href="{{ route('register') }}" class="btn-login">Sign up</a></li>
         <li><a href="{{ route('profile.edit') }}" class="profile-link" aria-label="My profile"><img src="{{ asset('images/profile.jpg') }}" alt=""
               aria-hidden="true"></a></li>
-        <li><a href="cart.html" class="cart-link" aria-label="Shopping cart"><img src="{{ asset('images/shoping-cart.png') }}" alt=""
+        <li><a href="{{ route('cart.index') }}" class="cart-link" aria-label="Shopping cart"><img src="{{ asset('images/shoping-cart.png') }}" alt=""
               aria-hidden="true"></a></li>
       </ul>
 
@@ -641,8 +641,6 @@
                     <p class="price">
                         {{ number_format($product->price, 2, ',', ' ') }} €
                     </p>
-
-                    <button type="button" class="btn-cart">Add to cart</button>
                 </footer>
             </article>
         @empty

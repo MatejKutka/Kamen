@@ -1,19 +1,19 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="sk">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Homepage</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-  @vite([
-    'resources/css/reset.css',
-    'resources/css/newnav.css',
-    'resources/css/homepage.css',
-    'resources/css/footer.css'
-  ])
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping cart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+      @vite([
+            'resources/css/reset.css',
+            'resources/css/newnav.css',
+            'resources/css/cart.css',
+            'resources/css/footer.css'
+        ])
 </head>
 
 <body>
@@ -424,111 +424,121 @@
     </nav>
   </header>
 
-  <div>
-    <img src="{{ asset('images/Homepage/intro-image.png') }}" class="intro-image" />
-  </div>
+    <section class="cart-steps step-1">
+        <div class="steps-line"></div>
 
-  <section class="sale-section">
-    <h2 class="sale-title">SALE</h2>
+         <div class="step">
+            <a href="cart.html" class="step-circle step-link">1</a>
+        </div>
 
-    <div class="sale-grid">
-        @foreach ($products as $product)
-            <div class="sale-card">
-                <a href="{{ route('productpage', $product->variant_id) }}">
-                    <img src="{{ asset($product->image_path) }}" class="sale-image img-fluid" alt="{{ $product->name }}">
+        <div class="step">
+            <a href="#" class="step-circle step-link">2</a>
+        </div>
+
+        <div class="step">
+            <a href="#" class="step-circle step-link">3</a>
+        </div>
+
+        <div class="step">
+            <a href="#" class="step-circle step-link">4</a>
+        </div>
+    </section>
+    
+    <section class="cart">
+        <h2 class="cart-title">Shopping cart</h2>
+
+        @forelse ($cartItems as $item)
+            <div class="cart-item">
+            <div class="item-image-wrap">
+                <a href="{{ route('productpage', $item->variant_id) }}">
+                <img
+                    src="{{ $item->image_path ? asset($item->image_path) : asset('images/no-image.png') }}"
+                    alt="{{ $item->name }}"
+                    class="item-image"
+                >
                 </a>
-                <p class="sale-name">{{ $product->name }}</p>
-                <p class="sale-price">{{ number_format($product->price, 2) }} €</p>
             </div>
-        @endforeach
+
+            <div class="item-info">
+                <h3>{{ $item->name }}</h3>
+
+                <p>
+                Color: {{ ucfirst($item->color) }}<br>
+                Size: {{ $item->size }}
+                </p>
+
+                <p>{{ $item->description }}</p>
+            </div>
+
+            <div class="item-actions">
+                <div class="left-actions">
+                <span class="price">
+                    {{ number_format($item->price * $item->quantity, 2, ',', ' ') }} €
+                </span>
+
+                <div class="quantity">
+                    <form method="POST" action="{{ route('cart.update', $item->cart_item_id) }}">
+                        @csrf
+                        <input type="hidden" name="quantity" value="{{ max(1, $item->quantity - 1) }}">
+                        <button type="submit" {{ $item->quantity <= 1 ? 'disabled' : '' }}>-</button>
+                    </form>
+
+                    <span>{{ $item->quantity }}</span>
+                    <form method="POST" action="{{ route('cart.update', $item->cart_item_id) }}">
+                        @csrf
+                        <input type="hidden" name="quantity" value="{{ $item->quantity + 1 }}">
+                        <button type="submit">+</button>
+                    </form>
+                    </div>
+                </div>
+
+                <form method="POST" action="{{ route('cart.remove', $item->cart_item_id) }}">
+                    @csrf
+                    @method('DELETE')
+
+                    <button class="delete" type="submit" aria-label="Remove item">🗑</button>
+                </form>
+                
+            </div>
+            </div>
+        @empty
+            <p>Your cart is empty.</p>
+        @endforelse
+
+        <div class="cart-bottom">
+            <div></div>
+
+            <div class="price-summary">
+            <span class="price">
+                {{ number_format($total, 2, ',', ' ') }} €
+            </span>
+            </div>
+
+            <a class="continue-btn continue-link" href="#">
+            Continue
+            </a>
     </div>
-  </section>
+    </section>
 
-  <section class="sports-section" id="sports">
-    <h2 class="sports-title">Sports</h2>
+    <footer class="footer-section">
+        <ul class="footer-container">
 
-    <div class="sports-grid">
+            <li class="footer-left">
+                <h4>Kamen</h4>
+                <p>Small company description</p>
+            </li>
 
-      @php
-        $sports = [
-          'Badminton' => 'badminton-racket.png',
-          'Cycling' => 'bicycle.png',
-          'Boxing' => 'boxing.png',
-          'Climbing' => 'climbing.png',
-          'Fencing' => 'fencing.png',
-          'Skateboarding' => 'skateboard.png',
-          'Skiing' => 'ski-board.png',
-          'Football' => 'soccer-ball.png',
-          'Surfing' => 'surfing-board.png',
-          'Swimming' => 'swimming-glasses.png',
-        ];
-      @endphp
+            <li class="footer-right">
+                <address>
+                    <p><strong>Contact us</strong></p>
+                    <p>Mail - <a href="mailto:kamen@gmail.com">kamen@gmail.com</a></p>
+                    <p>Phone - <a href="tel:+421xxxxxxxxx">+421 xxx xxx xxx</a></p>
+                </address>
+            </li>
 
-      @foreach ($sports as $sport => $icon)
-        <a
-          href="{{ route('products.index', array_merge(request()->all(), ['sport[]' => $sport])) }}"
-          class="sport-card"
-          title="{{ $sport }}"
-        >
-          <img
-            src="{{ asset('images/Sport-icons/' . $icon) }}"
-            alt="{{ $sport }}"
-            class="sport-image img-fluid"
-          >
-        </a>
-      @endforeach
+        </ul>
+    </footer>
 
-    </div>
-  </section>
-
-  <section class="description-section">
-    <h2 class="description-title">Description</h2>
-
-    <div class="description-content">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-        id elit nibh. Aliquam iaculis enim at ante imperdiet, a porta nisl
-        feugiat. Nulla laoreet lacus quis sapien dapibus tristique. Etiam eu
-        accumsan magna, a consequat ex. Pellentesque sit amet velit tempus,
-        tempor tortor vitae, tempus metus.Lorem ipsum dolor sit amet,
-        consectetur adipiscing elit. Suspendisse id elit nibh. Aliquam iaculis
-        enim at ante imperdiet, a porta nisl feugiat. Nulla laoreet lacus quis
-        sapien dapibus tristique. Etiam eu accumsan magna, a consequat ex.
-        Pellentesque sit amet velit tempus, tempor tortor vitae, tempus metus.
-      </p>
-
-      <p>
-        Duis sollicitudin sapien non elementum sollicitudin. Nullam accumsan
-        elementum est ac accumsan. Donec urna nibh, cursus in lacus id,
-        commodo imperdiet quam. Proin sollicitudin pharetra eleifend.
-        Pellentesque habitant morbi tristique senectus et netus et malesuada
-        fames ac turpis egestas.Lorem ipsum dolor sit amet, consectetur
-        adipiscing elit. Suspendisse id elit nibh. Aliquam iaculis enim at
-        ante imperdiet, a porta nisl feugiat. Nulla laoreet lacus quis sapien
-        dapibus tristique. Etiam eu accumsan magna, a consequat ex.
-        Pellentesque sit amet velit tempus, tempor tortor vitae, tempus metus.
-      </p>
-    </div>
-  </section>
-
-  <footer class="footer-section">
-    <ul class="footer-container">
-
-      <li class="footer-left">
-        <h4>Kamen</h4>
-        <p>Small company description</p>
-      </li>
-
-      <li class="footer-right">
-        <address>
-          <p><strong>Contact us</strong></p>
-          <p>Mail - <a href="mailto:kamen@gmail.com">kamen@gmail.com</a></p>
-          <p>Phone - <a href="tel:+421xxxxxxxxx">+421 xxx xxx xxx</a></p>
-        </address>
-      </li>
-
-    </ul>
-  </footer>
 </body>
 
 </html>

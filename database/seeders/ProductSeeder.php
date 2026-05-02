@@ -9,17 +9,32 @@ class ProductSeeder extends Seeder
 {
     public function run(): void
     {
-        // CATEGORY
-        $categoryId = DB::table('categories')->insertGetId([
+        // CLOTHES CATEGORY
+        $clothesCategoryId = DB::table('categories')->insertGetId([
             'name' => 'Clothes',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
 
-        // SUBCATEGORY
-        $subcategoryId = DB::table('subcategories')->insertGetId([
+        // T-SHIRT SUBCATEGORY
+        $tShirtSubcategoryId = DB::table('subcategories')->insertGetId([
             'name' => 'T-shirt',
-            'category_id' => $categoryId,
+            'category_id' => $clothesCategoryId,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        // SHOES CATEGORY
+        $shoesCategoryId = DB::table('categories')->insertGetId([
+            'name' => 'Shoes',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        // RUNNING SHOES SUBCATEGORY
+        $runningShoesSubcategoryId = DB::table('subcategories')->insertGetId([
+            'name' => 'Running Shoes',
+            'category_id' => $shoesCategoryId,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -28,9 +43,11 @@ class ProductSeeder extends Seeder
         $products = [
             [
                 'name' => 'Basic T-Shirt',
+                'subcategory_id' => $tShirtSubcategoryId,
                 'gender' => 'men',
                 'description' => 'Comfortable cotton t-shirt for everyday wear',
                 'price' => 15,
+                'sizes' => ['S', 'M', 'L', 'XL'],
                 'colors' => [
                     'white' => [
                         'images/shirts/basic-white-shirt-front.png',
@@ -40,9 +57,11 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Oversized T-Shirt',
+                'subcategory_id' => $tShirtSubcategoryId,
                 'gender' => 'men',
                 'description' => 'Loose fit oversized streetwear t-shirt',
                 'price' => 22,
+                'sizes' => ['S', 'M', 'L', 'XL'],
                 'colors' => [
                     'black' => [
                         'images/shirts/oversized-black-shirt-front.png',
@@ -57,9 +76,11 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Women Slim Fit T-Shirt',
+                'subcategory_id' => $tShirtSubcategoryId,
                 'gender' => 'women',
                 'description' => 'Slim fit t-shirt designed for comfort and style',
                 'price' => 18,
+                'sizes' => ['S', 'M', 'L', 'XL'],
                 'colors' => [
                     'black' => [
                         'images/shirts/women-shirt-black.png',
@@ -69,12 +90,25 @@ class ProductSeeder extends Seeder
                     ],
                 ],
             ],
+            [
+                'name' => 'Women Running Shoes',
+                'subcategory_id' => $runningShoesSubcategoryId,
+                'gender' => 'women',
+                'description' => 'Lightweight breathable women running shoes designed for comfort and daily training',
+                'price' => 65,
+                'sizes' => ['36', '37', '38', '39', '40', '41'],
+                'colors' => [
+                    'gray' => [
+                        'images/shoes/women-running-gray-pink.png',
+                    ],
+                ],
+            ],
         ];
 
         foreach ($products as $product) {
             $productId = DB::table('products')->insertGetId([
                 'name' => $product['name'],
-                'subcategory_id' => $subcategoryId,
+                'subcategory_id' => $product['subcategory_id'],
                 'gender' => $product['gender'],
                 'description' => $product['description'],
                 'created_at' => now(),
@@ -82,7 +116,7 @@ class ProductSeeder extends Seeder
             ]);
 
             foreach ($product['colors'] as $color => $images) {
-                foreach (['S', 'M', 'L', 'XL'] as $size) {
+                foreach ($product['sizes'] as $size) {
                     DB::table('product_variants')->insert([
                         'product_id' => $productId,
                         'color' => $color,
