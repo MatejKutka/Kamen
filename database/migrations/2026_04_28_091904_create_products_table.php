@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->foreignId('subcategory_id')->constrained()->cascadeOnDelete();
             $table->string('gender');
+            $table->string('sport')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
         });

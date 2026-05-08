@@ -75,9 +75,13 @@
 
                     <div class="form-row">
                         <label for="phone">Phone number</label>
-                        <input type="tel" id="phone" name="phone"
-                               value="{{ old('phone', auth()->user()->phone ?? '') }}"
-                               placeholder="+421 900 000 000">
+                      <input
+                            type="tel"
+                            id="phone"
+                            name="phone_number"
+                            value="{{ old('phone_number', auth()->user()->phone_number ?? '') }}"
+                            placeholder="+421 900 000 000"
+                        >
                     </div>
 
                 </fieldset>

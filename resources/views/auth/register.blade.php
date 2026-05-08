@@ -42,6 +42,56 @@
                         <p>{{ $message }}</p>
                     @enderror
                 </div>
+                            
+                <div class="field-group">
+                <label for="first_name">First name</label>
+
+                <input
+                    type="text"
+                    id="first_name"
+                    name="first_name"
+                    placeholder="John"
+                    value="{{ old('first_name') }}"
+                    required
+                >
+
+                @error('first_name')
+                    <p>{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="field-group">
+                <label for="last_name">Last name</label>
+
+                <input
+                    type="text"
+                    id="last_name"
+                    name="last_name"
+                    placeholder="Doe"
+                    value="{{ old('last_name') }}"
+                    required
+                >
+
+                @error('last_name')
+                    <p>{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="field-group">
+                <label for="phone_number">Phone number</label>
+
+                <input
+                    type="tel"
+                    id="phone_number"
+                    name="phone_number"
+                    placeholder="+421 900 000 000"
+                    value="{{ old('phone_number') }}"
+                >
+
+                @error('phone_number')
+                    <p>{{ $message }}</p>
+                @enderror
+            </div>
 
                 <div class="field-group">
                     <label for="email">Email</label>

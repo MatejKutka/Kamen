@@ -579,7 +579,19 @@
   <!-- MAIN – PRODUKTY -->
   <main>
     <header>
-      <h1>All products</h1>
+      @php
+          $title = 'All products';
+
+          if (request('category') && request('subcategory')) {
+              $title = request('category') . ' - ' . request('subcategory');
+          } elseif (request('category')) {
+              $title = request('category');
+          } elseif (request('subcategory')) {
+              $title = request('subcategory');
+          }
+      @endphp
+
+      <h1>{{ $title }}</h1>
 
       <p class="product-count">
         <strong>{{ $products->count() }}</strong> products
@@ -623,10 +635,10 @@
             <article class="card">
                 <a href="{{ route('productpage', $product->variant_id) }}">
                     <figure>
-                        <img
-                            src="{{ $product->image_path ? asset($product->image_path) : asset('images/no-image.png') }}"
-                            alt="{{ $product->name }}"
-                            loading="lazy"
+                       <img
+                          src="{{ $product->image_path ? asset($product->image_path) : asset('images/no-image.png') }}"
+                          alt="{{ $product->name }}"
+                          loading="lazy"
                         />
                     </figure>
                 </a>

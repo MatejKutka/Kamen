@@ -30,28 +30,51 @@ class ProductController extends Controller
             ->when($request->gender, fn ($q, $gender) =>
                 $q->whereIn('products.gender', (array) $gender)
             )
+
             ->when($request->category, fn ($q, $category) =>
                 $q->where('categories.name', $category)
             )
+
             ->when($request->subcategory, fn ($q, $subcategory) =>
                 $q->where('subcategories.name', $subcategory)
             )
+
             ->when($request->sport, fn ($q, $sport) =>
                 $q->whereIn('products.sport', (array) $sport)
             )
+
             ->when($request->price_from, fn ($q, $priceFrom) =>
                 $q->where('product_variants.price', '>=', $priceFrom)
             )
+
             ->when($request->price_to, fn ($q, $priceTo) =>
                 $q->where('product_variants.price', '<=', $priceTo)
             )
-            ->when($request->color, fn ($q, $color) =>
-                $q->whereIn('product_variants.color', (array) $color)
-            )
-            ->when($request->size, fn ($q, $size) =>
-                $q->whereIn('product_variants.size', (array) $size)
-            )
+
+            // CASE INSENSITIVE COLOR FILTER
+            ->when($request->color, function ($q, $colors) {
+
+                $colors = array_map('strtolower', (array) $colors);
+
+                $q->whereIn(
+                    DB::raw('LOWER(product_variants.color)'),
+                    $colors
+                );
+            })
+
+            // CASE INSENSITIVE SIZE FILTER
+            ->when($request->size, function ($q, $sizes) {
+
+                $sizes = array_map('strtolower', (array) $sizes);
+
+                $q->whereIn(
+                    DB::raw('LOWER(product_variants.size)'),
+                    $sizes
+                );
+            })
+
             ->where('product_variants.is_active', true)
+
             ->select(
                 DB::raw('MIN(product_variants.id) as variant_id'),
                 'products.id as product_id',
@@ -61,6 +84,7 @@ class ProductController extends Controller
                 DB::raw('MIN(product_variants.price) as price'),
                 'product_images.image_path'
             )
+
             ->groupBy(
                 'products.id',
                 'products.name',
@@ -68,7 +92,9 @@ class ProductController extends Controller
                 'product_variants.color',
                 'product_images.image_path'
             );
+
         switch ($request->get('sort')) {
+
             case 'price-asc':
                 $query->orderBy('price', 'asc');
                 break;

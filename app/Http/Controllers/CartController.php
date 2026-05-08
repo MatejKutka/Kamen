@@ -112,6 +112,7 @@ class CartController extends Controller
                 'cart_id' => $cartId,
                 'product_variant_id' => $request->variant_id,
                 'quantity' => $request->quantity,
+                'price' => $variant->price,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

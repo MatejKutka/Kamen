@@ -33,7 +33,12 @@ class AuthenticatedSessionController extends Controller
 
         $this->mergeGuestCart($oldSessionId);
 
-        return redirect()->intended(route('home', absolute: false));
+        $intended = auth()->user()->role === 'admin'
+            ? route('admin.dashboard')
+            : route('dashboard');
+
+        //return redirect()->intended($intended);
+        return redirect($intended);
     }
 
     /**
