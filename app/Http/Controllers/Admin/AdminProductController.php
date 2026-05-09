@@ -5,19 +5,24 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class AdminProductController extends Controller
 {
-    //  INDEX 
     public function index()
     {
+        $mainImages = DB::table('product_images')
+            ->select('product_id', 'color', DB::raw('MIN(image_path) as image_path'))
+            ->where('is_main', true)
+            ->groupBy('product_id', 'color');
+
         $products = DB::table('products')
             ->join('subcategories', 'subcategories.id', '=', 'products.subcategory_id')
             ->join('categories', 'categories.id', '=', 'subcategories.category_id')
-            ->leftJoin('product_images', function ($join) {
-                $join->on('products.id', '=', 'product_images.product_id')
-                     ->where('product_images.is_main', true);
+            ->join('product_variants', 'product_variants.product_id', '=', 'products.id')
+           ->leftJoinSub($mainImages, 'main_images', function ($join) {
+                $join->on('products.id', '=', 'main_images.product_id')
+                    ->whereRaw('LOWER(TRIM(product_variants.color)) = LOWER(TRIM(main_images.color))');
             })
             ->select(
                 'products.id',
@@ -26,7 +31,19 @@ class AdminProductController extends Controller
                 'products.sport',
                 'categories.name as category_name',
                 'subcategories.name as subcategory_name',
-                'product_images.image_path',
+                'product_variants.color',
+                'main_images.image_path',
+                'products.created_at'
+            )
+            ->groupBy(
+                'products.id',
+                'products.name',
+                'products.gender',
+                'products.sport',
+                'categories.name',
+                'subcategories.name',
+                'product_variants.color',
+                'main_images.image_path',
                 'products.created_at'
             )
             ->orderByDesc('products.created_at')
@@ -35,7 +52,6 @@ class AdminProductController extends Controller
         return view('admin.products.index', compact('products'));
     }
 
-    //  CREATE ─
     public function create()
     {
         $categories = DB::table('categories')->get();
@@ -44,43 +60,42 @@ class AdminProductController extends Controller
         return view('admin.products.create', compact('categories', 'subcategories'));
     }
 
-    //  STORE 
     public function store(Request $request)
     {
         $request->validate([
-            'name'           => 'required|string|max:255',
-            'subcategory_id' => 'required|exists:subcategories,id',
-            'gender'         => 'required|string',
-            'sport'          => 'nullable|string|max:255',
-            'description'    => 'nullable|string',
-            // variants
-            'variants'               => 'required|array|min:1',
-            'variants.*.color'       => 'required|string|max:100',
-            'variants.*.size'        => 'required|string|max:50',
-            'variants.*.price'       => 'required|numeric|min:0',
-            'variants.*.stock'       => 'required|integer|min:0',
-            // images
-            'images'         => 'nullable|array',
-            'images.*'       => 'image|mimes:jpg,jpeg,png,webp|max:4096',
+            'name'             => 'required|string|max:255',
+            'subcategory_id'   => 'required|exists:subcategories,id',
+            'gender'           => 'required|string',
+            'sport'            => 'nullable|string|max:255',
+            'description'      => 'nullable|string',
+            'color'            => 'required|string|max:100',
+
+            'variants'         => 'required|array|min:1',
+            'variants.*.size'  => 'required|string|max:50',
+            'variants.*.price' => 'required|numeric|min:0',
+            'variants.*.stock' => 'required|integer|min:0',
+
+            'images'           => 'nullable|array',
+            'images.*'         => 'image|mimes:jpg,jpeg,png,webp|max:4096',
             'main_image_index' => 'nullable|integer',
         ]);
 
-        // 1. Vytvor produkt
+        $productColor = $this->normalizeColor($request->color);
+
         $productId = DB::table('products')->insertGetId([
             'name'           => $request->name,
             'subcategory_id' => $request->subcategory_id,
             'gender'         => $request->gender,
-            'sport'          => $request->sport,
+            'sport'          => $this->normalizeSport($request->sport),
             'description'    => $request->description,
             'created_at'     => now(),
             'updated_at'     => now(),
         ]);
 
-        // 2. Vlož varianty
         foreach ($request->variants as $v) {
             DB::table('product_variants')->insert([
                 'product_id' => $productId,
-                'color'      => $v['color'],
+                'color'      => $productColor,
                 'size'       => $v['size'],
                 'price'      => $v['price'],
                 'stock'      => $v['stock'],
@@ -90,44 +105,70 @@ class AdminProductController extends Controller
             ]);
         }
 
-        // 3. Vlož obrázky
         if ($request->hasFile('images')) {
-            $mainIndex = (int) $request->input('main_image_index', 0);
-            foreach ($request->file('images') as $i => $file) {
-                $filename = uniqid() . '.' . $file->getClientOriginalExtension();
-                $file->move(public_path('images/products'), $filename);
-                $path = 'images/products/' . $filename;
-                DB::table('product_images')->insert([
-                    'product_id' => $productId,
-                    'image_path' => $path,
-                    'color'      => $request->variants[0]['color'] ?? null,
-                    'sort_order' => $i,
-                    'is_main'    => ($i === $mainIndex),
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]);
-            }
-        }
+    File::ensureDirectoryExists(public_path('images/products'));
+
+    $mainIndex = (int) $request->input('main_image_index', 0);
+
+    foreach ($request->file('images') as $i => $file) {
+        $filename = uniqid('product_', true) . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path('images/products'), $filename);
+
+        $path = 'images/products/' . $filename;
+
+        DB::table('product_images')->insert([
+            'product_id' => $productId,
+            'image_path' => $path,
+            'color'      => $productColor,
+            'sort_order' => $i,
+            'is_main'    => ($i === $mainIndex),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+    }
+}
+
+        $this->exportProductsToSeeder();
 
         return redirect()->route('admin.products.index')
-                         ->with('success', 'Produkt bol úspešne pridaný.');
+            ->with('success', 'Produkt bol úspešne pridaný.');
     }
 
-    //  EDIT ─
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
+        $color = $this->normalizeColor($request->query('color'));
+
         $product = DB::table('products')->where('id', $id)->first();
         abort_if(!$product, 404);
 
-        $variants     = DB::table('product_variants')->where('product_id', $id)->get();
-        $images       = DB::table('product_images')->where('product_id', $id)->orderBy('sort_order')->get();
-        $categories   = DB::table('categories')->get();
+        $variants = DB::table('product_variants')
+            ->where('product_id', $id)
+            ->when($color, function ($query) use ($color) {
+                $query->whereRaw('LOWER(TRIM(color)) = ?', [$color]);
+            })
+            ->get();
+
+        $images = DB::table('product_images')
+            ->where('product_id', $id)
+            ->when($color, function ($query) use ($color) {
+                $query->whereRaw('LOWER(TRIM(color)) = ?', [$color]);
+            })
+            ->orderBy('sort_order')
+            ->get();
+
+        $categories = DB::table('categories')->get();
         $subcategories = DB::table('subcategories')->get();
 
-        return view('admin.products.edit', compact('product', 'variants', 'images', 'categories', 'subcategories'));
+        return view('admin.products.edit', compact(
+            'product',
+            'variants',
+            'images',
+            'categories',
+            'subcategories',
+            'color'
+        ));
     }
 
-    //  UPDATE ─
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -136,41 +177,62 @@ class AdminProductController extends Controller
             'gender'         => 'required|string',
             'sport'          => 'nullable|string|max:255',
             'description'    => 'nullable|string',
+            'color'          => 'required|string|max:100',
+            'old_color'      => 'nullable|string|max:100',
             'new_images'     => 'nullable|array',
             'new_images.*'   => 'image|mimes:jpg,jpeg,png,webp|max:4096',
         ]);
 
-        // 1. Aktualizuj produkt
+        $oldColor = $this->normalizeColor($request->input('old_color', $request->input('color')));
+        $newColor = $this->normalizeColor($request->input('color'));
+
         DB::table('products')->where('id', $id)->update([
             'name'           => $request->name,
             'subcategory_id' => $request->subcategory_id,
             'gender'         => $request->gender,
-            'sport'          => $request->sport,
+            'sport'          => $this->normalizeSport($request->sport),
             'description'    => $request->description,
             'updated_at'     => now(),
         ]);
 
-        // 2. Aktualizuj existujúce varianty
-        if ($request->has('variants')) {
-            foreach ($request->variants as $variantId => $v) {
-                DB::table('product_variants')->where('id', $variantId)->update([
-                    'color'      => $v['color'],
-                    'size'       => $v['size'],
-                    'price'      => $v['price'],
-                    'stock'      => $v['stock'],
-                    'is_active'  => 1,
-                    'updated_at' => now(),
-                ]);
-            }
-        }
+        if ($request->hasFile('new_images')) {
+    File::ensureDirectoryExists(public_path('images/products'));
 
-        // 3. Pridaj nové varianty
+    $maxOrder = DB::table('product_images')
+        ->where('product_id', $id)
+        ->whereRaw('LOWER(TRIM(color)) = ?', [$newColor])
+        ->max('sort_order') ?? -1;
+
+    $hasMainImage = DB::table('product_images')
+        ->where('product_id', $id)
+        ->whereRaw('LOWER(TRIM(color)) = ?', [$newColor])
+        ->where('is_main', true)
+        ->exists();
+
+    foreach ($request->file('new_images') as $i => $file) {
+        $filename = uniqid('product_', true) . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path('images/products'), $filename);
+
+        $path = 'images/products/' . $filename;
+
+        DB::table('product_images')->insert([
+            'product_id' => $id,
+            'image_path' => $path,
+            'color'      => $newColor,
+            'sort_order' => $maxOrder + $i + 1,
+            'is_main'    => (!$hasMainImage && $i === 0),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+    }
+}
+
         if ($request->has('new_variants')) {
             foreach ($request->new_variants as $v) {
-                if (!empty($v['color']) && !empty($v['size'])) {
+                if (!empty($v['size'])) {
                     DB::table('product_variants')->insert([
                         'product_id' => $id,
-                        'color'      => $v['color'],
+                        'color'      => $newColor,
                         'size'       => $v['size'],
                         'price'      => $v['price'],
                         'stock'      => $v['stock'],
@@ -182,10 +244,23 @@ class AdminProductController extends Controller
             }
         }
 
-        // 4. Zmaž označené obrázky
+        DB::table('product_images')
+            ->where('product_id', $id)
+            ->when($oldColor, function ($query) use ($oldColor) {
+                $query->whereRaw('LOWER(TRIM(color)) = ?', [$oldColor]);
+            })
+            ->update([
+                'color' => $newColor,
+                'updated_at' => now(),
+            ]);
+
         if ($request->has('delete_images')) {
             foreach ($request->delete_images as $imgId) {
-                $img = DB::table('product_images')->where('id', $imgId)->first();
+                $img = DB::table('product_images')
+                    ->where('id', $imgId)
+                    ->where('product_id', $id)
+                    ->first();
+
                 if ($img) {
                     @unlink(public_path($img->image_path));
                     DB::table('product_images')->where('id', $imgId)->delete();
@@ -193,17 +268,22 @@ class AdminProductController extends Controller
             }
         }
 
-        // 5. Pridaj nové obrázky
         if ($request->hasFile('new_images')) {
-            $maxOrder = DB::table('product_images')->where('product_id', $id)->max('sort_order') ?? -1;
+            $maxOrder = DB::table('product_images')
+                ->where('product_id', $id)
+                ->whereRaw('LOWER(TRIM(color)) = ?', [$newColor])
+                ->max('sort_order') ?? -1;
+
             foreach ($request->file('new_images') as $i => $file) {
                 $filename = uniqid() . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path('images/products'), $filename);
+
                 $path = 'images/products/' . $filename;
+
                 DB::table('product_images')->insert([
                     'product_id' => $id,
                     'image_path' => $path,
-                    'color'      => null,
+                    'color'      => $newColor,
                     'sort_order' => $maxOrder + $i + 1,
                     'is_main'    => false,
                     'created_at' => now(),
@@ -212,35 +292,236 @@ class AdminProductController extends Controller
             }
         }
 
-        // 6. Nastav hlavný obrázok
         if ($request->has('main_image_id')) {
-            DB::table('product_images')->where('product_id', $id)->update(['is_main' => false]);
-            DB::table('product_images')->where('id', $request->main_image_id)->update(['is_main' => true]);
+            DB::table('product_images')
+                ->where('product_id', $id)
+                ->whereRaw('LOWER(TRIM(color)) = ?', [$newColor])
+                ->update(['is_main' => false]);
+
+            DB::table('product_images')
+                ->where('id', $request->main_image_id)
+                ->where('product_id', $id)
+                ->update(['is_main' => true]);
         }
 
-        return redirect()->route('admin.products.edit', $id)
-                         ->with('success', 'Produkt bol aktualizovaný.');
+        $this->exportProductsToSeeder();
+
+        $redirectUrl = route('admin.products.edit', $id);
+
+        if ($newColor) {
+            $redirectUrl .= '?color=' . urlencode($newColor);
+        }
+
+        return redirect($redirectUrl)
+            ->with('success', 'Produkt bol aktualizovaný.');
     }
 
-    //  DELETE VARIANT ─
     public function destroyVariant($id)
     {
         DB::table('product_variants')->where('id', $id)->delete();
+
+        $this->exportProductsToSeeder();
+
         return redirect()->back()->with('success', 'Variant bol odstránený.');
     }
 
-    //  DESTROY 
     public function destroy($id)
     {
-        // Zmaž obrázky zo storage
         $images = DB::table('product_images')->where('product_id', $id)->get();
+
         foreach ($images as $img) {
             @unlink(public_path($img->image_path));
         }
 
         DB::table('products')->where('id', $id)->delete();
 
+        $this->exportProductsToSeeder();
+
         return redirect()->route('admin.products.index')
-                         ->with('success', 'Produkt bol odstránený.');
+            ->with('success', 'Produkt bol odstránený.');
+    }
+
+    private function normalizeSport(?string $sport): ?string
+    {
+        if ($sport === null) {
+            return null;
+        }
+
+        $sport = trim($sport);
+
+        if ($sport === '') {
+            return null;
+        }
+
+        return mb_strtolower($sport, 'UTF-8');
+    }
+
+    private function normalizeColor(?string $color): ?string
+    {
+        if ($color === null) {
+            return null;
+        }
+
+        $color = trim($color);
+
+        if ($color === '') {
+            return null;
+        }
+
+        return mb_strtolower($color, 'UTF-8');
+    }
+
+    private function exportProductsToSeeder(): void
+    {
+        $data = [];
+
+        $categories = DB::table('categories')->orderBy('id')->get();
+
+        foreach ($categories as $category) {
+            $categoryData = [
+                'name' => $category->name,
+                'subcategories' => [],
+            ];
+
+            $subcategories = DB::table('subcategories')
+                ->where('category_id', $category->id)
+                ->orderBy('id')
+                ->get();
+
+            foreach ($subcategories as $subcategory) {
+                $subcategoryData = [
+                    'name' => $subcategory->name,
+                    'products' => [],
+                ];
+
+                $products = DB::table('products')
+                    ->where('subcategory_id', $subcategory->id)
+                    ->orderBy('id')
+                    ->get();
+
+                foreach ($products as $product) {
+                    $variants = DB::table('product_variants')
+                        ->where('product_id', $product->id)
+                        ->orderBy('id')
+                        ->get()
+                        ->map(function ($variant) {
+                            return [
+                                'color' => $this->normalizeColor($variant->color),
+                                'size' => $variant->size,
+                                'price' => (float) $variant->price,
+                                'stock' => (int) $variant->stock,
+                                'is_active' => (bool) $variant->is_active,
+                            ];
+                        })
+                        ->toArray();
+
+                    $images = DB::table('product_images')
+                        ->where('product_id', $product->id)
+                        ->orderBy('sort_order')
+                        ->get()
+                        ->map(function ($image) {
+                            return [
+                                'image_path' => $image->image_path,
+                                'color' => $this->normalizeColor($image->color),
+                                'sort_order' => (int) $image->sort_order,
+                                'is_main' => (bool) $image->is_main,
+                            ];
+                        })
+                        ->toArray();
+
+                    $subcategoryData['products'][] = [
+                        'name' => $product->name,
+                        'gender' => $product->gender,
+                        'sport' => $this->normalizeSport($product->sport),
+                        'description' => $product->description,
+                        'variants' => $variants,
+                        'images' => $images,
+                    ];
+                }
+
+                $categoryData['subcategories'][] = $subcategoryData;
+            }
+
+            $data[] = $categoryData;
+        }
+
+        $exportedData = var_export($data, true);
+
+        $content = <<<'PHP'
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class ProductSeeder extends Seeder
+{
+    public function run(): void
+    {
+        $data = __PRODUCT_DATA__;
+
+        DB::transaction(function () use ($data) {
+            foreach ($data as $categoryData) {
+                $categoryId = DB::table('categories')->insertGetId([
+                    'name' => $categoryData['name'],
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+
+                foreach ($categoryData['subcategories'] as $subcategoryData) {
+                    $subcategoryId = DB::table('subcategories')->insertGetId([
+                        'name' => $subcategoryData['name'],
+                        'category_id' => $categoryId,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+
+                    foreach ($subcategoryData['products'] as $productData) {
+                        $productId = DB::table('products')->insertGetId([
+                            'name' => $productData['name'],
+                            'subcategory_id' => $subcategoryId,
+                            'gender' => $productData['gender'],
+                            'sport' => $productData['sport'],
+                            'description' => $productData['description'],
+                            'created_at' => now(),
+                            'updated_at' => now(),
+                        ]);
+
+                        foreach ($productData['variants'] as $variantData) {
+                            DB::table('product_variants')->insert([
+                                'product_id' => $productId,
+                                'color' => $variantData['color'],
+                                'size' => $variantData['size'],
+                                'price' => $variantData['price'],
+                                'stock' => $variantData['stock'],
+                                'is_active' => $variantData['is_active'],
+                                'created_at' => now(),
+                                'updated_at' => now(),
+                            ]);
+                        }
+
+                        foreach ($productData['images'] as $imageData) {
+                            DB::table('product_images')->insert([
+                                'product_id' => $productId,
+                                'image_path' => $imageData['image_path'],
+                                'color' => $imageData['color'],
+                                'sort_order' => $imageData['sort_order'],
+                                'is_main' => $imageData['is_main'],
+                                'created_at' => now(),
+                                'updated_at' => now(),
+                            ]);
+                        }
+                    }
+                }
+            }
+        });
+    }
+}
+PHP;
+
+        $content = str_replace('__PRODUCT_DATA__', $exportedData, $content);
+
+        file_put_contents(database_path('seeders/ProductSeeder.php'), $content);
     }
 }

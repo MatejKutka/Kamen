@@ -27,48 +27,68 @@ class ProductController extends Controller
                 });
             })
 
-            ->when($request->gender, fn ($q, $gender) =>
-                $q->whereIn('products.gender', (array) $gender)
-            )
+            ->when($request->gender, function ($q, $gender) {
+                $genders = collect((array) $gender)
+                    ->map(fn ($g) => mb_strtolower(trim($g), 'UTF-8'))
+                    ->filter()
+                    ->values()
+                    ->all();
 
-            ->when($request->category, fn ($q, $category) =>
-                $q->where('categories.name', $category)
-            )
+                $q->whereIn(DB::raw('LOWER(TRIM(products.gender))'), $genders);
+            })
 
-            ->when($request->subcategory, fn ($q, $subcategory) =>
-                $q->where('subcategories.name', $subcategory)
-            )
+            ->when($request->category, function ($q, $category) {
+                $category = mb_strtolower(trim($category), 'UTF-8');
 
-            ->when($request->sport, fn ($q, $sport) =>
-                $q->whereIn('products.sport', (array) $sport)
-            )
+                $q->whereRaw('LOWER(TRIM(categories.name)) = ?', [$category]);
+            })
 
-            ->when($request->price_from, fn ($q, $priceFrom) =>
-                $q->where('product_variants.price', '>=', $priceFrom)
-            )
+            ->when($request->subcategory, function ($q, $subcategory) {
+                $subcategory = mb_strtolower(trim($subcategory), 'UTF-8');
 
-            ->when($request->price_to, fn ($q, $priceTo) =>
-                $q->where('product_variants.price', '<=', $priceTo)
-            )
+                $q->whereRaw('LOWER(TRIM(subcategories.name)) = ?', [$subcategory]);
+            })
 
-            // CASE INSENSITIVE COLOR FILTER
+            ->when($request->sport, function ($q, $sport) {
+                $sports = collect((array) $sport)
+                    ->map(fn ($s) => mb_strtolower(trim($s), 'UTF-8'))
+                    ->filter()
+                    ->values()
+                    ->all();
+
+                $q->whereIn(DB::raw('LOWER(TRIM(products.sport))'), $sports);
+            })
+
+            ->when($request->price_from, function ($q, $priceFrom) {
+                $q->where('product_variants.price', '>=', $priceFrom);
+            })
+
+            ->when($request->price_to, function ($q, $priceTo) {
+                $q->where('product_variants.price', '<=', $priceTo);
+            })
+
             ->when($request->color, function ($q, $colors) {
-
-                $colors = array_map('strtolower', (array) $colors);
+                $colors = collect((array) $colors)
+                    ->map(fn ($color) => mb_strtolower(trim($color), 'UTF-8'))
+                    ->filter()
+                    ->values()
+                    ->all();
 
                 $q->whereIn(
-                    DB::raw('LOWER(product_variants.color)'),
+                    DB::raw('LOWER(TRIM(product_variants.color))'),
                     $colors
                 );
             })
 
-            // CASE INSENSITIVE SIZE FILTER
             ->when($request->size, function ($q, $sizes) {
-
-                $sizes = array_map('strtolower', (array) $sizes);
+                $sizes = collect((array) $sizes)
+                    ->map(fn ($size) => mb_strtolower(trim($size), 'UTF-8'))
+                    ->filter()
+                    ->values()
+                    ->all();
 
                 $q->whereIn(
-                    DB::raw('LOWER(product_variants.size)'),
+                    DB::raw('LOWER(TRIM(product_variants.size))'),
                     $sizes
                 );
             })
@@ -94,7 +114,6 @@ class ProductController extends Controller
             );
 
         switch ($request->get('sort')) {
-
             case 'price-asc':
                 $query->orderBy('price', 'asc');
                 break;
