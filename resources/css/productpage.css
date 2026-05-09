@@ -73,7 +73,6 @@
     text-align: center;
 }
 
-
 .size-select-wrap::after {
     content: "▾";
     position: absolute;
@@ -84,7 +83,6 @@
     color: #222;
     font-size: 14px;
 }
-
 
 .visually-hidden {
     position: absolute;
@@ -97,8 +95,6 @@
     white-space: nowrap;
     border: 0;
 }
-
-
 
 .product-detail-title {
     font-size: clamp(2rem, 4vw, 3rem);
@@ -142,22 +138,16 @@
     text-align: center;
 }
 
-
 .arrow-btn:hover,
 .tocart-btn:hover,
 .size-btn:hover {
     background: #cfcfcf;
 }
 
-
 .quantity-box .arrow-btn {
     background: transparent;
     padding: 0;
 }
-
-
-
-
 
 .details-section {
     padding: 60px 40px;
@@ -186,13 +176,10 @@
     text-align: left;
 }
 
-
 .details-table td:nth-child(odd) {
     font-weight: 600;
     background: #f5f5f5;
 }
-
-
 
 .others-section {
     text-align: center;
@@ -287,4 +274,11 @@
         min-width: 115px;
         font-size: 0.9rem;
     }
+}
+
+.others-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #888888;
+    font-size: 16px;
 }

@@ -9,13 +9,23 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
+        $variantSales = DB::table('order_items')
+            ->select(
+                'product_variant_id',
+                DB::raw('SUM(quantity) as sold_count')
+            )
+            ->groupBy('product_variant_id');
+
         $query = DB::table('product_variants')
             ->join('products', 'products.id', '=', 'product_variants.product_id')
             ->join('subcategories', 'subcategories.id', '=', 'products.subcategory_id')
             ->join('categories', 'categories.id', '=', 'subcategories.category_id')
+            ->leftJoinSub($variantSales, 'variant_sales', function ($join) {
+                $join->on('variant_sales.product_variant_id', '=', 'product_variants.id');
+            })
             ->leftJoin('product_images', function ($join) {
                 $join->on('products.id', '=', 'product_images.product_id')
-                    ->on('product_variants.color', '=', 'product_images.color')
+                    ->whereRaw('LOWER(TRIM(product_variants.color)) = LOWER(TRIM(product_images.color))')
                     ->where('product_images.is_main', true);
             })
 
@@ -28,13 +38,7 @@ class ProductController extends Controller
             })
 
             ->when($request->gender, function ($q, $gender) {
-                $genders = collect((array) $gender)
-                    ->map(fn ($g) => mb_strtolower(trim($g), 'UTF-8'))
-                    ->filter()
-                    ->values()
-                    ->all();
-
-                $q->whereIn(DB::raw('LOWER(TRIM(products.gender))'), $genders);
+                $q->whereIn('products.gender', (array) $gender);
             })
 
             ->when($request->category, function ($q, $category) {
@@ -74,10 +78,7 @@ class ProductController extends Controller
                     ->values()
                     ->all();
 
-                $q->whereIn(
-                    DB::raw('LOWER(TRIM(product_variants.color))'),
-                    $colors
-                );
+                $q->whereIn(DB::raw('LOWER(TRIM(product_variants.color))'), $colors);
             })
 
             ->when($request->size, function ($q, $sizes) {
@@ -87,10 +88,7 @@ class ProductController extends Controller
                     ->values()
                     ->all();
 
-                $q->whereIn(
-                    DB::raw('LOWER(TRIM(product_variants.size))'),
-                    $sizes
-                );
+                $q->whereIn(DB::raw('LOWER(TRIM(product_variants.size))'), $sizes);
             })
 
             ->where('product_variants.is_active', true)
@@ -100,8 +98,10 @@ class ProductController extends Controller
                 'products.id as product_id',
                 'products.name',
                 'products.gender',
+                'products.created_at as product_created_at',
                 'product_variants.color',
                 DB::raw('MIN(product_variants.price) as price'),
+                DB::raw('COALESCE(SUM(variant_sales.sold_count), 0) as sold_count'),
                 'product_images.image_path'
             )
 
@@ -109,6 +109,7 @@ class ProductController extends Controller
                 'products.id',
                 'products.name',
                 'products.gender',
+                'products.created_at',
                 'product_variants.color',
                 'product_images.image_path'
             );
@@ -123,16 +124,18 @@ class ProductController extends Controller
                 break;
 
             case 'newest':
-                $query->orderBy('product_id', 'desc');
+                $query->orderBy('product_created_at', 'desc');
                 break;
 
             case 'popular':
             default:
-                $query->orderBy('product_id', 'desc');
+                $query->orderBy('sold_count', 'desc')
+                    ->orderBy('product_created_at', 'desc');
                 break;
         }
-
-        $products = $query->get();
+        
+        // tu menim cislo produktov na stranku
+        $products = $query->paginate(12)->withQueryString();
 
         return view('listofproduct', compact('products'));
     }

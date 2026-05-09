@@ -246,6 +246,11 @@
 
     <nav aria-label="Accessories">
       <ul role="list">
+          <li>
+        <a href="{{ route('products.index', ['category' => 'Accessories']) }}" class="mobile-sub-link">
+          All accessories
+        </a>
+      </li>
         <li><a href="{{ route('products.index', ['category' => 'Accessories', 'subcategory' => 'Bags & backpacks']) }}" class="mobile-sub-link">Bags & backpacks</a></li>
         <li><a href="{{ route('products.index', ['category' => 'Accessories', 'subcategory' => 'Sunglasses']) }}" class="mobile-sub-link">Sunglasses</a></li>
         <li><a href="{{ route('products.index', ['category' => 'Accessories', 'subcategory' => 'Gloves']) }}" class="mobile-sub-link">Gloves</a></li>
@@ -380,7 +385,7 @@
 
         <!-- Accessories category menu -->
         <li class="menu-item">
-          <a href="#" class="menu-link">Accessories</a>
+          <a href="{{ route('products.index', ['category' => 'Accessories']) }}" class="menu-link">Accessories</a>
           <ul class="submenu">
             <li class="submenu-title">
               <a href="{{ route('products.index', ['category' => 'Accessories']) }}">Accessories</a>
@@ -633,7 +638,7 @@
       <h1>{{ $title }}</h1>
 
       <p class="product-count">
-        <strong>{{ $products->count() }}</strong> products
+        <strong>{{ $products->total() }}</strong> products
       </p>
 
       <label for="sort-by" class="sr-only">Sort by</label>
@@ -699,34 +704,55 @@
       @endforelse
     </section>
 
-    <nav class="pagination" aria-label="Stránkovanie">
-      <a href="#" class="page-arrow" aria-label="Predchádzajúca strana" aria-disabled="true">
+   @if ($products->hasPages())
+  <nav class="pagination" aria-label="Stránkovanie">
+    @if ($products->onFirstPage())
+      <span class="page-arrow is-disabled" aria-label="Predchádzajúca strana" aria-disabled="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+      </span>
+    @else
+      <a href="{{ $products->previousPageUrl() }}" class="page-arrow" aria-label="Predchádzajúca strana">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
           <polyline points="15 18 9 12 15 6" />
         </svg>
       </a>
+    @endif
 
-      <ol>
-        <li><a href="#" class="page-num" aria-current="page">1</a></li>
-        <li><a href="#" class="page-num">2</a></li>
-        <li><a href="#" class="page-num">3</a></li>
-        <li><a href="#" class="page-num">4</a></li>
-        <li><a href="#" class="page-num">5</a></li>
-        <li><a href="#" class="page-num">6</a></li>
-        <li><a href="#" class="page-num">7</a></li>
-        <li><a href="#" class="page-num">8</a></li>
-        <li><a href="#" class="page-num">9</a></li>
-        <li><a href="#" class="page-num">10</a></li>
-      </ol>
+    <ol>
+      @foreach ($products->getUrlRange(1, $products->lastPage()) as $page => $url)
+        <li>
+          <a
+            href="{{ $url }}"
+            class="page-num {{ $products->currentPage() === $page ? 'is-active' : '' }}"
+            @if ($products->currentPage() === $page) aria-current="page" @endif
+          >
+            {{ $page }}
+          </a>
+        </li>
+      @endforeach
+    </ol>
 
-      <a href="#" class="page-arrow" aria-label="Nasledujúca strana">
+    @if ($products->hasMorePages())
+      <a href="{{ $products->nextPageUrl() }}" class="page-arrow" aria-label="Nasledujúca strana">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
           <polyline points="9 18 15 12 9 6" />
         </svg>
       </a>
-    </nav>
+    @else
+      <span class="page-arrow is-disabled" aria-label="Nasledujúca strana" aria-disabled="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
+      </span>
+    @endif
+  </nav>
+@endif
   </main>
 
   <!-- FOOTER -->

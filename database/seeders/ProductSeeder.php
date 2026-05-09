@@ -1087,6 +1087,76 @@ class ProductSeeder extends Seeder
         'name' => 'Water bottles',
         'products' => 
         array (
+          0 => 
+          array (
+            'name' => 'flaša',
+            'gender' => 'men',
+            'sport' => NULL,
+            'description' => 'flaška na vodu',
+            'variants' => 
+            array (
+              0 => 
+              array (
+                'color' => 'blue',
+                'size' => 'one-size',
+                'price' => 15.0,
+                'stock' => 50,
+                'is_active' => true,
+              ),
+            ),
+            'images' => 
+            array (
+              0 => 
+              array (
+                'image_path' => 'images/products/product_69ff9d887142e1.36437339.png',
+                'color' => 'blue',
+                'sort_order' => 0,
+                'is_main' => false,
+              ),
+              1 => 
+              array (
+                'image_path' => 'images/products/product_69ff9d88744e70.22540153.png',
+                'color' => 'blue',
+                'sort_order' => 1,
+                'is_main' => true,
+              ),
+            ),
+          ),
+          1 => 
+          array (
+            'name' => 'flaša',
+            'gender' => 'women',
+            'sport' => NULL,
+            'description' => 'flaša na vodu',
+            'variants' => 
+            array (
+              0 => 
+              array (
+                'color' => 'yellow',
+                'size' => 'one-size',
+                'price' => 15.0,
+                'stock' => 50,
+                'is_active' => true,
+              ),
+            ),
+            'images' => 
+            array (
+              0 => 
+              array (
+                'image_path' => 'images/products/product_69ff9da5f2d203.15835940.png',
+                'color' => 'yellow',
+                'sort_order' => 0,
+                'is_main' => false,
+              ),
+              1 => 
+              array (
+                'image_path' => 'images/products/product_69ff9da6016df2.52106840.png',
+                'color' => 'yellow',
+                'sort_order' => 1,
+                'is_main' => true,
+              ),
+            ),
+          ),
         ),
       ),
     ),

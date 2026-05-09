@@ -24,10 +24,10 @@ class AuthenticatedSessionController extends Controller
      * Handle an incoming authentication request.
      */
     public function store(LoginRequest $request): RedirectResponse
-    {   
+    {
         $oldSessionId = session()->getId();
 
-        $request->authenticate();   
+        $request->authenticate();
 
         $request->session()->regenerate();
 
@@ -35,9 +35,8 @@ class AuthenticatedSessionController extends Controller
 
         $intended = auth()->user()->role === 'admin'
             ? route('admin.dashboard')
-            : route('dashboard');
+            : route('profile.edit');
 
-        //return redirect()->intended($intended);
         return redirect($intended);
     }
 
