@@ -7,17 +7,22 @@ main {
     justify-content: center;
     padding: clamp(24px, 4vw, 48px);
     min-height: 100vh;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 main::before {
     content: '';
     position: absolute;
     inset: 0;
-    background-image: url('src/background.png');
+    background: inherit;
     background-size: cover;
     background-position: center;
-    filter: blur(6px);
+    background-repeat: no-repeat;
     transform: scale(1.05);
     z-index: 0;
 }
